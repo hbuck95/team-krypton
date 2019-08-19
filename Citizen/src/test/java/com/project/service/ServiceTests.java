@@ -43,8 +43,8 @@ public class ServiceTests {
 
 	@Test
 	public void findCitizen() {
-		Mockito.when(repo.findByForenames("Tan", "Dryden", "Ilford, London")).thenReturn(citizen1);
+		Mockito.when(repo.findbyNamesAndAddress("Tan", "Dryden", "Ilford, London")).thenReturn(citizen1);
 		assertEquals(citizen1, service.getCitizen(citizen1));
-		Mockito.verify(repo).findByForenames("Tan", "Dryden", "Ilford, London");
+		Mockito.verify(repo).findbyNamesAndAddress("Tan", "Dryden", "Ilford, London");
 	}
 }

@@ -8,5 +8,5 @@ import com.project.entity.Citizen;
 @Repository
 public interface CitizenRepo extends MongoRepository<Citizen, Long> {
 
-	Citizen findByForenames(String forenames, String surname, String homeAddress);
+	Citizen findbyNamesAndAddress(String forenames, String surname, String homeAddress);
 }
