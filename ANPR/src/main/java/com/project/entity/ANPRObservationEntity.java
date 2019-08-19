@@ -1,20 +1,23 @@
 package com.project.entity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "vehicleObservations_subset")
 public class ANPRObservationEntity {
 
 	String ANPRPointId;
 	String timeStamp;
 	String vehicleRegistrationNo;
-	
+
 	public ANPRObservationEntity(String aNPRPointId, String timeStamp, String vehicleRegistrationNo) {
 		super();
 		ANPRPointId = aNPRPointId;
 		this.timeStamp = timeStamp;
 		this.vehicleRegistrationNo = vehicleRegistrationNo;
 	}
-	
+
 	public ANPRObservationEntity() {
-		
+
 	}
 
 	public String getANPRPointId() {
