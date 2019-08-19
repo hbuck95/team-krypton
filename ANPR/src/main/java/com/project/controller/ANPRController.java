@@ -2,6 +2,7 @@ package com.project.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +33,14 @@ public class ANPRController {
 	private VehicleRegistrationService vrs;
 	private ANPRCameraService acs;
 	private ANPRObservationService aos;
+
+	@Autowired
+	public ANPRController(ANPRCameraService anprCameraService, ANPRObservationService anprObservationService,
+			VehicleRegistrationService vehicleRegistrationService) {
+		this.vehicleRegistrationService = vrs;
+		this.anprCameraService = acs;
+		this.anprObservationService = aos;
+	}
 
 	// get vehicleRegistrations(forenames, surname)
 	// get ANPRObservations(vehicleRegistration)
