@@ -36,7 +36,7 @@ div.window {
     overflow: hidden;
     transition: 0.6s all cubic-bezier(0.72, -0.48, 0.13, 1.4)
   }
-  input.toggle:checked ~ div { height: 700px; }
+  input.toggle:checked ~ div { height: 700px; max-height: 80%; }
   input.toggle:checked + label { background: #515761; height: 50px; }
   input.toggle { display: none; }
 

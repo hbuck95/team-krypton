@@ -5,6 +5,7 @@ import LoginPage from "./LoginPage"
 import NavbarClass from './NavbarClass'
 import MapContainer from './MapContainer'
 import LandingPage from './LandingPage'
+import WrappedMap from './MapDrawing'
 
 export default class RouterClass extends Component {
 
@@ -15,7 +16,7 @@ export default class RouterClass extends Component {
                 <NavbarClass />
 
                 <Route exact path="/login" component={LoginPage} />
-                <Route path="/search/map" component={MapContainer} />     
+                <Route path="/search/map" component={WrappedMap} />     
                 <Route path="/home" component={LandingPage} /> 
             </Router>
         );
