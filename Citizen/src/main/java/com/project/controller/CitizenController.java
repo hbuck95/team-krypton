@@ -27,7 +27,7 @@ public class CitizenController {
 	}
 
 	@GetMapping("/all")
-	public List<Citizen> getCitizen() {
+	public List<Citizen> getAllCitizen() {
 		return service.getAllCitizen();
 
 	}
