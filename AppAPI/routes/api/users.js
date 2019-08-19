@@ -63,7 +63,6 @@ router.post('/login', auth.optional, (req, res, next) => {
     }
 
     if(passportUser) {
-      //const user = passportUser;
       const token = passportUser.generateJWT();
 
       return res.json({ token: token });
@@ -72,6 +71,18 @@ router.post('/login', auth.optional, (req, res, next) => {
     return res.status(400).json({info});
   })(req, res, next);
 });
+
+router.post('/getSuspect', auth.required, (req,res) => {
+  const headers = {
+    'Content-Type': 'application/json'
+};
+
+  Axios.post("http://localhost:9003/citizen/getSuspect", req.body, {headers:headers})
+  .then(response => {
+    console.log(response.data);
+    reponse.data
+  })
+})
 
 //GET current route (required, only authenticated users have access)
 router.get('/current', auth.required, (req, res, next) => {
