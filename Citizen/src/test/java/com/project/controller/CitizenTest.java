@@ -45,4 +45,11 @@ public class CitizenTest {
 		Mockito.verify(service).getAllCitizen();
 	}
 
+	@Test
+	public void getCitizen() {
+		Mockito.when(service.getCitizen(citizen1)).thenReturn(citizen1);
+		assertEquals(citizen1, controller.getCitizen(citizen1));
+		Mockito.verify(service).getCitizen(citizen1);
+	}
+
 }

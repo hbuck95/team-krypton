@@ -32,9 +32,8 @@ public class ServiceTests {
 			"Essex", "male");
 
 	@Test
-	public void getCitizenTest() {
+	public void getAllSCitizenTest() {
 		List<Citizen> MOCK_LIST = new ArrayList<>();
-		;
 		MOCK_LIST.add(citizen1);
 		MOCK_LIST.add(citizen2);
 		Mockito.when(repo.findAll()).thenReturn(MOCK_LIST);
@@ -42,4 +41,10 @@ public class ServiceTests {
 		Mockito.verify(repo).findAll();
 	}
 
+	@Test
+	public void findCitizen() {
+		Mockito.when(repo.findByForenames("Tan", "Dryden", "Ilford, London")).thenReturn(citizen1);
+		assertEquals(citizen1, service.getCitizen(citizen1));
+		Mockito.verify(repo).findByForenames("Tan", "Dryden", "Ilford, London");
+	}
 }
