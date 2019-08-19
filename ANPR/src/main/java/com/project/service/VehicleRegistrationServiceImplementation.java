@@ -2,6 +2,7 @@ package com.project.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.entity.VehicleRegistrationEntity;
@@ -11,6 +12,11 @@ import com.project.repository.VehicleRegistrationRepository;
 public class VehicleRegistrationServiceImplementation implements VehicleRegistrationService {
 
 	private VehicleRegistrationRepository repo;
+
+	@Autowired
+	public VehicleRegistrationServiceImplementation(VehicleRegistrationRepository repository) {
+		this.repo = repository;
+	}
 
 	@Override
 	public List<VehicleRegistrationEntity> findByForenamesAndSurname(
