@@ -2,6 +2,7 @@ package com.project.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.entity.ANPRObservationEntity;
@@ -11,6 +12,11 @@ import com.project.repository.ANPRObservationRepository;
 public class ANPRObservationServiceImplementation implements ANPRObservationService {
 
 	private ANPRObservationRepository repo;
+
+	@Autowired
+	public ANPRObservationServiceImplementation(ANPRObservationRepository repo) {
+		this.repo = repo;
+	}
 
 	@Override
 	public List<ANPRObservationEntity> findByVehicleRegistrationNo(String vehicleRegistrationNo) {
