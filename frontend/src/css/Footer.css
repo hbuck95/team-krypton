@@ -1,7 +1,6 @@
 div.window { 
     color: white;
     width: 220px;
-    padding: .42rem;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     background: #474c55;
@@ -12,11 +11,10 @@ div.window {
     width: 100%;
 
     text-align: center;
-    font-family: BlueHighway, Arial Black, sans-serif;
     margin: 0 auto; 
   }
   div.window label { 
-    height: 50px;
+    height: 30px;
     display: block;
     background: #474c55;
     font-size: larger;
@@ -24,9 +22,14 @@ div.window {
     padding: .6rem;
     transition: .4s all linear; 
   }
+
+  div.window label:before {
+      content: "Click for help"
+  }
+
   div.window label:hover { 
     cursor: pointer; background: #515761; 
-    height: 60px;
+    height: 50px;
   }
   input.toggle ~ div { 
     height: 0px; margin: .2rem;
@@ -34,5 +37,8 @@ div.window {
     transition: 0.6s all cubic-bezier(0.72, -0.48, 0.13, 1.4)
   }
   input.toggle:checked ~ div { height: 700px; }
-  input.toggle:checked + label { background: #515761; }
+  input.toggle:checked + label { background: #515761; height: 50px; }
   input.toggle { display: none; }
+
+  input.toggle:checked + label:before { content: "" }
+  input.toggle:checked + label:after { content: "Click to close" }
