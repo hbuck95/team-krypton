@@ -15,7 +15,7 @@ export default class RouterClass extends Component {
                 <NavbarClass />
 
                 <Route exact path="/login" component={LoginPage} />
-                <Route path="/searchlocation" component={MapContainer} />     
+                <Route path="/search/map" component={MapContainer} />     
                 <Route path="/home" component={LandingPage} /> 
             </Router>
         );

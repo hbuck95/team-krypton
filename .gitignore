@@ -62,3 +62,6 @@ typings/
 
 #node modules
 frontend/node_modules
+
+#google maps api key
+frontend/src/gmapsApiKey.js
