@@ -29,7 +29,7 @@ public class CitizenServiceImpl implements CitizenService {
 		String forenames = citizen.getForenames();
 		String surname = citizen.getSurname();
 		String homeAddress = citizen.getHomeAddress();
-		Citizen citizens = repo.findCitizen(forenames, surname, homeAddress);
+		Citizen citizens = repo.findByForenames(forenames, surname, homeAddress);
 		return citizens;
 	}
 }
