@@ -2,6 +2,7 @@ package com.project.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,11 @@ public class ANPRController {
 	// get vehicleRegistrations(forenames, surname)
 	// get ANPRObservations(vehicleRegistration)
 	// get ANPRCamera(id, timestamp)
+
+	@GetMapping("/getAll")
+	public List<VehicleRegistrationEntity> getAll() {
+		return vrs.getAll();
+	}
 
 	@PostMapping("/getVehicleRegistrations")
 	public List<VehicleRegistrationEntity> getVehicleRegistrations(

@@ -9,4 +9,6 @@ public interface VehicleRegistrationService {
 	public List<VehicleRegistrationEntity> findByForenamesAndSurname(
 			VehicleRegistrationEntity vehicleRegistrationEntity);
 
+	public List<VehicleRegistrationEntity> getAll();
+
 }
