@@ -1,10 +1,12 @@
 package com.project.entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "citizen_subset")
 public class Citizen {
 
+	@Field("citizenID")
 	private Long citizenId;
 	private String forenames;
 	private String surname;
