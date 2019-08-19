@@ -44,7 +44,7 @@ public class CitizenRepoTest {
 	@Test
 	public void getCitizenTest() {
 		Mockito.when(repo.findAll()).thenReturn(citizenList);
-		List<Citizen> returnedCitizens = service.getCitizen();
+		List<Citizen> returnedCitizens = service.getAllCitizen();
 		assertEquals(citizenList, returnedCitizens);
 		assertEquals(true, returnedCitizens.contains(TEST_CITIZEN_2));
 

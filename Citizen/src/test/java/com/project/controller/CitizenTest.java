@@ -36,13 +36,13 @@ public class CitizenTest {
 			"Essex", "male");
 
 	@Test
-	public void getCitizenTest() {
+	public void getAllCitizenTest() {
 		List<Citizen> Mock_List = new ArrayList<>();
 		Mock_List.add(citizen1);
 		Mock_List.add(citizen2);
-		Mockito.when(service.getCitizen()).thenReturn(Mock_List);
-		assertEquals(Mock_List, controller.getCitizen());
-		Mockito.verify(service).getCitizen();
+		Mockito.when(service.getAllCitizen()).thenReturn(Mock_List);
+		assertEquals(Mock_List, controller.getAllCitizen());
+		Mockito.verify(service).getAllCitizen();
 	}
 
 }
