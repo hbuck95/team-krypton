@@ -1,5 +1,20 @@
 package com.project.service;
 
-public class ANPRObservationServiceImplementation {
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.project.entity.ANPRObservationEntity;
+import com.project.repository.ANPRObservationRepository;
+
+@Service
+public class ANPRObservationServiceImplementation implements ANPRObservationService {
+
+	private ANPRObservationRepository repo;
+
+	@Override
+	public List<ANPRObservationEntity> findByVehicleRegistrationNo(String vehicleRegistrationNo) {
+		return repo.findByVehicleRegistrationNo(vehicleRegistrationNo);
+	}
 
 }
