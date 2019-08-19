@@ -32,3 +32,6 @@ build/
 
 ### Binary ###
 bin/
+
+### Config ###
+src/main/resources/application.properties
