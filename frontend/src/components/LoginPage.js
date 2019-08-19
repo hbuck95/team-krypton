@@ -68,8 +68,8 @@ export default class LoginPage extends Component {
                     <Row form>
                         <Col>
                             <FormGroup>
-                                <Label for="exampleEmail">Email</Label>
-                                <Input value={this.state.name} id="exampleEmail" onChange={this.handleNameChange} placeholder="..." />
+                                <Label for="username">Username</Label>
+                                <Input value={this.state.name} id="username" onChange={this.handleNameChange} placeholder="..." />
                             </FormGroup>
                         </Col>
 
