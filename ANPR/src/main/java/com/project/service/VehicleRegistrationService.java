@@ -6,6 +6,7 @@ import com.project.entity.VehicleRegistrationEntity;
 
 public interface VehicleRegistrationService {
 
-	public List<VehicleRegistrationEntity> findByForenamesAndSurname(String forenames, String surname);
+	public List<VehicleRegistrationEntity> findByForenamesAndSurname(
+			VehicleRegistrationEntity vehicleRegistrationEntity);
 
 }

@@ -40,8 +40,7 @@ public class ANPRController {
 	public List<VehicleRegistrationEntity> getVehicleRegistrations(
 			@RequestBody VehicleRegistrationEntity vehicleRegistrationEntity) {
 
-		return vrs.findByForenamesAndSurname(vehicleRegistrationEntity.getForenames(),
-				vehicleRegistrationEntity.getSurname());
+		return vrs.findByForenamesAndSurname(vehicleRegistrationEntity);
 	}
 
 	@PostMapping("/getANPRObservations")

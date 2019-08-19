@@ -13,7 +13,12 @@ public class VehicleRegistrationServiceImplementation implements VehicleRegistra
 	private VehicleRegistrationRepository repo;
 
 	@Override
-	public List<VehicleRegistrationEntity> findByForenamesAndSurname(String forenames, String surname) {
+	public List<VehicleRegistrationEntity> findByForenamesAndSurname(
+			VehicleRegistrationEntity vehicleRegistrationEntity) {
+
+		String forenames = vehicleRegistrationEntity.getForenames();
+		String surname = vehicleRegistrationEntity.getSurname();
+
 		return repo.findByForenamesAndSurname(forenames, surname);
 	}
 
