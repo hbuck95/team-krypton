@@ -8,4 +8,6 @@ import com.project.entity.VehicleRegistrationEntity;
 @Repository
 public interface VehicleRegistrationRepository extends MongoRepository<VehicleRegistrationEntity, Long> {
 
+	VehicleRegistrationEntity findByForenamesAndSurname(String forenames, String surname);
+
 }

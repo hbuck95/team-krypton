@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.project.entity.VehicleRegistrationEntity;
 import com.project.service.ANPRCameraService;
 import com.project.service.ANPRObservationService;
 import com.project.service.VehicleRegistrationService;
@@ -21,12 +22,15 @@ public class ANPRController {
 	private VehicleService vehicleService;
 	private VehicleRegistrationService vehicleRegistrationService;
 
+	private String forenames;
+	private String surname;
+
 	// get vehicleRegistrations(forenames, surname)
 	// get ANPRObservations(vehicleRegistration)
 	// get ANPRCamera(id, timestamp)
 
 	@PostMapping("/getVehicleRegistrations")
-	public String getVehicleRegistrations(@RequestBody String forenames, @RequestBody String surname) {
+	public String getVehicleRegistrations(@RequestBody VehicleRegistrationEntity vehicleRegistrationEntity) {
 
 		return "g";
 	}
