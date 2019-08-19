@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import com.project.entity.Citizen;
 import com.project.repository.CitizenRepo;
@@ -13,18 +12,29 @@ import com.project.repository.CitizenRepo;
 public class CitizenServiceImpl implements CitizenService {
 
 	private CitizenRepo repo;
-	private RestTemplate restTemplate;
 
 	@Autowired
-	public CitizenServiceImpl(CitizenRepo repository, RestTemplate restTemplate) {
+	public CitizenServiceImpl(CitizenRepo repository) {
 		this.repo = repository;
-		this.restTemplate = restTemplate;
 
 	}
 
 	@Override
-	public List<Citizen> getCitizen() {
+	public List<Citizen> getAllCitizen() {
 		return repo.findAll();
 	}
 
+	@Override
+	public Citizen getCitizen(Citizen citizen) {
+		String forenames = citizen.getForenames();
+		String surname = citizen.getSurname();
+		String homeAddress = citizen.getHomeAddress();
+		Citizen citizens = repo.findByForename(forenames);
+		if (citizens.getSurname() == surname) {
+			if (citizens.getHomeAddress() == homeAddress) {
+				return citizens;
+			}
+		}
+		return null;
+	}
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -26,8 +28,13 @@ public class CitizenController {
 
 	@GetMapping("/all")
 	public List<Citizen> getCitizen() {
-		return service.getCitizen();
+		return service.getAllCitizen();
 
+	}
+
+	@PostMapping("/getSuspect")
+	public Citizen getCitizen(@RequestBody Citizen citizen) {
+		return service.getCitizen(citizen);
 	}
 
 }
