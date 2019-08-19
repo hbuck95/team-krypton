@@ -1,12 +1,10 @@
 package com.project.entity;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "citizen_subset")
 public class Citizen {
 
-	@Id
 	private Long citizenId;
 	private String forenames;
 	private String surname;
