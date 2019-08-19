@@ -1,9 +1,11 @@
 package com.project.entity;
 
+import org.springframework.data.annotation.Id;
+
 public class Citizen {
 
-	@id
-	private Long citizenID;
+	@Id
+	private Long citizenId;
 	private String forenames;
 	private String surname;
 	private String homeAddress;
@@ -15,10 +17,10 @@ public class Citizen {
 
 	}
 
-	public Citizen(Long citizenID, String forenames, String surname, String homeAddress, String dateOfBirth,
+	public Citizen(Long citizenId, String forenames, String surname, String homeAddress, String dateOfBirth,
 			String placeOfBirth, String sex) {
 		super();
-		this.citizenID = citizenID;
+		this.citizenId = citizenId;
 		this.forenames = forenames;
 		this.surname = surname;
 		this.homeAddress = homeAddress;
@@ -27,12 +29,12 @@ public class Citizen {
 		this.sex = sex;
 	}
 
-	public Long getCitizenID() {
-		return citizenID;
+	public Long getCitizenId() {
+		return citizenId;
 	}
 
-	public void setCitizenID(Long citizenID) {
-		this.citizenID = citizenID;
+	public void setCitizenId(Long citizenId) {
+		this.citizenId = citizenId;
 	}
 
 	public String getForenames() {
