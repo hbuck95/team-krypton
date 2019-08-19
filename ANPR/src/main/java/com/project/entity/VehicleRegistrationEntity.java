@@ -1,5 +1,8 @@
 package com.project.entity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "vehicleRegistration_subset")
 public class VehicleRegistrationEntity {
 
 	String registrationId;
@@ -13,11 +16,11 @@ public class VehicleRegistrationEntity {
 	String address;
 	String dateOfBirth;
 	String driverLicenceID;
-	
+
 	public VehicleRegistrationEntity(String registrationId, String registrationDate, String vehicleRegistrationNo,
 			String make, String model, String colour, String forenames, String surname, String address,
 			String dateOfBirth, String driverLicenceID) {
-		
+
 		this.registrationId = registrationId;
 		this.registrationDate = registrationDate;
 		this.vehicleRegistrationNo = vehicleRegistrationNo;
@@ -30,9 +33,9 @@ public class VehicleRegistrationEntity {
 		this.dateOfBirth = dateOfBirth;
 		this.driverLicenceID = driverLicenceID;
 	}
-	
+
 	public VehicleRegistrationEntity() {
-		
+
 	}
 
 	public String getRegistrationId() {
