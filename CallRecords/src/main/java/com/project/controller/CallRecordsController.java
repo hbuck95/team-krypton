@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.entity.MobileCallRecordsEntity;
+import com.project.entity.SubscriberRecordsEntity;
 import com.project.service.CellTowersService;
 import com.project.service.MobileCallRecordsService;
 import com.project.service.SubscriberRecordsService;
@@ -30,48 +31,48 @@ public class CallRecordsController {
 
 	}
 
-	
 //	get CellTowers(Lat,long,time,range)
 //	return List<CellTowerEntities>
-	
-	
 
-//	
+
+	
+	
+	
+	
+	
 //	get MobileCallRecords(cellTowerId, time)
 //	return List<CallRecordsEntities>
-	
+
 	@PostMapping("/mobileCallRecords")
-	public List<MobileCallRecordsEntity> getMobileCallRecords(@RequestBody MobileCallRecordsEntity mobileCallRecordsEntity){
+	public List<MobileCallRecordsEntity> getMobileCallRecords(
+			@RequestBody MobileCallRecordsEntity mobileCallRecordsEntity) {
 		return mcrService.findById(mobileCallRecordsEntity);
 	}
+
 	
 	
 	
-	
-	
-//	
 //	get SubscriberRecords(callerMSISDN)
 //	return List<SusbscriberRecordEntity>
-	
-	
+
+	@PostMapping("/SubscriberRecords")
+	public List<SubscriberRecordsEntity> getSubscriberRecords(
+			@RequestBody SubscriberRecordsEntity subcriberRecordsEntity) {
+
+		return srService.findByPhoneNumber(subcriberRecordsEntity);
+
+	}
+
 //	GET SubscriberRecords(firstnames, surname)
 //	return SubscriberRecords : SubscriberRecordsEntity
 
-	
-	
-	
-	
 //	GET MobileCallRecords(Caller MSISDN)
 //	return Matching MSISDN's : List <CallRecordEntity>
 //			
-	
-	
-	
-	
+
 //			GET SubscriberRecords(Reciever MSISDN)
 //			Return Subscriber Record Entity : List <CitizenEntity>
-	
-	
+
 //			
 //			get CallRecords(MSISDN)
 //			return List<callRecordEntity>

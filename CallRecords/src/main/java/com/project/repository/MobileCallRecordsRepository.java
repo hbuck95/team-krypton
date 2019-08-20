@@ -13,4 +13,5 @@ public interface MobileCallRecordsRepository extends MongoRepository <MobileCall
 
 	
 	List<MobileCallRecordsEntity> findById(Integer callCellTowerId);
+	
 }
