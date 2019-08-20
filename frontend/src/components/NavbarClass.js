@@ -33,7 +33,7 @@ export default class NavbarClass extends Component {
                     <Link to="home"><NavbarBrand><h2 style={{ color: "white" }}>krypton</h2></NavbarBrand></Link>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <Link to="help"><NavLink style={{fontSize:25}}>help</NavLink></Link>
+                            <NavLink tag={Link} to="/help" style={{fontSize:25}}>help</NavLink>
                         </NavItem>
                         <NavItem>
                            <Link to="login"><NavLink to="login" style={{fontSize:25}}>login</NavLink></Link>
