@@ -9,22 +9,34 @@ import com.project.entity.MobileCallRecordsEntity;
 import com.project.repository.MobileCallRecordsRepository;
 
 @Service
-public class MobileCallRecordsServiceImpl implements MobileCallRecordsService{
-	
-private MobileCallRecordsRepository repo;
+public class MobileCallRecordsServiceImpl implements MobileCallRecordsService {
 
-	
-@Autowired
-public MobileCallRecordsServiceImpl(MobileCallRecordsRepository repo) {
-	this.repo = repo;
-	
-}
+	private MobileCallRecordsRepository repo;
 
-@Override
-public List<MobileCallRecordsEntity> findById(MobileCallRecordsEntity mobileCallRecordsEntity){
-	Integer callCellTowerId = mobileCallRecordsEntity.getCallCellTowerId();
-	return repo.findById(callCellTowerId);
-	
-}
+	@Autowired
+	public MobileCallRecordsServiceImpl(MobileCallRecordsRepository repo) {
+		this.repo = repo;
 
+	}
+
+	@Override
+	public List<MobileCallRecordsEntity> findById(MobileCallRecordsEntity mobileCallRecordsEntity) {
+		Integer callCellTowerId = mobileCallRecordsEntity.getCallCellTowerId();
+		return repo.findById(callCellTowerId);
+
+	}
+
+	@Override
+	public List<MobileCallRecordsEntity> findByMSISDN(MobileCallRecordsEntity mobileCallRecordsEntity) {
+		String callerMSISDN = mobileCallRecordsEntity.getCallerMSISDN();
+		return repo.findByMSISDN(callerMSISDN);
+
+	}
+
+	@Override
+	public List<MobileCallRecordsEntity> findByRecieverMSISDN(MobileCallRecordsEntity mobileCallRecordsEntity) {
+		String receiverMSISDN = mobileCallRecordsEntity.getReceiverMSISDN();
+		return repo.findByReceiverMSISDN(receiverMSISDN);
+
+	}
 }

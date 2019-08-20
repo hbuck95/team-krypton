@@ -10,4 +10,5 @@ public interface SubscriberRecordsRepository extends MongoRepository<SubscriberR
 
 	
 	List<SubscriberRecordsEntity> findByPhoneNumber(String phoneNumber);
+
 }

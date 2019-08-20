@@ -33,11 +33,12 @@ public class CallRecordsController {
 
 //	get CellTowers(Lat,long,time,range)
 //	return List<CellTowerEntities>
-
-
 	
-	
-	
+//	@PostMapping("/CellTowerEntities")
+//	public List<CellTowersEntity> getCellTowerEntities()@RequestBody CellTowerEntity cellTowerEntity){
+//		return ctService.findByLatLongTimeRange
+//	}
+//	
 	
 	
 //	get MobileCallRecords(cellTowerId, time)
@@ -63,23 +64,46 @@ public class CallRecordsController {
 
 	}
 
-//	GET SubscriberRecords(firstnames, surname)
-//	return SubscriberRecords : SubscriberRecordsEntity
+
 
 //	GET MobileCallRecords(Caller MSISDN)
 //	return Matching MSISDN's : List <CallRecordEntity>
-//			
-
-//			GET SubscriberRecords(Reciever MSISDN)
-//			Return Subscriber Record Entity : List <CitizenEntity>
-
-//			
-//			get CallRecords(MSISDN)
+	
+	@PostMapping("/mobileCallRecordsMSISDN")
+	public List<MobileCallRecordsEntity> getMobileCallRecordByMSISDN(MobileCallRecordsEntity mobileCallRecordsEntity){
+		return mcrService.findByMSISDN(mobileCallRecordsEntity);
+	}
+	
+	
+	
+//			get CallRecords(receiverMSISDN)
 //			return List<callRecordEntity>
-//			
+	
+	@PostMapping
+	public List<MobileCallRecordsEntity> getCallRecordByReceiverMSISDN(MobileCallRecordsEntity mobileCallRecordsEntity){
+		return mcrService.findByRecieverMSISDN(mobileCallRecordsEntity);	
+	}
+	
+			
 //			Get CellTowerEntity(towerId)
 //			return List<CellTowerEntity>
-//		
+//			
+
+//GET SubscriberRecords(Reciever MSISDN)
+		//	Return Subscriber Record Entity : List <CitizenEntity>	
+
+	
+	
+	
+	
+//	GET SubscriberRecords(firstnames, surname)
+//	return SubscriberRecords : SubscriberRecordsEntity
+	
+		
+
+	
+	
+
 
 //	
 //	
