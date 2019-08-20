@@ -1,5 +1,8 @@
 package com.project.entity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "celltower_subset")
 public class CellTowersEntity {
 
 	private String cellTowerId;
