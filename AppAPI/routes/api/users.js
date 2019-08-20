@@ -93,15 +93,15 @@ router.post('/getCitizen', auth.required, (req, res) => {
     .then(response => {
       if (res.statusCode === 200) {
         console.log(response.data);
-        return res.statusCode(200).json({ data: response.data }).send();
+        return res.status(200).json({ data: response.data });
       } else {
         console.log(res.statusCode);
         console.log(response.data);
-        return res.statusCode(400).json({ data: "Unable to find citizen" });
+        return res.status(400).json({ data: "Unable to find citizen" });
       }
     }).catch(err => {
         console.log(err);
-        return res.statusCode(500).json({ error: err}).send();
+        return res.status(500).json({ error: err});
     });
 
 });
