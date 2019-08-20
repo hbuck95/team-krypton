@@ -10,6 +10,6 @@ import com.project.entity.ANPRObservationEntity;
 @Repository
 public interface ANPRObservationRepository extends MongoRepository<ANPRObservationEntity, Long> {
 
-	List<ANPRObservationEntity> findByVehicleRegistrationNo(String VehicleRegistrationNo);
+	List<ANPRObservationEntity> findByVehicleRegistrationNumber(String VehicleRegistrationNumber);
 
 }

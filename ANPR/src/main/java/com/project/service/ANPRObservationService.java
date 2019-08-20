@@ -6,6 +6,6 @@ import com.project.entity.ANPRObservationEntity;
 
 public interface ANPRObservationService {
 
-	List<ANPRObservationEntity> findByVehicleRegistrationNo(String vehicleRegistrationNo);
+	List<ANPRObservationEntity> findByVehicleRegistrationNumber(String vehicleRegistrationNumber);
 
 }

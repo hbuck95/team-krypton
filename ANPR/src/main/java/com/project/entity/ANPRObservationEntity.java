@@ -7,13 +7,13 @@ public class ANPRObservationEntity {
 
 	String ANPRPointId;
 	String timeStamp;
-	String vehicleRegistrationNo;
+	String vehicleRegistrationNumber;
 
-	public ANPRObservationEntity(String aNPRPointId, String timeStamp, String vehicleRegistrationNo) {
+	public ANPRObservationEntity(String aNPRPointId, String timeStamp, String vehicleRegistrationNumber) {
 		super();
 		ANPRPointId = aNPRPointId;
 		this.timeStamp = timeStamp;
-		this.vehicleRegistrationNo = vehicleRegistrationNo;
+		this.vehicleRegistrationNumber = vehicleRegistrationNumber;
 	}
 
 	public ANPRObservationEntity() {
@@ -28,8 +28,8 @@ public class ANPRObservationEntity {
 		return timeStamp;
 	}
 
-	public String getVehicleRegistrationNo() {
-		return vehicleRegistrationNo;
+	public String getVehicleRegistrationNumber() {
+		return vehicleRegistrationNumber;
 	}
 
 	public void setANPRPointId(String aNPRPointId) {
@@ -40,8 +40,8 @@ public class ANPRObservationEntity {
 		this.timeStamp = timeStamp;
 	}
 
-	public void setVehicleRegistrationNo(String vehicleRegistrationNo) {
-		this.vehicleRegistrationNo = vehicleRegistrationNo;
+	public void setVehicleRegistrationNumber(String vehicleRegistrationNumber) {
+		this.vehicleRegistrationNumber = vehicleRegistrationNumber;
 	}
 
 }
