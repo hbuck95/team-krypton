@@ -1,21 +1,24 @@
 package com.project.entity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "anprcamera_subset")
 public class ANPRCameraEntity {
 
 	String anprId;
 	String streetName;
 	String latitude;
 	String longitude;
-	
+
 	public ANPRCameraEntity(String anprId, String streetName, String latitude, String longitude) {
 		this.anprId = anprId;
 		this.streetName = streetName;
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-	
+
 	public ANPRCameraEntity() {
-		
+
 	}
 
 	public String getAnprId() {
