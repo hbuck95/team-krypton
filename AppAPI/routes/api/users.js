@@ -13,7 +13,7 @@ const HEADERS = {
 router.post('/', auth.optional, (req, res, next) => {
   const { body: { user } } = req;
 
-  if(!user.username) {
+  if (!user.username) {
     return res.status(422).json({
       errors: {
         username: 'is required',
@@ -21,7 +21,7 @@ router.post('/', auth.optional, (req, res, next) => {
     });
   }
 
-  if(!user.password) {
+  if (!user.password) {
     return res.status(422).json({
       errors: {
         password: 'is required',
@@ -41,7 +41,7 @@ router.post('/', auth.optional, (req, res, next) => {
 router.post('/login', auth.optional, (req, res, next) => {
   const { body: { user } } = req;
 
-  if(!user.username) {
+  if (!user.username) {
     return res.status(422).json({
       errors: {
         username: 'is required',
@@ -49,7 +49,7 @@ router.post('/login', auth.optional, (req, res, next) => {
     }).send();
   }
 
-  if(!user.password) {
+  if (!user.password) {
     return res.status(422).json({
       errors: {
         password: 'is required',
@@ -58,17 +58,17 @@ router.post('/login', auth.optional, (req, res, next) => {
   }
 
   return passport.authenticate('local', { session: false }, (err, passportUser, info) => {
-    if(err) {
+    if (err) {
       return next(err);
     }
 
-    if(passportUser) {
+    if (passportUser) {
       const token = passportUser.generateJWT();
 
       return res.json({ token: token });
     }
 
-    return res.status(400).json({info});
+    return res.status(400).json({ info });
   })(req, res, next);
 });
 
@@ -78,7 +78,7 @@ router.get('/current', auth.required, (req, res, next) => {
 
   return Users.findById(id)
     .then((user) => {
-      if(!user) {
+      if (!user) {
         return res.sendStatus(400);
       }
 
@@ -89,11 +89,20 @@ router.get('/current', auth.required, (req, res, next) => {
 //POST get citizen data using forenames, surname, and address (authentication required)
 router.post('/getCitizen', auth.required, (req, res) => {
 
-  axios.post("http://localhost:9003/citizen/getCitizen", req.body, {headers:HEADERS})
-  .then(response => {
-    console.log(response);
-    console.log(response.data);
-  })
+  axios.post("http://localhost:9003/citizen/getCitizen", req.body, { headers: HEADERS })
+    .then(response => {
+      if (res.statusCode === 200) {
+        console.log(response.data);
+        return res.statusCode(200).json({ data: response.data }).send();
+      } else {
+        console.log(res.statusCode);
+        console.log(response.data);
+        return res.statusCode(400).json({ data: "Unable to find citizen" });
+      }
+    }).catch(err => {
+        console.log(err);
+        return res.statusCode(500).json({ error: err}).send();
+    });
 
 });
 
