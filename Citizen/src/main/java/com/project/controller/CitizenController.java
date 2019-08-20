@@ -32,7 +32,14 @@ public class CitizenController {
 
 	}
 
-	@PostMapping("/getSuspect")
+	/**
+	 * Returns a a complete Citizen object from the database based on the partial input provided with param.
+	 *
+	 * @param  		citizen  a partially complete object used as a wrapper containing forenames, surname, and address
+	 * @return      the complete citizen object
+	 * @see         Citizen
+	 */
+	@PostMapping("/getCitizen")
 	public Citizen getCitizen(@RequestBody Citizen citizen) {
 		return service.getCitizen(citizen);
 	}
