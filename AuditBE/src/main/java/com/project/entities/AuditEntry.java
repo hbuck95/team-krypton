@@ -2,6 +2,9 @@ package com.project.entities;
 
 import java.time.LocalDateTime;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("Audits")
 public class AuditEntry {
 
 	private String userId;
