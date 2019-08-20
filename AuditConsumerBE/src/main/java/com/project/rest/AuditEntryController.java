@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.entities.SentAuditEntry;
+import com.project.entities.AuditEntrySent;
 import com.project.service.AuditService;
 
 @RestController
@@ -24,17 +24,17 @@ public class AuditEntryController {
 	}
 
 	@GetMapping("/getAll")
-	public Collection<SentAuditEntry> getAllAudits() {
+	public Collection<AuditEntrySent> getAllAudits() {
 		return service.getAllAudits();
 	}
 
 	@PostMapping("/getForUser")
-	public Collection<SentAuditEntry> getAuditsForUser(@RequestBody SentAuditEntry entry) {
+	public Collection<AuditEntrySent> getAuditsForUser(@RequestBody AuditEntrySent entry) {
 		return service.getAuditsForUser(entry.getUsername());
 	}
 
 	@PostMapping("/create")
-	public String createAudit(@RequestBody SentAuditEntry entry) {
+	public String createAudit(@RequestBody AuditEntrySent entry) {
 		// entry.setDate(LocalDateTime.now());
 		return service.createAudit(entry);
 	}
