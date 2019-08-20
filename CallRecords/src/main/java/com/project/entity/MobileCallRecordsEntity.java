@@ -4,22 +4,30 @@ public class MobileCallRecordsEntity {
 
 	private String timestamp;
 	private String callerMSISDN;
-	private String callCellTowerId;
+	private Integer callCellTowerId;
 	private String receiverMSISDN;
-	private String TowerId;
+	private String towerId;
 	
 	public MobileCallRecordsEntity() {
 		
 	}
 
-	public MobileCallRecordsEntity(String timestamp, String callerMSISDN, String callCellTowerId, String receiverMSISDN,
+	public MobileCallRecordsEntity(String timestamp, String callerMSISDN, Integer callCellTowerId, String receiverMSISDN,
 			String towerId) {
 		super();
 		this.timestamp = timestamp;
 		this.callerMSISDN = callerMSISDN;
 		this.callCellTowerId = callCellTowerId;
 		this.receiverMSISDN = receiverMSISDN;
-		TowerId = towerId;
+		this.towerId = towerId;
+	}
+
+	public String getTowerId() {
+		return towerId;
+	}
+
+	public void setTowerId(String towerId) {
+		this.towerId = towerId;
 	}
 
 	public String getTimestamp() {
@@ -38,11 +46,11 @@ public class MobileCallRecordsEntity {
 		this.callerMSISDN = callerMSISDN;
 	}
 
-	public String getCallCellTowerId() {
+	public Integer getCallCellTowerId() {
 		return callCellTowerId;
 	}
 
-	public void setCallCellTowerId(String callCellTowerId) {
+	public void setCallCellTowerId(Integer callCellTowerId) {
 		this.callCellTowerId = callCellTowerId;
 	}
 
@@ -54,13 +62,5 @@ public class MobileCallRecordsEntity {
 		this.receiverMSISDN = receiverMSISDN;
 	}
 
-	public String getTowerId() {
-		return TowerId;
-	}
-
-	public void setTowerId(String towerId) {
-		TowerId = towerId;
-	}
-	
 	
 }
