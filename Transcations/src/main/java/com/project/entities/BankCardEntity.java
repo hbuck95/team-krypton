@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class BankCardEntity {
 
 	private int bankcardId;
-	private int cardNumber;
+	private Long cardNumber;
 	private String sortcode;
 	private int bankAccountId;
 	private int accountNumber;
