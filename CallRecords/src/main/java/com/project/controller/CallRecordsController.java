@@ -24,5 +24,49 @@ public class CallRecordsController {
 		
 	}
 	
+//	GET SubscriberRecords(firstnames, surname)
+//	return SubscriberRecords : SubscriberRecordsEntity
+			
+	
+//	GET MobileCallRecords(Caller MSISDN)
+//	return Matching MSISDN's : List <CallRecordEntity>
+//			
+//			GET SubscriberRecords(Reciever MSISDN)
+//			Return Subscriber Record Entity : List <CitizenEntity>
+//			
+//			get CallRecords(MSISDN)
+//			return List<callRecordEntity>
+//			
+//			Get CellTowerEntity(towerId)
+//			return List<CellTowerEntity>
+//		
+//	get CellTowers(Lat,long,time,range)
+//	return List<CellTowerEntities>
+//	
+//	get MobileCallRecords(cellTowerId, time)
+//	return List<CallRecordsEntities>
+//	
+//	get SubscriberRecords(callerMSISDN)
+//	return List<SusbscriberRecordEntity>
+//	
+//	
+//	GetSubscriberRecords(forenames, surname, dateOfBirth, address)
+//	return SubscriberRecordEntity
+	
+//	getCallRecords(phoneNumber)
+//	return List<CallRecordEntity>
+	
+	
+			
+			
+			
+			
+			
+	
+			
+			
+			
+	
+	
 	
 }
