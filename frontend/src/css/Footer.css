@@ -12,7 +12,17 @@ div.window {
 
     text-align: center;
     margin: 0 auto; 
+
+    visibility: hidden;
   }
+
+  input.closer {
+    float: right;
+    margin-right: 25px;
+    margin-top: 15px;
+    color: rgb(223, 69, 69);
+  }
+
   div.window label { 
     height: 30px;
     display: block;
@@ -36,7 +46,7 @@ div.window {
     overflow: hidden;
     transition: 0.6s all cubic-bezier(0.72, -0.48, 0.13, 1.4)
   }
-  input.toggle:checked ~ div { height: 700px; max-height: 80%; }
+  input.toggle:checked ~ div { height: 400px;  }
   input.toggle:checked + label { background: #515761; height: 50px; }
   input.toggle { display: none; }
 

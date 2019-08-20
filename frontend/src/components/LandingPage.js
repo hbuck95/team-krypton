@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Flexbox } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 
 
 import SearchPersonBox from './SearchBy/SearchPersonBox'

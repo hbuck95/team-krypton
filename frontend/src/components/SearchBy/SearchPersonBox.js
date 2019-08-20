@@ -4,6 +4,8 @@ import '../../css/SearchBoxes.css'
 
 import { Button, Input, Form, Row, Col, FormGroup, Label } from 'reactstrap'
 
+import { Link } from 'react-router-dom'
+
 export default class SearchPersonBox extends Component {
     render() {
         return (
@@ -35,7 +37,7 @@ export default class SearchPersonBox extends Component {
                     </Row>
                     <FormGroup check row style={{ marginTop: "25px" }}>
                         <Col sm={{ size: 10, offset: 4 }}>
-                            <Button>Search</Button>
+                            <Link to="/search/result"><Button>Search</Button></Link>
                         </Col>
                     </FormGroup>
                 </Form>
