@@ -19,7 +19,8 @@ public class ANPRObservationServiceImplementation implements ANPRObservationServ
 	}
 
 	@Override
-	public List<ANPRObservationEntity> findByVehicleRegistrationNumber(String vehicleRegistrationNumber) {
+	public List<ANPRObservationEntity> findByVehicleRegistrationNumber(ANPRObservationEntity anprObservationEntity) {
+		String vehicleRegistrationNumber = anprObservationEntity.getVehicleRegistrationNumber();
 		return repo.findByVehicleRegistrationNumber(vehicleRegistrationNumber);
 	}
 

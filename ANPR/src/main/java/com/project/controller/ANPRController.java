@@ -51,9 +51,9 @@ public class ANPRController {
 	}
 
 	@PostMapping("/getANPRObservations")
-	public List<ANPRObservationEntity> getANPRObservations(@RequestBody String vehicleRegistrationNumber) {
+	public List<ANPRObservationEntity> getANPRObservations(@RequestBody ANPRObservationEntity anprObservationEntity) {
 
-		return anprObservationService.findByVehicleRegistrationNumber(vehicleRegistrationNumber);
+		return anprObservationService.findByVehicleRegistrationNumber(anprObservationEntity);
 	}
 
 	@PostMapping("/getANPRCamera")
