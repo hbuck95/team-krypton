@@ -36,7 +36,7 @@ public class AuditEntryController {
 
 	@PostMapping("/create")
 	public String createAudit(@RequestBody AuditEntrySent entry) {
-		entry.setDate(LocalDateTime.now());
+		entry.setDate(LocalDateTime.now().toString());
 		return service.createAudit(entry);
 	}
 
