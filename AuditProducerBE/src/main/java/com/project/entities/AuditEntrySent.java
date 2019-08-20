@@ -20,6 +20,13 @@ public class AuditEntrySent {
 		this.date = date;
 	}
 
+	public AuditEntrySent(AuditEntry entry) {
+		this.username = entry.getUsername();
+		this.searchUrl = entry.getSearchUrl();
+		this.searchCriteria = entry.getSearchCriteria();
+		this.date = entry.getDate();
+	}
+
 	public String getUsername() {
 		return username;
 	}
