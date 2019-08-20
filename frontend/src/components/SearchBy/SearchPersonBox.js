@@ -10,18 +10,26 @@ export default class SearchPersonBox extends Component {
             <div className="searchBox">
                 <h1 style={{ textAlign: 'center', marginBottom: "50px" }}>NAME</h1>
 
-                <Form>
+                <Form onSubmit={(e) => { e.preventDefault() }}>
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="firstName">First name:</Label>
-                                <Input type="text" name="firstName" id="firstName" placeholder="..." />
+                                <Label for="forenames">Forenames:</Label>
+                                <Input type="text" name="forenames" id="forenames" placeholder="..." />
                             </FormGroup>
                         </Col>
                         <Col md={6}>
                             <FormGroup>
                                 <Label for="lastName">Last name:</Label>
                                 <Input type="text" name="lastName" id="lastName" placeholder="..." />
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <FormGroup>
+                                <Label for="address">Address:</Label>
+                                <Input type="text" name="address" id="address" placeholder="..." />
                             </FormGroup>
                         </Col>
                     </Row>

@@ -5,17 +5,19 @@ import '../../css/SearchBoxes.css'
 import { Button, Input, Form, Row, Col, FormGroup, Label } from 'reactstrap'
 
 export default class SearchRegistrationBox extends Component {
+
+
     render() {
         return (
             <div className="searchBox">
                 <h1 style={{ textAlign: 'center', marginBottom: "50px" }}>REGISTRATION</h1>
 
-                <Form>
+                <Form onSubmit={(e) => { e.preventDefault() }}>
                     <Row form>
                         <Col>
                             <FormGroup>
-                                <Label for="firstName">Registration Number:</Label>
-                                <Input type="text" name="email" id="firstName" placeholder="AB12 XYZ" style={{textAlign:"center"}}/>
+                                <Label for="registration">Registration Number:</Label>
+                                <Input type="text" name="registration" id="registration" placeholder="AB12 XYZ" style={{textAlign:"center"}}/>
                             </FormGroup>
                         </Col>
                     </Row>
