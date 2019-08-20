@@ -3,18 +3,18 @@ package com.project.entities;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("Audits")
-public class AuditEntry {
+public class SentAuditEntry {
 
 	private String username;
 	private String searchUrl;
 	private String searchCriteria;
 	// private LocalDateTime date;
 
-	public AuditEntry() {
+	public SentAuditEntry() {
 		super();
 	}
 
-	public AuditEntry(String username, String searchUrl, String searchCriteria) {// , LocalDateTime date) {
+	public SentAuditEntry(String username, String searchUrl, String searchCriteria) {// , LocalDateTime date) {
 		this.username = username;
 		this.searchUrl = searchUrl;
 		this.searchCriteria = searchCriteria;

@@ -2,12 +2,12 @@ package com.project.service;
 
 import java.util.Collection;
 
-import com.project.entities.AuditEntry;
+import com.project.entities.SentAuditEntry;
 
 public interface AuditService {
-	Collection<AuditEntry> getAllAudits();
+	Collection<SentAuditEntry> getAllAudits();
 
-	Collection<AuditEntry> getAuditsForUser(String username);
+	Collection<SentAuditEntry> getAuditsForUser(String username);
 
-	String createAudit(AuditEntry audit);
+	String createAudit(SentAuditEntry audit);
 }

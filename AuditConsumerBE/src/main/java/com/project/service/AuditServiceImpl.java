@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.entities.AuditEntry;
+import com.project.entities.SentAuditEntry;
 import com.project.repository.AuditRepository;
 
 @Service
@@ -19,17 +19,17 @@ public class AuditServiceImpl implements AuditService {
 	}
 
 	@Override
-	public Collection<AuditEntry> getAllAudits() {
+	public Collection<SentAuditEntry> getAllAudits() {
 		return repo.findAll();
 	}
 
 	@Override
-	public Collection<AuditEntry> getAuditsForUser(String username) {
+	public Collection<SentAuditEntry> getAuditsForUser(String username) {
 		return repo.getAuditsForUser(username);
 	}
 
 	@Override
-	public String createAudit(AuditEntry audit) {
+	public String createAudit(SentAuditEntry audit) {
 		repo.save(audit);
 		return "{response: \"Your audit entry was successfully saved to the database.\"}";
 	}

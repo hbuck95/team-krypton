@@ -5,11 +5,11 @@ import java.util.Collection;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import com.project.entities.AuditEntry;
+import com.project.entities.SentAuditEntry;
 
-public interface AuditRepository extends MongoRepository<AuditEntry, String> {
+public interface AuditRepository extends MongoRepository<SentAuditEntry, String> {
 
 	@Query("{ 'username' : ?0 }")
-	Collection<AuditEntry> getAuditsForUser(String username);
+	Collection<SentAuditEntry> getAuditsForUser(String username);
 
 }
