@@ -10,5 +10,5 @@ import com.project.entities.EpostransactionEntity;
 @Repository
 public interface EpostransactionsRepo extends MongoRepository<EpostransactionEntity, Long> {
 
-	List<EpostransactionEntity> findByBankCardNumber(int bankCardNumber);
+	List<EpostransactionEntity> findByBankCardNumber(Long bankCardNumber);
 }
