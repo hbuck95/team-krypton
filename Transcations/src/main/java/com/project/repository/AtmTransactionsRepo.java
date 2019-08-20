@@ -10,6 +10,6 @@ import com.project.entities.AtmtransactionsEntity;
 @Repository
 public interface AtmTransactionsRepo extends MongoRepository<AtmtransactionsEntity, Long> {
 
-	List<AtmtransactionsEntity> findByBankCardNumber(int bankCardNumber);
+	List<AtmtransactionsEntity> findByBankCardNumber(Long bankCardNumber);
 
 }

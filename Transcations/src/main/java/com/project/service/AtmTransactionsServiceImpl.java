@@ -20,7 +20,7 @@ public class AtmTransactionsServiceImpl implements AtmTransactionsService {
 
 	@Override
 	public List<AtmtransactionsEntity> getTransactions(AtmtransactionsEntity atmTransactionsEntity) {
-		int bankCardNumber = atmTransactionsEntity.getBankCardNumber();
+		Long bankCardNumber = atmTransactionsEntity.getBankCardNumber();
 		List<AtmtransactionsEntity> transactions = repo.findByBankCardNumber(bankCardNumber);
 		return transactions;
 	}
