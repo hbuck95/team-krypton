@@ -7,11 +7,12 @@ public class MobileCallRecordsEntity {
 
 	private String timestamp;
 	private String callerMSISDN;
-	private int callCellTowerId;
+	private int callCellTowerId = -1;
 	private String receiverMSISDN;
-	private int receiverTowerId;
+	private int receiverTowerId = -1;
 
 	public MobileCallRecordsEntity() {
+
 		super();
 	}
 
