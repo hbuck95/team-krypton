@@ -32,7 +32,7 @@ public class AuditEntry {
 	}
 
 	public String getSearchUrl() {
-		return searchCriteria;
+		return searchUrl;
 	}
 
 	public void setSearchUrl(String searchUrl) {
@@ -40,7 +40,7 @@ public class AuditEntry {
 	}
 
 	public String getSearchCriteria() {
-		return searchUrl;
+		return searchCriteria;
 	}
 
 	public void setSearchCriteria(String searchCriteria) {
