@@ -28,7 +28,7 @@ public class MobileCallRecordsServiceImpl implements MobileCallRecordsService {
 	@Override
 	public List<MobileCallRecordsEntity> getCallRecordsOfAssosiate(MobileCallRecordsEntity mobileCallRecordsEntity) {
 		String receiverMSISDN = mobileCallRecordsEntity.getReceiverMSISDN();
-		List<MobileCallRecordsEntity> callRecordsForAssosiate = repo.findByCallerMSISDN(receiverMSISDN);
+		List<MobileCallRecordsEntity> callRecordsForAssosiate = repo.findByreceiverMSISDN(receiverMSISDN);
 		return callRecordsForAssosiate;
 	}
 
