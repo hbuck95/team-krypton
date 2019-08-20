@@ -5,7 +5,7 @@ import LoginPage from "./LoginPage"
 import NavbarClass from './NavbarClass'
 import MapContainer from './MapContainer'
 import LandingPage from './LandingPage'
-import WrappedMap from './MapDrawing'
+import WrappedMap from './MapTest'
 
 export default class RouterClass extends Component {
 

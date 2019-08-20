@@ -5,11 +5,13 @@ import Footer from './components/Footer'
 
 import './css/Navbar.css'
 
+
+
 function App() {
   return (
     <div>
-        <RouterClass />
-        <Footer />
+      <RouterClass />
+      <Footer />
     </div>
   );
 }

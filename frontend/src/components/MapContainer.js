@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import {
-    GoogleMap, DrawingManager
-} from '@react-google-maps/api'
+// import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+// import {
+//     GoogleMap, DrawingManager
+// } from '@react-google-maps/api'
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
 import PropTypes from 'prop-types'
 
 import apikey from '../gmapsApiKey'
 
 
-class MapContainer extends Component {
+export default class MapContainer extends Component {
     constructor(props) {
         super(props);
 
@@ -26,39 +27,51 @@ class MapContainer extends Component {
                 container: PropTypes.object.isRequired
             }).isRequired
         }
+
+        this.MapComponent = withScriptjs(withGoogleMap((props) => 
+            <GoogleMap
+                defaultZoom={8}
+                defaultCenter={{ lat: -34.397, lng: 150.644 }}
+            >
+                {props.isMarkerShown && <Marker position={{lat:-34.397, lng: 150.644}} />}
+            </GoogleMap>
+            ))
+        
+
     }
 
 
 
     render() {
         return (
-            <div style={{ zIndex: -1 }}>
-                <GoogleMap
-                    id="drawing-manager-example"
-                    mapContainerStyle={{
-                        height: "400px",
-                        width: "800px"
-                    }}
-                    zoom={2.5}
-                    center={{
-                        lat: 38.685,
-                        lng: -115.234
-                    }}
-                >
-                    <DrawingManager
-                        onLoad={drawingManager => {
-                            console.log(drawingManager)
-                        }}
-                        onPolygonComplete={(polygon) => console.log({ polygon })}
-                    />
-                </GoogleMap>
-            </div>
+            this.MapComponent
+            // <div style={{ zIndex: -1 }}>
+            //     <GoogleMap
+            //         id="drawing-manager-example"
+            //         mapContainerStyle={{
+            //             height: "400px",
+            //             width: "800px"
+            //         }}
+            //         zoom={2.5}
+            //         center={{
+            //             lat: 38.685,
+            //             lng: -115.234
+            //         }}
+            //     >
+            //         {/* <DrawingManager
+            //             onLoad={drawingManager => {
+            //                 console.log("drawingManager: " + drawingManager)
+            //             }}
+            //             onPolygonComplete={(polygon) => console.log({ polygon })}
+            //         /> */}
+            //     </GoogleMap>
+            // </div>
         );
     }
 }
-export default GoogleApiWrapper({
-    apiKey: apikey
-})(MapContainer);
+// export default GoogleApiWrapper({
+//     apiKey: apikey
+// })(MapContainer);
 {/* <Map
     google={this.props.google}
     zoom={10}
