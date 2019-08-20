@@ -1,5 +1,6 @@
 package com.project.rest;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class AuditEntryController {
 
 	@PostMapping("/create")
 	public String createAudit(@RequestBody AuditEntry entry) {
+		entry.setDate(LocalDateTime.now());
 		return service.createAudit(entry);
 	}
 
