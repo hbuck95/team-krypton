@@ -10,10 +10,17 @@ public class AuditEntry {
 	private LocalDateTime date;
 
 	public AuditEntry() {
-		this.date = LocalDateTime.now();
+		// this.date = LocalDateTime.now();
 	}
 
 	public AuditEntry(String userId, String username, String searchCriteria) {
+		this.userId = userId;
+		this.username = username;
+		this.searchCriteria = searchCriteria;
+		this.date = LocalDateTime.now();
+	}
+
+	public AuditEntry(String userId, String username, String searchCriteria, LocalDateTime date) {
 		this.userId = userId;
 		this.username = username;
 		this.searchCriteria = searchCriteria;
