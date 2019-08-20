@@ -44,8 +44,8 @@ public class AuditProducerController {
 	}
 
 	private void sendToQueue(AuditEntry entry) {
-		AuditEntrySent userToStore = new AuditEntrySent(entry);
-		jmsTemplate.convertAndSend("UserQueue", userToStore);
+		AuditEntrySent newAuditEntry = new AuditEntrySent(entry);
+		jmsTemplate.convertAndSend("AuditQueue", newAuditEntry);
 	}
 
 }
