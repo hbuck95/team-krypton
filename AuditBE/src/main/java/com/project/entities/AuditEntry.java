@@ -10,7 +10,7 @@ public class AuditEntry {
 	private LocalDateTime date;
 
 	public AuditEntry() {
-		super();
+		this.date = LocalDateTime.now();
 	}
 
 	public AuditEntry(String userId, String username, String searchCriteria) {
