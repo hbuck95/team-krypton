@@ -16,7 +16,7 @@ public class BankCardEntity {
 		super();
 	}
 
-	public BankCardEntity(int bankcardId, int cardNumber, String sortcode, int bankAccountId, int accountNumber,
+	public BankCardEntity(int bankcardId, Long cardNumber, String sortcode, int bankAccountId, int accountNumber,
 			String bank) {
 		super();
 		this.bankcardId = bankcardId;
@@ -35,11 +35,11 @@ public class BankCardEntity {
 		this.bankcardId = bankcardId;
 	}
 
-	public int getCardNumber() {
+	public Long getCardNumber() {
 		return cardNumber;
 	}
 
-	public void setCardNumber(int cardNumber) {
+	public void setCardNumber(Long cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 
