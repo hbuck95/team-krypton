@@ -7,7 +7,7 @@ public class BankCardEntity {
 
 	private int bankcardId;
 	private Long cardNumber;
-	private String sortcode;
+	private String sortCode;
 	private int bankAccountId;
 	private int accountNumber;
 	private String bank;
@@ -16,12 +16,12 @@ public class BankCardEntity {
 		super();
 	}
 
-	public BankCardEntity(int bankcardId, Long cardNumber, String sortcode, int bankAccountId, int accountNumber,
+	public BankCardEntity(int bankcardId, Long cardNumber, String sortCode, int bankAccountId, int accountNumber,
 			String bank) {
 		super();
 		this.bankcardId = bankcardId;
 		this.cardNumber = cardNumber;
-		this.sortcode = sortcode;
+		this.sortCode = sortCode;
 		this.bankAccountId = bankAccountId;
 		this.accountNumber = accountNumber;
 		this.bank = bank;
@@ -43,12 +43,12 @@ public class BankCardEntity {
 		this.cardNumber = cardNumber;
 	}
 
-	public String getSortcode() {
-		return sortcode;
+	public String getSortCode() {
+		return sortCode;
 	}
 
-	public void setSortcode(String sortcode) {
-		this.sortcode = sortcode;
+	public void setSortCode(String sortCode) {
+		this.sortCode = sortCode;
 	}
 
 	public int getBankAccountId() {
