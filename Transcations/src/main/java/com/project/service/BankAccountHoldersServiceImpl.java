@@ -21,7 +21,7 @@ public class BankAccountHoldersServiceImpl implements BankAccountHoldersService 
 		String forenames = peopleBankAccountEntity.getForenames();
 		String surname = peopleBankAccountEntity.getSurname();
 		String homeAddress = peopleBankAccountEntity.getHomeAddress();
-		PeopleBankAccountEntity accountHolder = repo.findByNamesAndAddress(forenames, surname, homeAddress);
+		PeopleBankAccountEntity accountHolder = repo.findByForenames(forenames, surname, homeAddress);
 		return accountHolder;
 	}
 
