@@ -13,7 +13,7 @@ div.window {
     text-align: center;
     margin: 0 auto; 
 
-    visibility: hidden;
+    visibility: visible;
   }
 
   input.closer {

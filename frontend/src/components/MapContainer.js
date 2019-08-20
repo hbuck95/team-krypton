@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { withScriptjs, withGoogleMap, Marker, Circle } from 'react-google-maps';
 import { DrawingManager } from 'react-google-maps/lib/components/drawing/DrawingManager';
 import API_KEY from '../gmapsApiKey'
-const {GoogleMap} = require("react-google-maps");
+const { GoogleMap } = require("react-google-maps");
 
 class Map extends Component {
     constructor(props) {
@@ -23,24 +23,24 @@ class Map extends Component {
             editcircle: false,
             data: [
                 {
-                  id: 1,
-                  name: "Park Slope",
-                  latitude: "40.6710729",
-                  longitude: "-73.9988001"
+                    id: 1,
+                    name: "Park Slope",
+                    latitude: "40.6710729",
+                    longitude: "-73.9988001"
                 },
                 {
-                  id: 2,
-                  name: "Bushwick",
-                  latitude: "40.6942861",
-                  longitude: "-73.9389312"
+                    id: 2,
+                    name: "Bushwick",
+                    latitude: "40.6942861",
+                    longitude: "-73.9389312"
                 },
                 {
-                  id: 3,
-                  name: "East New York",
-                  latitude: "40.6577799",
-                  longitude: "-73.9147716"
+                    id: 3,
+                    name: "East New York",
+                    latitude: "40.6577799",
+                    longitude: "-73.9147716"
                 }
-              ]
+            ]
         }
 
 
@@ -55,12 +55,12 @@ class Map extends Component {
         }
 
         this.undo = () => {
-            if((this.state.lat !== this.state.prevLat) &&(this.state.lng !== this.state.prevLng))
-            this.setState({
-                lat: this.state.prevLat[this.state.prevLat.length-(this.state.undos + 1)], 
-                lng: this.state.prevLng[this.state.prevLng.length-(this.state.undos + 1)],
-                undos: (this.state.undos+1)
-            })
+            if ((this.state.lat !== this.state.prevLat) && (this.state.lng !== this.state.prevLng))
+                this.setState({
+                    lat: this.state.prevLat[this.state.prevLat.length - (this.state.undos + 1)],
+                    lng: this.state.prevLng[this.state.prevLng.length - (this.state.undos + 1)],
+                    undos: (this.state.undos + 1)
+                })
         }
     }
 
@@ -71,19 +71,19 @@ class Map extends Component {
                 <GoogleMap
                     defaultZoom={10}
                     defaultCenter={{ lat: this.state.viewLat, lng: this.state.viewLng }}
-                    onClick={()=>{this.setState({editcircle: false})}}
-                    onDblClick={()=>{console.log(GoogleMap)}}
-                    
-                    >
-                    {this.state.data.map(place=> {
-                        return(<Fragment key={place.id}>
+                    onClick={() => { this.setState({ editcircle: false }) }}
+                    onDblClick={() => { console.log(GoogleMap) }}
+
+                >
+                    {this.state.data.map(place => {
+                        return (<Fragment key={place.id}>
                             <Marker
-                              position={{
-                                lat: parseFloat(place.latitude),
-                                lng: parseFloat(place.longitude)
-                              }}
+                                position={{
+                                    lat: parseFloat(place.latitude),
+                                    lng: parseFloat(place.longitude)
+                                }}
                             />
-                          </Fragment>)
+                        </Fragment>)
                     })}
 
                     <Marker
@@ -94,18 +94,18 @@ class Map extends Component {
                                 const prevLat = [...state.prevLat, parseFloat(e.latLng.lat())];
                                 const prevLng = [...state.prevLng, parseFloat(e.latLng.lng())];
                                 return {
-                                  prevLat,
-                                  prevLng
+                                    prevLat,
+                                    prevLng
                                 };
-                              });
+                            });
                         }}
-                        
+
                         onDrag={(e) => {
                             this.setState({
                                 undos: 0,
                                 lat: parseFloat(Math.round(e.latLng.lat() * 10000) / 10000),
                                 lng: parseFloat(Math.round(e.latLng.lng() * 10000) / 10000),
-                                newLat:parseFloat(Math.round(e.latLng.lat() * 10000) / 10000),
+                                newLat: parseFloat(Math.round(e.latLng.lat() * 10000) / 10000),
                                 newLng: parseFloat(Math.round(e.latLng.lng() * 10000) / 10000)
                             })
                         }}
@@ -119,26 +119,24 @@ class Map extends Component {
                         radius={this.state.radius}
                         visible={true}
                         editable={this.state.editcircle}
-                        onDblClick={()=>{this.setState({editcircle: true})}}
-                        onDragEnd={(e)=>{console.log(e)}}
-                        
-                        
+                        onDblClick={() => { this.setState({ editcircle: true }) }}
+
+
 
                     />
                 </GoogleMap>
                 <form onSubmit={(e) => { this.onSubmit(e) }}>
                     Latitude:
-                    <input type="text" value={this.state.newLat} onChange={(e)=>{this.setState({newLat: parseFloat(e.target.value)})}}></input>
+                    <input type="text" value={this.state.newLat} onChange={(e) => { this.setState({ newLat: parseFloat(e.target.value) }) }}></input>
                     Longitude:
-                    <input type="text" value={this.state.newLng} onChange={(e)=>{this.setState({newLng: parseFloat(e.target.value)})}}></input>
-                    <br/>
+                    <input type="text" value={this.state.newLng} onChange={(e) => { this.setState({ newLng: parseFloat(e.target.value) }) }}></input>
+                    <br />
                     Radius:
-                    <input type="number" value={this.state.radius} onChange={(e)=>{this.setState({radius: parseFloat(e.target.value)})}}></input>
-
+                    <input type="number" value={this.state.radius} onChange={(e) => { this.setState({ radius: parseFloat(e.target.value) }) }}></input>
                     <input type="submit" value="Submit"></input>
+                    <button style={{marginLeft:25}} onClick={this.undo} >Undo</button>
                 </form>
 
-                <button onClick={this.undo} >Undo</button>
             </div>
         )
     }
@@ -149,7 +147,7 @@ export default function WrappedMap(props) {
     const WrappedMap = withScriptjs(withGoogleMap(Map));
 
     return (
-        <div style={{float:"right", width: props.width, height: props.height}}>
+        <div style={{ ...props.style, width: props.width, height: props.height }}>
             <WrappedMap
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}
                 &v=3.exp&libraries=geometry,drawing,places`}
