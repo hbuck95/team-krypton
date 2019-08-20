@@ -7,7 +7,7 @@ public class EpostransactionEntity {
 
 	private String timestamp;
 	private int eposId;
-	private int bankCardNumber;
+	private Long bankCardNumber;
 	private int payeeAccount;
 	private int amount;
 
@@ -15,7 +15,7 @@ public class EpostransactionEntity {
 		super();
 	}
 
-	public EpostransactionEntity(String timestamp, int eposId, int bankCardNumber, int payeeAccount, int amount) {
+	public EpostransactionEntity(String timestamp, int eposId, Long bankCardNumber, int payeeAccount, int amount) {
 		super();
 		this.timestamp = timestamp;
 		this.eposId = eposId;
@@ -40,12 +40,12 @@ public class EpostransactionEntity {
 		this.eposId = eposId;
 	}
 
-	public int getBankCardNumber() {
+	public Long getBankCardNumber() {
 		return bankCardNumber;
 	}
 
-	public void setBankCardNumber(int bankCradNumber) {
-		this.bankCardNumber = bankCradNumber;
+	public void setBankCardNumber(Long bankCardNumber) {
+		this.bankCardNumber = bankCardNumber;
 	}
 
 	public int getPayeeAccount() {
