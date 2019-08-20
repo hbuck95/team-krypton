@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.entity.CellTowersEntity;
 import com.project.entity.MobileCallRecordsEntity;
 import com.project.entity.SubscriberRecordsEntity;
 import com.project.service.CellTowersService;
@@ -70,7 +71,7 @@ public class CallRecordsController {
 //	return Matching MSISDN's : List <CallRecordEntity>
 	
 	@PostMapping("/mobileCallRecordsMSISDN")
-	public List<MobileCallRecordsEntity> getMobileCallRecordByMSISDN(MobileCallRecordsEntity mobileCallRecordsEntity){
+	public List<MobileCallRecordsEntity> getMobileCallRecordByMSISDN(@RequestBody MobileCallRecordsEntity mobileCallRecordsEntity){
 		return mcrService.findByMSISDN(mobileCallRecordsEntity);
 	}
 	
@@ -80,14 +81,19 @@ public class CallRecordsController {
 //			return List<callRecordEntity>
 	
 	@PostMapping
-	public List<MobileCallRecordsEntity> getCallRecordByReceiverMSISDN(MobileCallRecordsEntity mobileCallRecordsEntity){
+	public List<MobileCallRecordsEntity> getCallRecordByReceiverMSISDN(@RequestBody MobileCallRecordsEntity mobileCallRecordsEntity){
 		return mcrService.findByRecieverMSISDN(mobileCallRecordsEntity);	
 	}
 	
 			
 //			Get CellTowerEntity(towerId)
 //			return List<CellTowerEntity>
-//			
+	
+	@PostMapping
+	public List<CellTowersEntity> getCellTowersEntityById(@RequestBody CellTowersEntity cellTowerEntity){
+		return ctService.findById(cellTowerEntity);
+	}
+
 
 //GET SubscriberRecords(Reciever MSISDN)
 		//	Return Subscriber Record Entity : List <CitizenEntity>	
