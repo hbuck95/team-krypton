@@ -19,9 +19,9 @@ public class ANPRCameraServiceImplementation implements ANPRCameraService {
 	}
 
 	@Override
-	public List<ANPRCameraEntity> findById(String Id) {
+	public List<ANPRCameraEntity> findById(ANPRCameraEntity anprCameraEntity) {
 
-		return repo.findByAnprId(Id);
+		return repo.findByAnprId(anprCameraEntity);
 
 	}
 

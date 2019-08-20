@@ -6,6 +6,6 @@ import com.project.entity.ANPRCameraEntity;
 
 public interface ANPRCameraService {
 
-	public List<ANPRCameraEntity> findById(String Id);
+	public List<ANPRCameraEntity> findById(ANPRCameraEntity anprCameraEntity);
 
 }
