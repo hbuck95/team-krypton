@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("Audits")
 public class AuditEntry {
 
-	private String userId;
 	private String username;
+	private String searchUrl;
 	private String searchCriteria;
 	private LocalDateTime date;
 
@@ -16,19 +16,11 @@ public class AuditEntry {
 		super();
 	}
 
-	public AuditEntry(String userId, String username, String searchCriteria, LocalDateTime date) {
-		this.userId = userId;
+	public AuditEntry(String username, String searchUrl, String searchCriteria, LocalDateTime date) {
 		this.username = username;
+		this.searchUrl = searchUrl;
 		this.searchCriteria = searchCriteria;
 		this.date = date;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -39,8 +31,16 @@ public class AuditEntry {
 		this.username = username;
 	}
 
-	public String getSearchCriteria() {
+	public String getSearchUrl() {
 		return searchCriteria;
+	}
+
+	public void setSearchUrl(String searchUrl) {
+		this.searchUrl = searchUrl;
+	}
+
+	public String getSearchCriteria() {
+		return searchUrl;
 	}
 
 	public void setSearchCriteria(String searchCriteria) {
