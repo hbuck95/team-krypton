@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "atmTransactions_subset")
-public class AtmTranscationsEntity {
+public class AtmtransactionsEntity {
 
 	@Field("timestamp")
 	private String timeStamp;
@@ -13,12 +13,12 @@ public class AtmTranscationsEntity {
 	private String type;
 	private int amount;
 
-	public AtmTranscationsEntity() {
+	public AtmtransactionsEntity() {
 		super();
 
 	}
 
-	public AtmTranscationsEntity(String timeStamp, int atmId, int bankCardNumber, String type, int amount) {
+	public AtmtransactionsEntity(String timeStamp, int atmId, int bankCardNumber, String type, int amount) {
 		super();
 		this.timeStamp = timeStamp;
 		this.atmId = atmId;

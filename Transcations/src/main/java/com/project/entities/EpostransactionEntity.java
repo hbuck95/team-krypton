@@ -3,7 +3,7 @@ package com.project.entities;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "eposTransactions_subset")
-public class EposTranscationEntity {
+public class EpostransactionEntity {
 
 	private String timestamp;
 	private int eposId;
@@ -11,11 +11,11 @@ public class EposTranscationEntity {
 	private int payeeAccount;
 	private int amount;
 
-	public EposTranscationEntity() {
+	public EpostransactionEntity() {
 		super();
 	}
 
-	public EposTranscationEntity(String timestamp, int eposId, int bankCardNumber, int payeeAccount, int amount) {
+	public EpostransactionEntity(String timestamp, int eposId, int bankCardNumber, int payeeAccount, int amount) {
 		super();
 		this.timestamp = timestamp;
 		this.eposId = eposId;
