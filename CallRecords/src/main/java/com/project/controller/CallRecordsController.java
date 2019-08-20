@@ -35,11 +35,8 @@ public class CallRecordsController {
 //	get CellTowers(Lat,long,time,range)
 //	return List<CellTowerEntities>
 	
-//	@PostMapping("/CellTowerEntities")
-//	public List<CellTowersEntity> getCellTowerEntities()@RequestBody CellTowerEntity cellTowerEntity){
-//		return ctService.findByLatLongTimeRange
-//	}
-//	
+	
+
 	
 	
 //	get MobileCallRecords(cellTowerId, time)
@@ -80,7 +77,7 @@ public class CallRecordsController {
 //			get CallRecords(receiverMSISDN)
 //			return List<callRecordEntity>
 	
-	@PostMapping
+	@PostMapping("/callRecordsByReceiverMSISDN")
 	public List<MobileCallRecordsEntity> getCallRecordByReceiverMSISDN(@RequestBody MobileCallRecordsEntity mobileCallRecordsEntity){
 		return mcrService.findByRecieverMSISDN(mobileCallRecordsEntity);	
 	}
@@ -89,37 +86,43 @@ public class CallRecordsController {
 //			Get CellTowerEntity(towerId)
 //			return List<CellTowerEntity>
 	
-	@PostMapping
+	@PostMapping("/cellTowerById")
 	public List<CellTowersEntity> getCellTowersEntityById(@RequestBody CellTowersEntity cellTowerEntity){
 		return ctService.findById(cellTowerEntity);
 	}
 
-
-//GET SubscriberRecords(Reciever MSISDN)
-		//	Return Subscriber Record Entity : List <CitizenEntity>	
-
 	
 	
-	
-	
-//	GET SubscriberRecords(firstnames, surname)
+//	GET SubscriberRecords(forenames, surname)
 //	return SubscriberRecords : SubscriberRecordsEntity
 	
+	@PostMapping("/subscriberEntityByForenameSurname")
+	public List<SubscriberRecordsEntity> getSubscriberEntitybyForenameSurname(@RequestBody SubscriberRecordsEntity subscriberRecordEntity){
+		return srService.findByForenameSurname(subscriberRecordEntity);
 		
-
+	}
 	
 	
-
-
-//	
-//	
 //	GetSubscriberRecords(forenames, surname, dateOfBirth, address)
-//	return SubscriberRecordEntity
+//	return SubscriberRecordEntity	
+	
+	@PostMapping("/subscriberEntityByForenameSurnameDoBAdd")
+	public List<SubscriberRecordsEntity> getSubscriberEntitybyForenameSurnameDoBAdd(@RequestBody SubscriberRecordsEntity subscriberRecordEntity){
+		return srService.findByForenameSurnameDoBAdd(subscriberRecordEntity);
+		
+	}
+	
+	
+	
+
+//GET SubscriberRecords(Receiver MSISDN)
+//Return Subscriber Record Entity : List <CitizenEntity>	
+
+			
+
 
 //	getCallRecords(phoneNumber)
 //	return List<CallRecordEntity>
-//	
-//	get CellTowerEntity(towerId)
-//	return List<CellTowerEntity>
+	
 
 }

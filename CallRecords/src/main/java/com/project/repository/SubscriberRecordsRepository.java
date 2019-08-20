@@ -10,5 +10,6 @@ public interface SubscriberRecordsRepository extends MongoRepository<SubscriberR
 
 	
 	List<SubscriberRecordsEntity> findByPhoneNumber(String phoneNumber);
-
+	List<SubscriberRecordsEntity> findByForenameSurname(String forenames, String surname);
+	List<SubscriberRecordsEntity> findByForenameSurnameDoBAdd(String forenames, String surname, String dateOfBirth, String address);
 }
