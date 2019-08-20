@@ -30,7 +30,6 @@ public class VehicleRegistrationServiceImplementation implements VehicleRegistra
 
 	@Override
 	public List<VehicleRegistrationEntity> getAll() {
-		// TODO Auto-generated method stub
 		return repo.findAll();
 	}
 
