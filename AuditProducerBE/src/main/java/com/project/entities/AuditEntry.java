@@ -1,7 +1,5 @@
 package com.project.entities;
 
-import java.time.LocalDateTime;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("Audits")
@@ -10,13 +8,13 @@ public class AuditEntry {
 	private String username;
 	private String searchUrl;
 	private String searchCriteria;
-	private LocalDateTime date;
+	private String date;
 
 	public AuditEntry() {
 		super();
 	}
 
-	public AuditEntry(String username, String searchUrl, String searchCriteria, LocalDateTime date) {
+	public AuditEntry(String username, String searchUrl, String searchCriteria, String date) {
 		this.username = username;
 		this.searchUrl = searchUrl;
 		this.searchCriteria = searchCriteria;
@@ -47,11 +45,11 @@ public class AuditEntry {
 		this.searchCriteria = searchCriteria;
 	}
 
-	public LocalDateTime getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
