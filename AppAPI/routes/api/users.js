@@ -89,7 +89,7 @@ router.get('/current', auth.required, (req, res, next) => {
 //POST get citizen data using forenames, surname, and address (authentication required)
 router.post('/getCitizen', auth.required, (req, res) => {
 
-  Axios.post("http://localhost:9003/citizen/getCitizen", req.body, {headers:HEADERS})
+  axios.post("http://localhost:9003/citizen/getCitizen", req.body, {headers:HEADERS})
   .then(response => {
     console.log(response);
     console.log(response.data);
