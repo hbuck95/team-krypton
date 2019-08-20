@@ -5,6 +5,10 @@ const auth = require('../auth');
 const Users = mongoose.model('Users');
 const axios = require('axios');
 
+const HEADERS = {
+  'Content-Type': 'application/json'
+};
+
 //POST new user route (optional, everyone has access)
 router.post('/', auth.optional, (req, res, next) => {
   const { body: { user } } = req;
@@ -37,10 +41,6 @@ router.post('/', auth.optional, (req, res, next) => {
 router.post('/login', auth.optional, (req, res, next) => {
   const { body: { user } } = req;
 
-  const headers = {
-    'Content-Type': 'application/json'
-};
-
   if(!user.username) {
     return res.status(422).json({
       errors: {
@@ -72,18 +72,6 @@ router.post('/login', auth.optional, (req, res, next) => {
   })(req, res, next);
 });
 
-router.post('/getSuspect', auth.required, (req,res) => {
-  const headers = {
-    'Content-Type': 'application/json'
-};
-
-  Axios.post("http://localhost:9003/citizen/getSuspect", req.body, {headers:headers})
-  .then(response => {
-    console.log(response.data);
-    reponse.data
-  })
-})
-
 //GET current route (required, only authenticated users have access)
 router.get('/current', auth.required, (req, res, next) => {
   const { payload: { id } } = req;
@@ -97,5 +85,17 @@ router.get('/current', auth.required, (req, res, next) => {
       return res.json({ user: user.toAuthJSON() });
     });
 });
+
+//POST get citizen data using forenames, surname, and address (authentication required)
+router.post('/getCitizen', auth.required, (req, res) => {
+
+  Axios.post("http://localhost:9003/citizen/getCitizen", req.body, {headers:HEADERS})
+  .then(response => {
+    console.log(response);
+    console.log(response.data);
+  })
+
+});
+
 
 module.exports = router;
