@@ -34,4 +34,6 @@ public class TranscationsController {
 		return bcService.getBankCard(bankCardEntity);
 	}
 
+//	@PostMapping("/getEposTranscations")
+//	public List<EposTranscationsEntity>
 }

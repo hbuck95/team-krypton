@@ -7,7 +7,7 @@ public class EposTranscationEntity {
 
 	private String timestamp;
 	private int eposId;
-	private int bankCradNumber;
+	private int bankCardNumber;
 	private int payeeAccount;
 	private int amount;
 
@@ -15,11 +15,11 @@ public class EposTranscationEntity {
 		super();
 	}
 
-	public EposTranscationEntity(String timestamp, int eposId, int bankCradNumber, int payeeAccount, int amount) {
+	public EposTranscationEntity(String timestamp, int eposId, int bankCardNumber, int payeeAccount, int amount) {
 		super();
 		this.timestamp = timestamp;
 		this.eposId = eposId;
-		this.bankCradNumber = bankCradNumber;
+		this.bankCardNumber = bankCardNumber;
 		this.payeeAccount = payeeAccount;
 		this.amount = amount;
 	}
@@ -40,12 +40,12 @@ public class EposTranscationEntity {
 		this.eposId = eposId;
 	}
 
-	public int getBankCradNumber() {
-		return bankCradNumber;
+	public int getBankCardNumber() {
+		return bankCardNumber;
 	}
 
-	public void setBankCradNumber(int bankCradNumber) {
-		this.bankCradNumber = bankCradNumber;
+	public void setBankCardNumber(int bankCradNumber) {
+		this.bankCardNumber = bankCradNumber;
 	}
 
 	public int getPayeeAccount() {
