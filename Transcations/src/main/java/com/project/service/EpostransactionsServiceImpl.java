@@ -20,7 +20,7 @@ public class EpostransactionsServiceImpl implements EpostransactionsService {
 
 	@Override
 	public List<EpostransactionEntity> gettransactions(EpostransactionEntity epostransactionEntity) {
-		int bankCardNumber = epostransactionEntity.getBankCardNumber();
+		Long bankCardNumber = epostransactionEntity.getBankCardNumber();
 		List<EpostransactionEntity> transactions = repo.findByBankCardNumber(bankCardNumber);
 		return transactions;
 	}
