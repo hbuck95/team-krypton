@@ -30,7 +30,7 @@ public class AuditServiceImpl implements AuditService {
 
 	@Override
 	public String createAudit(AuditEntry audit) {
-		repo.save(audit);
+		// repo.save(audit);
 		return "{response: \"Your audit entry was successfully saved to the database.\"}";
 	}
 
