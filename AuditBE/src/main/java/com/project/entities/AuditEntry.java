@@ -1,23 +1,23 @@
 package com.project.entities;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class AuditEntry {
 
 	private String userId;
 	private String username;
 	private String searchCriteria;
-	private Date date;
+	private LocalDateTime date;
 
 	public AuditEntry() {
 		super();
 	}
 
-	public AuditEntry(String userId, String username, String searchCriteria, Date date) {
+	public AuditEntry(String userId, String username, String searchCriteria) {
 		this.userId = userId;
 		this.username = username;
 		this.searchCriteria = searchCriteria;
-		this.date = date;
+		this.date = LocalDateTime.now();
 	}
 
 	public String getUserId() {
@@ -44,11 +44,11 @@ public class AuditEntry {
 		this.searchCriteria = searchCriteria;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
