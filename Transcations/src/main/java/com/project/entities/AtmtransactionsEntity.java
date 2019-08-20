@@ -9,7 +9,7 @@ public class AtmtransactionsEntity {
 	@Field("timestamp")
 	private String timeStamp;
 	private int atmId;
-	private int bankCardNumber;
+	private Long bankCardNumber;
 	private String type;
 	private int amount;
 
@@ -18,7 +18,7 @@ public class AtmtransactionsEntity {
 
 	}
 
-	public AtmtransactionsEntity(String timeStamp, int atmId, int bankCardNumber, String type, int amount) {
+	public AtmtransactionsEntity(String timeStamp, int atmId, Long bankCardNumber, String type, int amount) {
 		super();
 		this.timeStamp = timeStamp;
 		this.atmId = atmId;
@@ -43,11 +43,11 @@ public class AtmtransactionsEntity {
 		this.atmId = atmId;
 	}
 
-	public int getBankCardNumber() {
+	public Long getBankCardNumber() {
 		return bankCardNumber;
 	}
 
-	public void setBankCardNumber(int bankCardNumber) {
+	public void setBankCardNumber(Long bankCardNumber) {
 		this.bankCardNumber = bankCardNumber;
 	}
 
