@@ -54,4 +54,5 @@ public class TransactionsController {
 	public List<AtmtransactionsEntity> getAtmTransactions(@RequestBody AtmtransactionsEntity atmTransactionsEntity) {
 		return atService.getTransactions(atmTransactionsEntity);
 	}
+
 }
