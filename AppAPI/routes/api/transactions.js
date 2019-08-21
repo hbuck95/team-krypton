@@ -76,7 +76,7 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
         //Assign the EPOS transaction record(s) to the payload object
         payload.eposTransactions = response.data;
 
-      });
+      }).catch(err => console.log(err));
     }).then(() => {
 
       // @desc   Get all EPOS transactions for a bank card
