@@ -8,6 +8,8 @@ const HEADERS = {
 
 const API = "http://localhost:9006/transactions"
 
+
+
 // @route   POST api/transactions/getAccountAndCardHolder
 // @desc    Get all a citizens bank account record and bank card information
 // @body    {forename: "", surname: "", homeAddress: ""}
@@ -68,6 +70,64 @@ router.post('/getAccountAndCardHolder', auth.required, (req, res) => {
   });
 
 });
+
+
+// @route   POST api/transactions/getAllTransactionsForCard
+// @desc    Get all EPOS and ATM transactions for a particular bank card
+// @body    {bankCardNumber: ""}
+// @access  Authentication required via JSToken generated via /users/login
+router.post('/getAllTransactionsForCard', auth.required, (req, res) => {
+
+  //The payload object returned when all axios requests have been resolved
+  const payload = {
+    eposTransactions: null,
+    atmTransactions: null
+  };
+
+  // @route  POST http://localhost:9006/transactions/getEposTransactions
+  // @desc   Get all EPOS transactions for a bank card
+  // @body   {bankCardNumber: ""}
+  axios.post(API + "/getEposTransactions", req.body, { headers: HEADERS }).then(response => {
+
+    //If the status code OK is not returned end the request early and return that the resource cannot be found
+    if (res.statusCode !== 200) {
+      return res.status(400).json({ payload: "Requested resources could not be found." });
+    }
+
+    //Assign the EPOS transaction record(s) to the payload object
+    payload.eposTransactions = response.data;
+
+  }).then(() => {
+
+    // @route  POST http://localhost:9006/transactions/getAtmTransactions
+    // @desc   Get all EPOS transactions for a bank card
+    // @body   {bankCardNumber: ""}
+    axios.post(API + "/getAtmTransactions", req.body, { headers: HEADERS }).then(response => {
+
+      //If the status code OK is not returned end the request early and return that the resource cannot be found
+      if (res.statusCode !== 200) {
+        return res.status(400).json({ payload: "Requested resources could not be found." });
+      }
+
+      //Assign the retrieved bank card information to the payload object
+      payload.atmTransactions = response.data;
+
+    }).then(() => {
+      //End the request chain by returning the payload object with a status code of OK.
+      return res.status(200).json({ payload: payload });
+    })
+
+    //Handle any errors thrown up throughout the promise chain
+  }).catch(err => {
+    console.log(err);
+
+    //Return an internal server error and display the error
+    return res.status(500).json({ error: err });
+  });
+
+});
+
+
 
 //POST get citizen data using forenames, surname, and address (authentication required)
 router.post('/getAccountHolder', auth.required, (req, res) => {
