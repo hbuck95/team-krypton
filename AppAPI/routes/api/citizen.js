@@ -13,7 +13,6 @@ router.post('/getCitizen', auth.required, (req, res) => {
       .then(response => {
         if (res.statusCode === 200) {
           console.log(response.data);
-          console.log(response);
           return res.status(200).json({ data: response.data });
         } else {
           console.log(res.statusCode);
