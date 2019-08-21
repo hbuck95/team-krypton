@@ -43,12 +43,11 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
       return res.status(400).json({ payload: "Unable to find Account Holder!" });
     }
 
-  }).then(() => {
-
-    //Body sent with the /getBankCard axios request bellow
+     //Body sent with the /getBankCard axios request bellow
     //accountNumber is required to retrieve bank cards
     bankCardBody.accountNumber = response.data.accountNumber
-    
+
+  }).then(() => {
 
     // @route  POST http://localhost:9006/transactions/getBankCard
     // @desc   Get a citizens bank card information
