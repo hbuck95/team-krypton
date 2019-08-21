@@ -6,15 +6,19 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import MapContainer from '../MapContainer'
 
+const HEADERS = { 'Content-Type': 'application.json' }
+
 export default class SearchPersonResult extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             activeTab: '1',
+            searchData: props.searchData,
             dataLoaded: false,
             data: {}
         };
+
 
         this.toggle = (tab) => {
             if (this.state.activeTab !== tab) {
@@ -22,6 +26,22 @@ export default class SearchPersonResult extends Component {
                     activeTab: tab
                 });
             }
+        }
+
+        this.componentDidMount = () => {
+            axios.post('http://localhost:9003/citizen/getCitizen', {forenames:'Garry Roger', surname:'Donnelly', homeAddress: '71 NEW ROAD, PORTSMOUTH, PO2 7QN'}, { headers: HEADERS })
+                .then(res => {
+                    this.setState({
+                        dataLoaded: true,
+                        data: res.data.payload
+                    })
+                }).catch(res => {
+                    this.setState({
+                        dataLoaded: false
+                    })
+                    if(res)
+                        console.log(res.data.error)
+                })
         }
     }
 
@@ -58,7 +78,7 @@ export default class SearchPersonResult extends Component {
                                             <tbody>
                                                 <tr>
                                                     <th scope="row" width={"20%"}>Forenames</th>
-                                                    <td>Otto</td>
+                                                    <td>{this.state.data.forenames}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Surname</th>
@@ -134,7 +154,7 @@ export default class SearchPersonResult extends Component {
         } else {
             return (
                 <div>
-                    <Spinner style={{ width: '5rem', height: '5rem', position:'fixed', top:'47.5%', left:'47.5%' }} />
+                    <Spinner style={{ width: '5rem', height: '5rem', position: 'fixed', top: '47.5%', left: '47.5%' }} />
                 </div>
             )
         }
