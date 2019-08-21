@@ -2,7 +2,7 @@ package com.project.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "peoplemobile_subset")
+@Document(collection = "peoplemobile")
 public class PeopleMobileEntity {
 
 	private String forenames;
