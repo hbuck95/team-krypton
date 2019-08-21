@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { withScriptjs, withGoogleMap, Marker, Circle } from 'react-google-maps';
-import { DrawingManager } from 'react-google-maps/lib/components/drawing/DrawingManager';
+//import { DrawingManager } from 'react-google-maps/lib/components/drawing/DrawingManager';
 import API_KEY from '../gmapsApiKey'
 const { GoogleMap } = require("react-google-maps");
 
