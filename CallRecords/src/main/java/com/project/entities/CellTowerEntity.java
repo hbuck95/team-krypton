@@ -8,14 +8,14 @@ public class CellTowerEntity {
 	private int cellTowerId;
 	private String operator;
 	private String type;
-	private int latitude;
-	private int longitude;
+	private String latitude;
+	private String longitude;
 
 	public CellTowerEntity() {
 		super();
 	}
 
-	public CellTowerEntity(int cellTowerId, String operator, String type, int latitude, int longitude) {
+	public CellTowerEntity(int cellTowerId, String operator, String type, String latitude, String longitude) {
 		super();
 		this.cellTowerId = cellTowerId;
 		this.operator = operator;
@@ -48,19 +48,19 @@ public class CellTowerEntity {
 		this.type = type;
 	}
 
-	public int getLatitude() {
+	public String getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(int latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 
-	public int getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(int longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 }

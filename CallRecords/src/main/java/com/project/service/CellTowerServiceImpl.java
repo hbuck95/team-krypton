@@ -19,9 +19,9 @@ public class CellTowerServiceImpl implements CellTowerService {
 	}
 
 	@Override
-	public List<CellTowerEntity> getCellTower(CellTowerEntity cellTowerEntity) {
+	public CellTowerEntity getCellTower(CellTowerEntity cellTowerEntity) {
 		int towerId = cellTowerEntity.getCellTowerId();
-		List<CellTowerEntity> cellTower = repo.findByCellTowerId(towerId);
+		CellTowerEntity cellTower = repo.findByCellTowerId(towerId);
 		return cellTower;
 	}
 
