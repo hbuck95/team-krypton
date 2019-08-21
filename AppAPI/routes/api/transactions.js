@@ -10,25 +10,32 @@ const API = "http://localhost:9006/transactions"
 
 
 router.post('/getAccountAndCardHolder', auth.required, (req,res) => {
+
+  let payload = {
+    accountHolder: null,
+    bankCard: null
+  };
+
   axios.post(API + "/getAccountHolder", req.body, {headers: HEADERS }).then(response => {
-    if(res.statusCode === 200){
-      return res.status(200).json(({payload : response.data}));
-    } else {
+    if(res.statusCode !== 200){
       return res.status(400).json({ payload: "Unable to find Account Holder!"});
     }
+
+    payload.accountHolder = response.data;
 
     //accountNumber
   }).then(() => {
 
     let bankCardBody = {
-      accountNumber: req.body.accountNumber
+      accountNumber: payload.accountHolder.accountNumber
     };
 
     axios.post(API + "/getBankCard", bankCardBody, { headers: HEADERS })
     .then(response => {
       if (res.statusCode === 200) {
         console.log(response.data);
-        return res.status(200).json({ payload: response.data });
+        payload.bankCard = response.data;
+        return res.status(200).json(payload);
       } else {
         console.log(res.statusCode);
         console.log(response.data);
