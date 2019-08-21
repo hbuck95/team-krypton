@@ -64,8 +64,8 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
 
       console.log(response.data);
       console.log(bankCard);
-      
-      bankCard.bankCardNumber = response.data.bankCardNumber;
+
+      bankCard.bankCardNumber = response.data.cardNumber;
 
     }).then(() => {
 
