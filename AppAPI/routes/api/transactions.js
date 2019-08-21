@@ -62,6 +62,9 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
       //Assign the retrieved bank card information to the payload object
       //payload.bankCard = response.data;
 
+      console.log(response.data);
+      console.log(bankCard);
+      
       bankCard.bankCardNumber = response.data.bankCardNumber;
 
     }).then(() => {
