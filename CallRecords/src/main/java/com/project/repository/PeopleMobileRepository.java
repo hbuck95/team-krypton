@@ -8,4 +8,6 @@ public interface PeopleMobileRepository extends MongoRepository<PeopleMobileEnti
 
 	PeopleMobileEntity findByPhoneNumber(String phoneNumber);
 
+	PeopleMobileEntity findByForenames(String forenames, String surname, String address);
+
 }

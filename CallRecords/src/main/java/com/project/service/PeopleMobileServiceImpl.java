@@ -23,4 +23,13 @@ public class PeopleMobileServiceImpl implements PeopleMobileService {
 		return assosiate;
 	}
 
+	@Override
+	public PeopleMobileEntity getPhoneNumber(PeopleMobileEntity peopleMobileEntity) {
+		String forenames = peopleMobileEntity.getForenames();
+		String surname = peopleMobileEntity.getSurname();
+		String address = peopleMobileEntity.getAddress();
+		PeopleMobileEntity phoneNumber = repo.findByForenames(forenames, surname, address);
+		return phoneNumber;
+	}
+
 }

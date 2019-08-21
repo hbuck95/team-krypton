@@ -2,7 +2,7 @@ package com.project.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "celltower_subset")
+@Document(collection = "celltower")
 public class CellTowerEntity {
 
 	private int cellTowerId;

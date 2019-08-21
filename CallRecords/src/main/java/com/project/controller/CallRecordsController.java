@@ -43,14 +43,18 @@ public class CallRecordsController {
 		return mcrService.getCallRecordsOfAssosiate(mobileCallRecordsEntity);
 	}
 
-	@PostMapping("/getCellTower")
-	public List<CellTowerEntity> getCellTower(@RequestBody CellTowerEntity cellTowerEntity) {
-		return ctService.getCellTower(cellTowerEntity);
-	}
-
 	@PostMapping("/getAssosiate")
 	public PeopleMobileEntity getAssosiate(@RequestBody PeopleMobileEntity peopleMobileEntity) {
 		return pmService.getAssosiate(peopleMobileEntity);
 	}
 
+	@PostMapping("/getCellTower")
+	public List<CellTowerEntity> getCellTower(@RequestBody CellTowerEntity cellTowerEntity) {
+		return ctService.getCellTower(cellTowerEntity);
+	}
+
+	@PostMapping("/getPhoneNumber")
+	public PeopleMobileEntity getPhoneNumber(@RequestBody PeopleMobileEntity peopleMobileEntity) {
+		return pmService.getPhoneNumber(peopleMobileEntity);
+	}
 }

@@ -2,7 +2,7 @@ package com.project.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "mobileCallRecords_subset")
+@Document(collection = "mobileCallRecords")
 public class MobileCallRecordsEntity {
 
 	private String timestamp;
