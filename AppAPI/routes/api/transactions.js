@@ -29,4 +29,24 @@ router.post('/getAccountHolder', auth.required, (req, res) => {
 
 });
 
+//POST get citizen data using forenames, surname, and address (authentication required)
+router.post('/getBankCard', auth.required, (req, res) => {
+
+  axios.post(API + "/getBankCard", req.body, { headers: HEADERS })
+    .then(response => {
+      if (res.statusCode === 200) {
+        console.log(response.data);
+        return res.status(200).json({ payload: response.data });
+      } else {
+        console.log(res.statusCode);
+        console.log(response.data);
+        return res.status(400).json({ payload: "Unable to find Bank Card!" });
+      }
+    }).catch(err => {
+        console.log(err);
+        return res.status(500).json({ error: err});
+    });
+
+});
+
 module.exports = router;
