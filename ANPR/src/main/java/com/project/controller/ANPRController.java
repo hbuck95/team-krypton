@@ -24,8 +24,6 @@ public class ANPRController {
 	private ANPRObservationService anprObservationService;
 	private VehicleRegistrationService vehicleRegistrationService;
 
-	private String vehicleRegistrationNo;
-
 	@Autowired
 	public ANPRController(ANPRCameraService anprCameraService, ANPRObservationService anprObservationService,
 			VehicleRegistrationService vehicleRegistrationService) {
@@ -33,10 +31,6 @@ public class ANPRController {
 		this.anprCameraService = anprCameraService;
 		this.anprObservationService = anprObservationService;
 	}
-
-	// get vehicleRegistrations(forenames, surname)
-	// get ANPRObservations(vehicleRegistration)
-	// get ANPRCamera(id, timestamp)
 
 	@GetMapping("/getAll")
 	public List<VehicleRegistrationEntity> getAll() {
@@ -57,7 +51,7 @@ public class ANPRController {
 	}
 
 	@PostMapping("/getANPRCamera")
-	public List<ANPRCameraEntity> getANPRCamera(@RequestBody ANPRCameraEntity anprCameraEntity) {
+	public ANPRCameraEntity getANPRCamera(@RequestBody ANPRCameraEntity anprCameraEntity) {
 
 		return anprCameraService.findById(anprCameraEntity);
 	}

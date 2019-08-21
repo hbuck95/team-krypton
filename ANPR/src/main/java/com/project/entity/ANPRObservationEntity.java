@@ -22,28 +22,8 @@ public class ANPRObservationEntity {
 
 	}
 
-	public String getANPRPointId() {
-		return ANPRPointId;
-	}
-
-	public String getTimeStamp() {
-		return timeStamp;
-	}
-
 	public String getVehicleRegistrationNumber() {
 		return vehicleRegistrationNumber;
-	}
-
-	public void setANPRPointId(String aNPRPointId) {
-		ANPRPointId = aNPRPointId;
-	}
-
-	public void setTimeStamp(String timeStamp) {
-		this.timeStamp = timeStamp;
-	}
-
-	public void setVehicleRegistrationNumber(String vehicleRegistrationNumber) {
-		this.vehicleRegistrationNumber = vehicleRegistrationNumber;
 	}
 
 }

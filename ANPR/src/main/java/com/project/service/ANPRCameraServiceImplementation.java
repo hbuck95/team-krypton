@@ -1,7 +1,5 @@
 package com.project.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +17,7 @@ public class ANPRCameraServiceImplementation implements ANPRCameraService {
 	}
 
 	@Override
-	public List<ANPRCameraEntity> findById(ANPRCameraEntity anprCameraEntity) {
+	public ANPRCameraEntity findById(ANPRCameraEntity anprCameraEntity) {
 		Integer anprId = anprCameraEntity.getAnprId();
 		return repo.findByAnprId(anprId);
 
