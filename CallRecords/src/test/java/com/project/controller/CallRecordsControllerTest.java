@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -67,22 +68,14 @@ public class CallRecordsControllerTest {
 	@Test
 	public void getCellTower() {
 		Mockito.when(ctService.getCellTower(cellTowerEntity1)).thenReturn(cellTowerEntity1);
-		assertEquals(cellTowerEntity1, controller.getCellTower(cellTowerEntity1));
-		Mockito.verify(ctService.getCellTower(cellTowerEntity1));
+		Assert.assertEquals(cellTowerEntity1, controller.getCellTower(cellTowerEntity1));
+
 	}
 
-	/*
-	 * 
-	 * 
-	 * @PostMapping("/getCellTower") public List<CellTowerEntity>
-	 * getCellTower(@RequestBody CellTowerEntity cellTowerEntity) { return
-	 * ctService.getCellTower(cellTowerEntity); }
-	 * 
-	 * @PostMapping("/getAssosiate") public PeopleMobileEntity
-	 * getAssosiate(@RequestBody PeopleMobileEntity peopleMobileEntity) { return
-	 * pmService.getAssosiate(peopleMobileEntity); }
-	 * 
-	 * 
-	 */
+	@Test
+	public void getAssociate() {
+		Mockito.when(pmService.getAssosiate(peopleMobileEntity)).thenReturn(peopleMobileEntity);
+		Assert.assertEquals(peopleMobileEntity, controller.getAssosiate(peopleMobileEntity));
+	}
 
 }
