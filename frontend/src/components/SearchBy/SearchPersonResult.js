@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import MapContainer from '../MapContainer'
 
-const HEADERS = { 'Content-Type': 'application.json' }
+const HEADERS = { 'Content-Type': 'application.json', "Authorization": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiI1ZDVhY2QxMGUyMzlkNDE0YTYxYWU4YWQiLCJleHAiOjE1NzE1NjQ0OTQsImlhdCI6MTU2NjM4MDQ5NH0.snvDQIxmjUl_PuMAbTctBZZrLfWxq1qThdh9pyFrIuA"}
 
 export default class SearchPersonResult extends Component {
     constructor(props) {
@@ -29,7 +29,7 @@ export default class SearchPersonResult extends Component {
         }
 
         this.componentDidMount = () => {
-            axios.post('http://localhost:9003/citizen/getCitizen', {forenames:'Garry Roger', surname:'Donnelly', homeAddress: '71 NEW ROAD, PORTSMOUTH, PO2 7QN'}, { headers: HEADERS })
+            axios.post('http://localhost:9000/citizen/getCitizen', {forenames:'Garry Roger', surname:'Donnelly', homeAddress: '71 NEW ROAD, PORTSMOUTH, PO2 7QN'}, { headers: HEADERS })
                 .then(res => {
                     this.setState({
                         dataLoaded: true,
