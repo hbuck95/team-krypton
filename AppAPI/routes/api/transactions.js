@@ -8,43 +8,63 @@ const HEADERS = {
 
 const API = "http://localhost:9006/transactions"
 
+// @route   POST api/transactions/getAccountAndCardHolder
+// @desc    Get all a citizens bank account record and bank card information
+// @body    {forename: "", surname: "", homeAddress: ""}
+// @access  Authentication required via JSToken generated via /users/login
+router.post('/getAccountAndCardHolder', auth.required, (req, res) => {
 
-router.post('/getAccountAndCardHolder', auth.required, (req,res) => {
-
-  let payload = {
+  //The payload object returned when all axios requests have been resolved
+  const payload = {
     accountHolder: null,
     bankCard: null
   };
 
-  axios.post(API + "/getAccountHolder", req.body, {headers: HEADERS }).then(response => {
-    if(res.statusCode !== 200){
-      return res.status(400).json({ payload: "Unable to find Account Holder!"});
+  // @route  POST http://localhost:9006/transactions/getAccountHolder
+  // @desc   Get a citizens bank account record
+  // @body   {forename: "", surname: "", homeAddress: ""}
+  axios.post(API + "/getAccountHolder", req.body, { headers: HEADERS }).then(response => {
+
+    //If the status code OK is not returned end the request early and return that the account holder cannot be found
+    if (res.statusCode !== 200) {
+      return res.status(400).json({ payload: "Unable to find Account Holder!" });
     }
 
+    //Assign the retrieved bank account record to the payload object
     payload.accountHolder = response.data;
 
-    //accountNumber
   }).then(() => {
 
+    //Body sent with the /getBankCard axios request bellow
+    //accountNumber is required to retrieve bank cards
     let bankCardBody = {
       accountNumber: payload.accountHolder.accountNumber
     };
 
-    axios.post(API + "/getBankCard", bankCardBody, { headers: HEADERS })
-    .then(response => {
-      if (res.statusCode === 200) {
-        console.log(response.data);
-        payload.bankCard = response.data;
-        return res.status(200).json(payload);
-      } else {
-        console.log(res.statusCode);
-        console.log(response.data);
+    // @route  POST http://localhost:9006/transactions/getBankCard
+    // @desc   Get a citizens bank card information
+    // @body   {accountNumber: ""}
+    axios.post(API + "/getBankCard", bankCardBody, { headers: HEADERS }).then(response => {
+
+      //If the status code OK is not returned end the request early and return that the account holder cannot be found
+      if (res.statusCode !== 200) {
         return res.status(400).json({ payload: "Unable to find Bank Card!" });
       }
+
+      //Assign the retrieved bank card information to the payload object
+      payload.bankCard = response.data;
+
+    }).then(() => {
+      //End the request chain by returning the payload object with a status code of OK.
+      return res.status(200).json({ payload: payload });
     })
+
+    //Handle any errors thrown up throughout the promise chain
   }).catch(err => {
     console.log(err);
-    return res.status(500).json({error: err});
+
+    //Return an internal server error and display the error
+    return res.status(500).json({ error: err });
   });
 
 });
@@ -63,8 +83,8 @@ router.post('/getAccountHolder', auth.required, (req, res) => {
         return res.status(400).json({ payload: "Unable to find Account Holder!" });
       }
     }).catch(err => {
-        console.log(err);
-        return res.status(500).json({ error: err});
+      console.log(err);
+      return res.status(500).json({ error: err });
     });
 
 });
@@ -83,8 +103,8 @@ router.post('/getBankCard', auth.required, (req, res) => {
         return res.status(400).json({ payload: "Unable to find Bank Card!" });
       }
     }).catch(err => {
-        console.log(err);
-        return res.status(500).json({ error: err});
+      console.log(err);
+      return res.status(500).json({ error: err });
     });
 
 });
@@ -103,8 +123,8 @@ router.post('/getEposTransactions', auth.required, (req, res) => {
         return res.status(400).json({ payload: "Unable to find EPOS Transaction for the supplied bank card number!" });
       }
     }).catch(err => {
-        console.log(err);
-        return res.status(500).json({ error: err});
+      console.log(err);
+      return res.status(500).json({ error: err });
     });
 
 });
@@ -123,8 +143,8 @@ router.post('/getAtmTransactions', auth.required, (req, res) => {
         return res.status(400).json({ payload: "Unable to find ATM Transaction for the supplied bank card number!" });
       }
     }).catch(err => {
-        console.log(err);
-        return res.status(500).json({ error: err});
+      console.log(err);
+      return res.status(500).json({ error: err });
     });
 
 });
