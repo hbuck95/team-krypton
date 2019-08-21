@@ -16,11 +16,11 @@ router.post('/getAccountHolder', auth.required, (req, res) => {
     .then(response => {
       if (res.statusCode === 200) {
         console.log(response.data);
-        return res.status(200).json({ data: response.data });
+        return res.status(200).json({ payload: response.data });
       } else {
         console.log(res.statusCode);
         console.log(response.data);
-        return res.status(400).json({ data: "Unable to find Account Holder!" });
+        return res.status(400).json({ payload: "Unable to find Account Holder!" });
       }
     }).catch(err => {
         console.log(err);
