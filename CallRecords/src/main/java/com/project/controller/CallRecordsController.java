@@ -49,7 +49,7 @@ public class CallRecordsController {
 	}
 
 	@PostMapping("/getCellTower")
-	public List<CellTowerEntity> getCellTower(@RequestBody CellTowerEntity cellTowerEntity) {
+	public CellTowerEntity getCellTower(@RequestBody CellTowerEntity cellTowerEntity) {
 		return ctService.getCellTower(cellTowerEntity);
 	}
 
