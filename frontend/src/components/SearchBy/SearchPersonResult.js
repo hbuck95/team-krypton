@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import MapContainer from '../MapContainer'
 
-const HEADERS = { 'Content-Type': 'application.json', "Authorization": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiI1ZDVhY2QxMGUyMzlkNDE0YTYxYWU4YWQiLCJleHAiOjE1NzE1NjQ0OTQsImlhdCI6MTU2NjM4MDQ5NH0.snvDQIxmjUl_PuMAbTctBZZrLfWxq1qThdh9pyFrIuA"}
+const HEADERS = { "Content-Type": "application/json", "Authorization": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiI1ZDVhY2QxMGUyMzlkNDE0YTYxYWU4YWQiLCJleHAiOjE1NzE1NjQ0OTQsImlhdCI6MTU2NjM4MDQ5NH0.snvDQIxmjUl_PuMAbTctBZZrLfWxq1qThdh9pyFrIuA" }
 
 export default class SearchPersonResult extends Component {
     constructor(props) {
@@ -14,9 +14,10 @@ export default class SearchPersonResult extends Component {
 
         this.state = {
             activeTab: '1',
-            searchData: props.searchData,
+            searchData: localStorage.getItem('searchData'),
             dataLoaded: false,
-            data: {}
+            data: {},
+            transactionData: {}
         };
 
 
@@ -24,28 +25,71 @@ export default class SearchPersonResult extends Component {
             if (this.state.activeTab !== tab) {
                 this.setState({
                     activeTab: tab
-                });
+                });                
             }
         }
 
         this.componentDidMount = () => {
-            axios.post('http://localhost:9000/citizen/getCitizen', {forenames:'Garry Roger', surname:'Donnelly', homeAddress: '71 NEW ROAD, PORTSMOUTH, PO2 7QN'}, { headers: HEADERS })
+            console.log("search data");
+            console.log(this.state.searchData);
+
+            props.resetRedirect();
+
+            axios.post('http://35.197.200.12:9000/api/citizen/getCitizen', {
+                "forenames": this.state.searchData.forenames,
+                "surname": this.state.searchData.surname,
+                "homeAddress": this.state.searchData.homeAddress
+            }, { headers: HEADERS })
                 .then(res => {
+                    console.log("citizen post success!")
+                    console.log(res)
+                    console.log(res.data.payload);
                     this.setState({
-                        dataLoaded: true,
                         data: res.data.payload
-                    })
+                    },
+                        () => { })
+                    axios.post('http://35.197.200.12:9000/api/transactions/getTransactionsForCitizen', {
+                        "forenames": this.state.searchData.forenames,
+                        "surname": this.state.searchData.surname,
+                        "homeAddress": this.state.searchData.homeAddress
+                    }, { headers: HEADERS })
+                        .then(res => {
+                            console.log("transaction post success!");
+                            console.log(res);
+                            console.log(res.data.payload);
+                            console.log(res.data.payload.atmTransactions[0]);
+                            this.setState({
+                                dataLoaded: true,
+                                transactionData: res.data.payload
+                            });
+                        }).catch(res => {
+                            console.log("transaction post failed!");
+                            if (res) {
+                                console.log("error!")
+                            }
+                        })
                 }).catch(res => {
+                    console.log("citizen post failed!")
                     this.setState({
                         dataLoaded: false
                     })
-                    if(res)
-                        console.log(res.data.error)
+                    if (res) {
+                        console.log("error!")
+                    }
                 })
+
+
+
+        }
+
+        this.handleAddress = (address) => {
+
+
         }
     }
 
     render() {
+        console.log("render: ", this.state.transactionData)
         if (this.state.dataLoaded) {
             return (
                 <div >
@@ -61,8 +105,15 @@ export default class SearchPersonResult extends Component {
                             <NavLink
                                 onClick={() => { this.toggle('2') }}
                             >
-                                More Details
-                        </NavLink>
+                                Transactions
+                        </NavLink>                        
+                        </NavItem>
+                        <NavItem>
+                            <NavLink
+                                onClick={() => { this.toggle('3') }}
+                            >
+                                Associates
+                        </NavLink>                        
                         </NavItem>
                         <TabContent activeTab={this.state.activeTab}>
                             <TabPane tabId="1">
@@ -71,7 +122,7 @@ export default class SearchPersonResult extends Component {
                                         <Table style={{ width: "95%", marginLeft: 50, marginTop: 50 }} hover bordered>
                                             <thead>
                                                 <tr>
-                                                    <th>Field</th>
+                                                    <th>Time Stamp</th>
                                                     <th>Data</th>
                                                 </tr>
                                             </thead>
@@ -82,23 +133,23 @@ export default class SearchPersonResult extends Component {
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Surname</th>
-                                                    <td>Thornton</td>
+                                                    <td>{this.state.data.surname}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Sex</th>
-                                                    <td>No</td>
+                                                    <td>{this.state.data.sex}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Address</th>
-                                                    <td><p>71 NEW ROAD</p><p>PORTSMOUTH</p><p>PO2 7QN</p></td>
+                                                    <td>{this.state.data.homeAddress}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Date of birth</th>
-                                                    <td>18/02/1979</td>
+                                                    <td>{this.state.data.dateOfBirth}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Place of birth</th>
-                                                    <td>Edgeware</td>
+                                                    <td>{this.state.data.placeOfBirth}</td>
                                                 </tr>
                                             </tbody>
                                         </Table>
@@ -109,40 +160,51 @@ export default class SearchPersonResult extends Component {
                                 </Row>
                             </TabPane>
                             <TabPane tabId="2">
-
+                                <h2>EPOS Transactions</h2>
                                 <Table style={{ width: "95%", marginLeft: 50, marginTop: 50 }} hover bordered>
                                     <thead>
                                         <tr>
-                                            <th>Field</th>
-                                            <th>Data</th>
-
+                                            <th>Time Stamp</th>
+                                            <th>ID</th>
+                                            <th>Card Number</th>
+                                            <th>Payee Account</th>
+                                            <th>Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {this.state.transactionData.eposTransactions.map((data) =>
+                                            <tr>
+                                                <td>{data.timestamp}</td>
+                                                <td>{data.eposId}</td>
+                                                <td>{data.bankCardNumber}</td>
+                                                <td>{data.payeeAccount}</td>
+                                                <td>£{data.amount}</td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+
+                                </Table>
+                                <h2>ATM Transactions</h2>
+                                <Table style={{ width: "95%", marginLeft: 50, marginTop: 50 }} hover bordered>
+                                    <thead>
                                         <tr>
-                                            <th scope="row" width={"20%"}>Forenames</th>
-                                            <td>Otto</td>
+                                            <th>Time Stamp</th>
+                                            <th>ID</th>
+                                            <th>Card Number</th>
+                                            <th>Type</th>
+                                            <th>Amount</th>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">Surname</th>
-                                            <td>Thornton</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Sex</th>
-                                            <td>No</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Address</th>
-                                            <td><p>71 NEW ROAD</p><p>PORTSMOUTH</p><p>PO2 7QN</p></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Date of birth</th>
-                                            <td>18/02/1979</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Place of birth</th>
-                                            <td>Edgeware</td>
-                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {this.state.transactionData.atmTransactions.map((data) =>
+                                            <tr>
+                                                <td>{data.timeStamp}</td>
+                                                <td>{data.atmId}</td>
+                                                <td>{data.bankCardNumber}</td>
+                                                <td>{data.type}</td>
+                                                <td>£{data.amount}</td>
+                                            </tr>
+                                        )}
                                     </tbody>
                                 </Table>
                             </TabPane>

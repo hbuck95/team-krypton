@@ -46,7 +46,6 @@ class Map extends Component {
 
         this.onSubmit = (e) => {
             e.preventDefault();
-            console.log(e.target[0].value)
             this.setState({
                 lat: parseFloat(e.target[0].value),
                 lng: parseFloat(e.target[1].value),
@@ -120,6 +119,7 @@ class Map extends Component {
                         visible={true}
                         editable={this.state.editcircle}
                         onDblClick={() => { this.setState({ editcircle: true }) }}
+                        //onRadiusChanged={}
 
 
 
@@ -127,9 +127,9 @@ class Map extends Component {
                 </GoogleMap>
                 <form onSubmit={(e) => { this.onSubmit(e) }}>
                     Latitude:
-                    <input type="text" value={this.state.newLat} onChange={(e) => { this.setState({ newLat: parseFloat(e.target.value) }) }}></input>
+                    <input type="number" step="any" value={this.state.newLat} onChange={(e) => { this.setState({ newLat: parseFloat(e.target.value) }) }}></input>
                     Longitude:
-                    <input type="text" value={this.state.newLng} onChange={(e) => { this.setState({ newLng: parseFloat(e.target.value) }) }}></input>
+                    <input type="number" step="0.0001" value={this.state.newLng} onChange={(e) => { this.setState({ newLng: parseFloat(e.target.value) }) }}></input>
                     <br />
                     Radius:
                     <input type="number" value={this.state.radius} onChange={(e) => { this.setState({ radius: parseFloat(e.target.value) }) }}></input>
@@ -153,7 +153,7 @@ export default function WrappedMap(props) {
                 &v=3.exp&libraries=geometry,drawing,places`}
                 loadingElement={<div style={{ height: "100%" }} />}
                 containerElement={<div style={{ height: "100%" }} />}
-                mapElement={<div style={{ height: "100%" }} />}
+                mapElement={<div style={{ height: "100%" }} prop="123"/> }
             />
 
         </div>

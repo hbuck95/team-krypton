@@ -7,6 +7,11 @@ import SearchRegistrationBox from './SearchBy/SearchRegistrationBox'
 import SearchLocationBox from './SearchBy/SearchLocationBox'
 
 export default class LandingPage extends Component {
+    constructor(props){
+        super(props)
+
+    }
+
     render() {
         return (
             <div>
@@ -14,7 +19,7 @@ export default class LandingPage extends Component {
                 <div style={{ marginTop: "150px" }}>
                     <Row style={{marginLeft:0, marginRight:0}}>
                         <Col >
-                            <SearchPersonBox />
+                            <SearchPersonBox passedFunction={this.props.passedFunction} />
                         </Col>
                         <Col>
                             <SearchLocationBox />
