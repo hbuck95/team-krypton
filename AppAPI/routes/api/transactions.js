@@ -71,37 +71,38 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
 
         //If the status code OK is not returned end the request early and return that the resource cannot be found
         if (res.statusCode !== 200) {
-          console.log(res.statusCode + ": "+ res.statusMessage);
+          console.log(res.statusCode + ": " + res.statusMessage);
           return res.status(400).json({ payload: "Requested resources could not be found." });
         }
 
         //Assign the EPOS transaction record(s) to the payload object
         payload.eposTransactions = response.data;
 
-      });
-    }).then(() => {
-
-      // @desc   Get all EPOS transactions for a bank card
-      // @body   {bankCardNumber: ""}
-      axios.post(API + "/getAtmTransactions", bankCard, { headers: HEADERS }).then(response => {
-
-        console.log(bankCard);
-
-        //If the status code OK is not returned end the request early and return that the resource cannot be found
-        if (res.statusCode !== 200) {
-          console.log(res.statusCode + ": "+ res.statusMessage);
-          return res.status(400).json({ payload: "Requested resources could not be found." });
-        }
-
-        //Assign the retrieved bank card information to the payload object
-        payload.atmTransactions = response.data;
-
       }).then(() => {
-        //End the request chain by returning the payload object with a status code of OK.
-        return res.status(200).json({ payload: payload });
-      });
-    });
 
+        // @desc   Get all EPOS transactions for a bank card
+        // @body   {bankCardNumber: ""}
+        axios.post(API + "/getAtmTransactions", bankCard, { headers: HEADERS }).then(response => {
+
+          console.log(bankCard);
+
+          //If the status code OK is not returned end the request early and return that the resource cannot be found
+          if (res.statusCode !== 200) {
+            console.log(res.statusCode + ": " + res.statusMessage);
+            return res.status(400).json({ payload: "Requested resources could not be found." });
+          }
+
+          //Assign the retrieved bank card information to the payload object
+          payload.atmTransactions = response.data;
+
+        }).then(() => {
+          //End the request chain by returning the payload object with a status code of OK.
+          return res.status(200).json({ payload: payload });
+        });
+      });
+
+
+    });
     //Handle any errors thrown up throughout the promise chain
   }).catch(err => {
     console.log(err);
