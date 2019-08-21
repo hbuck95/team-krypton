@@ -29,9 +29,9 @@ public class CellTowerServiceTest {
 	
 	@Test
 	public void getCellTowerTest(){
-		Mockito.when(repo.findByCellTowerId(0)).thenReturn(cellTowerEntity1);
+		Mockito.when(repo.findByCellTowerId(9)).thenReturn(cellTowerEntity1);
 		assertEquals(cellTowerEntity1, service.getCellTower(cellTowerEntity1));
-		Mockito.verify(repo.findByCellTowerId(0));
+		Mockito.verify(repo).findByCellTowerId(9);
 	}
 	
 	

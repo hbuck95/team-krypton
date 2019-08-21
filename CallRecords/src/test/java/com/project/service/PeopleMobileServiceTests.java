@@ -31,21 +31,18 @@ public class PeopleMobileServiceTests {
 	
 	@Test
 	public void getAssociate() {
-		List<PeopleMobileEntity> MOCK_LIST = new ArrayList<>();
-		MOCK_LIST.add(peopleMobileEntity);
-		Mockito.when(repo.findByPhoneNumber("07700 505797")).thenReturn((PeopleMobileEntity) MOCK_LIST);
-		assertEquals(MOCK_LIST, service.getAssosiate(peopleMobileEntity));
+		Mockito.when(repo.findByPhoneNumber("07700 505797")).thenReturn(peopleMobileEntity);
+		assertEquals(peopleMobileEntity, service.getAssosiate(peopleMobileEntity));
 		Mockito.verify(repo).findByPhoneNumber("07700 505797");
 		
 	}
 	
 	@Test
 	public void getPhoneNumber() {
-		List<PeopleMobileEntity> MOCK_LIST = new ArrayList<>();
-		MOCK_LIST.add(peopleMobileEntity);
-		Mockito.when(repo.findByPhoneNumber("07700 505797")).thenReturn(peopleMobileEntity);
-		assertEquals(MOCK_LIST, service.getPhoneNumber(peopleMobileEntity));
-		Mockito.verify(repo).findByPhoneNumber("07700 505797");
+	
+		Mockito.when(repo.findByForenames("Timothy Glenn", "Owen", "613 HIGH STREET, STOKE-ON-TRENT, ST6 5PD")).thenReturn(peopleMobileEntity);
+		assertEquals(peopleMobileEntity, service.getPhoneNumber(peopleMobileEntity));
+		Mockito.verify(repo).findByForenames("Timothy Glenn", "Owen", "613 HIGH STREET, STOKE-ON-TRENT, ST6 5PD");
 		
 	}
 	
