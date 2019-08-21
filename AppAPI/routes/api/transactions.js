@@ -76,6 +76,9 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
           return res.status(400).json({ payload: "Requested resources could not be found." });
         }
 
+        console.log(response);
+        console.log(response.data);
+        
         //Assign the EPOS transaction record(s) to the payload object
         payload.eposTransactions = response.data;
 
@@ -92,6 +95,9 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
         if (res.statusCode !== 200) {
           return res.status(400).json({ payload: "Requested resources could not be found." });
         }
+
+        console.log(response);
+        console.log(response.data);
 
         //Assign the retrieved bank card information to the payload object
         payload.atmTransactions = response.data;
