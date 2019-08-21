@@ -51,15 +51,14 @@ public class MobileCallRecordsServiceTests {
 		List<MobileCallRecordsEntity> MOCK_LIST = new ArrayList<>();
 		MOCK_LIST.add(mobileCallRecordEntity1);
 		MOCK_LIST.add(mobileCallRecordEntity2);
-		Mockito.when(repo.findByreceiverMSISDN("07700 745330")).thenReturn(MOCK_LIST);
+		Mockito.when(repo.findByreceiverMSISDN("07700 644987")).thenReturn(MOCK_LIST);
 		assertEquals(MOCK_LIST, service.getCallRecordsOfAssosiate(mobileCallRecordEntity2));
-		Mockito.verify(repo).findByreceiverMSISDN("07700 745330");
+		Mockito.verify(repo).findByreceiverMSISDN("07700 644987");
 		
 		
 	}
 	
 	
-	//List<MobileCallRecordsEntity> getCallRecordsOfSuspect(MobileCallRecordsEntity mobileCallRecordsEntity);
 
 	//List<MobileCallRecordsEntity> getCallRecordsOfAssosiate(MobileCallRecordsEntity mobileCallRecordsEntity);
 }
