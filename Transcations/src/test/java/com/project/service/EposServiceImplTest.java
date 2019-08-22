@@ -39,7 +39,7 @@ public class EposServiceImplTest {
 		List<EposEntity> eposList = new ArrayList();
 		eposList.add(eposEntity);
 
-		Mockito.when(repo.findById(20974)).thenReturn(eposEntity);
+		Mockito.when(repo.findByEposId(20974)).thenReturn(eposEntity);
 		assertEquals(eposList, eposServiceImpl.getEposLocations(eposTransactionList));
 	}
 
