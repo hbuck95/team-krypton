@@ -24,17 +24,20 @@ router.post('/getAssociates', auth.required, (req, res) => {
     return axios.post(API + "/getPhoneNumber", req.body, { headers: HEADERS })
     .then(response => {
 
+        console.log("/getPhoneNumber");
         console.log(response.data);
         suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
 
-        return axios.post(API + "/getCallRecordsOfSuspect", suspectCallRecordsBody, { headers: HEADERS});
+        return axios.post(API + "/getCallRecordsOfSuspect", suspectCallRecordsBody, { headers: HEADERS})
 
     }).then(response => {
+        console.log("/getCallRecordsofSuspect");
         console.log(response.data);
 
-        return axios.post(API + "/getAssosiate", response.data, { headers: HEADERS });
+        return axios.post(API + "/getAssosiate", response.data, { headers: HEADERS })
 
     }).then(response => {
+        console.log("/getAssosiate");
         console.log(response.data);
 
         payload.associates = response.data;
