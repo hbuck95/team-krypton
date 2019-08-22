@@ -8,5 +8,5 @@ import com.project.entity.VehicleEntity;
 @Repository
 public interface VehicleRepo extends MongoRepository<VehicleEntity, Long> {
 
-	VehicleEntity findVehicleRegistrationNo(String vehicleRegistrationNo);
+	VehicleEntity findbyVehicleRegistrationNo(String vehicleRegistrationNo);
 }
