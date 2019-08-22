@@ -3,7 +3,7 @@ package com.project.entities;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "atmTransactions")
+@Document(collection = "atmtransactions")
 public class AtmtransactionsEntity {
 
 	@Field("timestamp")
@@ -16,6 +16,10 @@ public class AtmtransactionsEntity {
 	public AtmtransactionsEntity() {
 		super();
 
+	}
+
+	public int getAtmId() {
+		return atmId;
 	}
 
 	public AtmtransactionsEntity(String timeStamp, int atmId, Long bankCardNumber, String type, int amount) {
