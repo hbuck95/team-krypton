@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const auth = require('../auth');
 const axios = require('axios');
+const _ = require('lodash');
 
 //Headers used in each axios request
 const HEADERS = {
@@ -58,7 +59,7 @@ router.post('/getAssociates', auth.required, (req, res) => {
         }).then(response => {
             return getAssociates(response.data)
         }).then(response => {
-            payload.associates = response.data;
+            payload.associates = _.uniq(response.data);
             return res.status(200).json(payload).end();
         }).catch(err => {
             console.log(err);
