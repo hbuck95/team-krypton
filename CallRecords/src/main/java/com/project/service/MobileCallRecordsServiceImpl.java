@@ -19,9 +19,9 @@ public class MobileCallRecordsServiceImpl implements MobileCallRecordsService {
 	}
 
 	@Override
-	public List<MobileCallRecordsEntity> getCallRecordsOfSuspect(String suspectPhoneNumber) {
-		// String callerMSISDN = mobileCallRecordsEntity.getCallerMSISDN();
-		List<MobileCallRecordsEntity> callRecordsForSuspect = repo.findByCallerMSISDN(suspectPhoneNumber);
+	public List<MobileCallRecordsEntity> getCallRecordsOfSuspect(MobileCallRecordsEntity mobileCallRecordsEntity) {
+		String callerMSISDN = mobileCallRecordsEntity.getCallerMSISDN();
+		List<MobileCallRecordsEntity> callRecordsForSuspect = repo.findByCallerMSISDN(callerMSISDN);
 		return callRecordsForSuspect;
 	}
 
