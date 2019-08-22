@@ -49,4 +49,42 @@ router.post('/getAssociates', auth.required, (req, res) => {
 
 });
 
+
+
+
+
+
+
+router.post('/test', auth.required, (req, res) => {
+
+    //The payload object returned when all axios requests have been resolved
+    const payload = {
+        associates: null
+    };
+
+    const suspectCallRecordsBody = {
+        callerMSISDN: null
+    };
+
+    return axios.post(API + "/getPhoneNumber", req.body, { headers: HEADERS })
+    .then(response => {
+
+        console.log("/getPhoneNumber");
+        console.log(response.data);
+        console.log(response.data.phoneNumber);
+        suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
+
+        return axios.post(API + "/getAssociatesByCallRecord", response.data.phoneNumber, { headers: HEADERS})
+
+    }).then(response => {
+        console.log("/getAssociatesByCallRecord");
+        console.log("Body:" + response.body);
+        console.log(response.data);
+
+        payload.associates = response.data;
+        return res.status(200).json(payload).end();
+    })
+
+});
+
 module.exports = router;
