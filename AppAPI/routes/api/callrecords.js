@@ -32,12 +32,14 @@ router.post('/getAssociates', auth.required, (req, res) => {
 
     }).then(response => {
         console.log("/getCallRecordsofSuspect");
+        console.log("Body:" + suspectCallRecordsBody);
         console.log(response.data);
 
         return axios.post(API + "/getAssosiate", response.data, { headers: HEADERS })
 
     }).then(response => {
         console.log("/getAssosiate");
+        console.log("Body:" + response.body);
         console.log(response.data);
 
         payload.associates = response.data;
