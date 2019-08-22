@@ -25,7 +25,6 @@ public class EposServiceImpl implements EposService {
 		List<EposEntity> eposPoints = new ArrayList<>();
 		for (int i = 0; i < eposTransactionsEntity.size(); i++) {
 			int id = eposTransactionsEntity.get(i).getEposId();
-			System.out.println(id);
 			EposEntity eposPoint = repo.findByEposId(id);
 			eposPoints.add(eposPoint);
 		}
