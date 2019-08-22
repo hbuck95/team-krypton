@@ -9,14 +9,14 @@ public class EposEntity {
 	private String vendor;
 	private String streetName;
 	private String postcode;
-	private int latitude;
-	private int longitude;
+	private String latitude;
+	private String longitude;
 
 	public EposEntity() {
 		super();
 	}
 
-	public EposEntity(int id, String vendor, String streetName, String postcode, int latitude, int longitude) {
+	public EposEntity(int id, String vendor, String streetName, String postcode, String latitude, String longitude) {
 		super();
 		this.id = id;
 		this.vendor = vendor;
@@ -58,19 +58,19 @@ public class EposEntity {
 		this.postcode = postcode;
 	}
 
-	public int getLatitude() {
+	public String getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(int latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 
-	public int getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(int longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 

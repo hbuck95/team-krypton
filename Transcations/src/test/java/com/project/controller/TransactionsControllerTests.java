@@ -88,4 +88,9 @@ public class TransactionsControllerTests {
 		assertEquals(EPOS_MOCK_LIST, controller.getEpostransactions(EPOS_TRANSACTION1));
 		Mockito.verify(etService).gettransactions(EPOS_TRANSACTION1);
 	}
+
+	@Test
+	public void getAtmLocation() {
+
+	}
 }
