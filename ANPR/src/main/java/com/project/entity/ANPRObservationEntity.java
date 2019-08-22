@@ -26,4 +26,8 @@ public class ANPRObservationEntity {
 		return vehicleRegistrationNumber;
 	}
 
+	public String getANPRPointId() {
+		return ANPRPointId;
+	}
+
 }

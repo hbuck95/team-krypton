@@ -51,9 +51,9 @@ public class ANPRController {
 	}
 
 	@PostMapping("/getANPRCamera")
-	public ANPRCameraEntity getANPRCamera(@RequestBody ANPRCameraEntity anprCameraEntity) {
+	public List<ANPRCameraEntity> getANPRCamera(@RequestBody List<ANPRObservationEntity> anprObservationEntity) {
 
-		return anprCameraService.findById(anprCameraEntity);
+		return anprCameraService.findById(anprObservationEntity);
 	}
 
 }
