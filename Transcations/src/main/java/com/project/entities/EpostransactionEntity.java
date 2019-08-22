@@ -2,7 +2,7 @@ package com.project.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "eposTransactions")
+@Document(collection = "epostransactions")
 public class EpostransactionEntity {
 
 	private String timestamp;
@@ -22,6 +22,10 @@ public class EpostransactionEntity {
 		this.bankCardNumber = bankCardNumber;
 		this.payeeAccount = payeeAccount;
 		this.amount = amount;
+	}
+
+	public int getEposId() {
+		return eposId;
 	}
 
 	public Long getBankCardNumber() {
