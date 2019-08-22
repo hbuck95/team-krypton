@@ -59,7 +59,7 @@ router.post('/getAssociates', auth.required, (req, res) => {
         }).then(response => {
             return getAssociates(response.data)
         }).then(response => {
-            payload.associates = _.uniqBy(response.data, ['forenames', 'surname']);
+            payload.associates = _.uniqWith(response.data, _.isEqual);
             return res.status(200).json(payload).end();
         }).catch(err => {
             console.log(err);
