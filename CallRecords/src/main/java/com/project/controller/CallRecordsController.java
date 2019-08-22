@@ -49,8 +49,8 @@ public class CallRecordsController {
 	}
 
 	@PostMapping("/getCellTower")
-	public CellTowerEntity getCellTower(@RequestBody CellTowerEntity cellTowerEntity) {
-		return ctService.getCellTower(cellTowerEntity);
+	public List<CellTowerEntity> getCellTower(@RequestBody List<MobileCallRecordsEntity> mobileCallRecordsEntity) {
+		return ctService.getCellTowers(mobileCallRecordsEntity);
 	}
 
 	@PostMapping("/getPhoneNumber")
