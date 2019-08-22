@@ -1,8 +1,12 @@
 package com.project.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.entities.MobileCallRecordsEntity;
 import com.project.entities.PeopleMobileEntity;
 import com.project.repository.PeopleMobileRepository;
 
@@ -17,11 +21,15 @@ public class PeopleMobileServiceImpl implements PeopleMobileService {
 	}
 
 	@Override
-	public PeopleMobileEntity getAssociate(PeopleMobileEntity peopleMobileEntity) {
-		String phoneNumber = peopleMobileEntity.getPhoneNumber();
-		PeopleMobileEntity associate = repo.findByPhoneNumber(phoneNumber);
-		return associate;
-	}
+    public List<PeopleMobileEntity> getAssociate(List<MobileCallRecordsEntity> mobileCallRecordsEntity) {
+        List<PeopleMobileEntity> associates = new ArrayList<PeopleMobileEntity>();
+        for (int i = 0; i < mobileCallRecordsEntity.size(); i++) {
+            String phoneNumber = mobileCallRecordsEntity.get(i).getReceiverMSISDN();
+            PeopleMobileEntity associate = repo.findByPhoneNumber(phoneNumber);
+            associates.add(associate);
+        }
+        return associates;
+    }
 
 	@Override
 	public PeopleMobileEntity getPhoneNumber(PeopleMobileEntity peopleMobileEntity) {
