@@ -2,7 +2,7 @@ package com.project.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "eposTransactions_subset")
+@Document(collection = "eposTransactions")
 public class EpostransactionEntity {
 
 	private String timestamp;
