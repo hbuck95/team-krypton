@@ -3,7 +3,7 @@ package com.project.entities;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "atmtransactions")
+@Document(collection = "atmtransaction")
 public class AtmtransactionsEntity {
 
 	@Field("timestamp")
