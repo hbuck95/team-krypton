@@ -8,6 +8,6 @@ import com.project.entities.EposEntity;
 public interface EposRepo extends MongoRepository<EposEntity, Long> {
 
 	@Query("{'id': ?0}")
-	EposEntity findById(int id);
+	EposEntity findByEposId(int id);
 
 }
