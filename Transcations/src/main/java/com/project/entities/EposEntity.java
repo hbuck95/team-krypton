@@ -1,10 +1,12 @@
 package com.project.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "epos")
 public class EposEntity {
 
+	@Field("id")
 	private int id;
 	private String vendor;
 	private String streetName;
