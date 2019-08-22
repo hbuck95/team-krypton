@@ -17,10 +17,10 @@ public class PeopleMobileServiceImpl implements PeopleMobileService {
 	}
 
 	@Override
-	public PeopleMobileEntity getAssosiate(PeopleMobileEntity peopleMobileEntity) {
+	public PeopleMobileEntity getAssociate(PeopleMobileEntity peopleMobileEntity) {
 		String phoneNumber = peopleMobileEntity.getPhoneNumber();
-		PeopleMobileEntity assosiate = repo.findByPhoneNumber(phoneNumber);
-		return assosiate;
+		PeopleMobileEntity associate = repo.findByPhoneNumber(phoneNumber);
+		return associate;
 	}
 
 	@Override
