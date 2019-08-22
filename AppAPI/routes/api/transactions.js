@@ -25,13 +25,18 @@ router.post('/getTransactionLocations', auth.required, (req, res) => {
 
   return axios.post(API + "/getAtmLocation", req.body.atmTransactions, { headers: HEADERS })
     .then(response => {
+      console.log("Body: ", response.body);
+      console.log("Data: ", response.data);
       payload.atmLocations = response.data;
       return axios.post(API + "/getEposLocation", req.body.eposTransactions, { headers: HEADERS })
     })    
     .then(response => {
+      console.log("Body: ", response.body);
+      console.log("Data: ", response.data);
       payload.eposLocations = response.data;
     })
     .then(() => {
+      console.log("Payload: ", payload);
       res.status(200).json(payload).end();
     })
 
