@@ -19,7 +19,7 @@ public class VehicleServiceImpl implements VehicleService {
 	@Override
 	public VehicleEntity findVehicleByRegistration(VehicleEntity vehicleEntity) {
 		String vehicleRegistrationNo = vehicleEntity.getVehicleRegistrationNo();
-		return repo.findVehicleRegistrationNo(vehicleRegistrationNo);
+		return repo.findbyVehicleRegistrationNo(vehicleRegistrationNo);
 	}
 
 }
