@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,9 +52,9 @@ public class CallRecordsControllerTest {
 		List<MobileCallRecordsEntity> Mock_List = new ArrayList<>();
 		Mock_List.add(mobileCallRecordEntitiy1);
 		Mock_List.add(mobileCallRecordEntity2);
-//		Mockito.when(mcrService.getCallRecordsOfSuspect(mobileCallRecordEntitiy1)).thenReturn(Mock_List);
-//		assertEquals(Mock_List, controller.getCallRecordsOfSuspect(mobileCallRecordEntitiy1));
-//		Mockito.verify(mcrService).getCallRecordsOfSuspect(mobileCallRecordEntitiy1);
+		Mockito.when(mcrService.getCallRecordsOfSuspect(mobileCallRecordEntitiy1)).thenReturn(Mock_List);
+		assertEquals(Mock_List, controller.getCallRecordsOfSuspect(mobileCallRecordEntitiy1));
+		Mockito.verify(mcrService).getCallRecordsOfSuspect(mobileCallRecordEntitiy1);
 	}
 
 	@Test
@@ -61,7 +63,7 @@ public class CallRecordsControllerTest {
 		Mock_List.add(mobileCallRecordEntitiy1);
 		Mock_List.add(mobileCallRecordEntity2);
 		Mockito.when(mcrService.getCallRecordsOfAssociate(mobileCallRecordEntitiy1)).thenReturn(Mock_List);
-//		assertEquals(Mock_List, controller.getCallRecordsOfAssociate(mobileCallRecordEntitiy1));
+		assertEquals(Mock_List, controller.getCallRecordsOfAssociate(mobileCallRecordEntitiy1));
 		Mockito.verify(mcrService).getCallRecordsOfAssociate(mobileCallRecordEntitiy1);
 	}
 
