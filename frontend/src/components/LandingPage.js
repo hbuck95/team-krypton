@@ -7,16 +7,13 @@ import SearchRegistrationBox from './SearchBy/SearchRegistrationBox'
 import SearchLocationBox from './SearchBy/SearchLocationBox'
 
 export default class LandingPage extends Component {
-    constructor(props){
-        super(props)
-
-    }
+    
 
     render() {
         return (
             <div>
                 <h1 style={{margin:"auto"}}>SEARCH BY...</h1>
-                <div style={{ marginTop: "150px" }}>
+                <div style={{ marginTop: "100px", width: "80%"}}>
                     <Row style={{marginLeft:0, marginRight:0}}>
                         <Col >
                             <SearchPersonBox passedFunction={this.props.passedFunction} />

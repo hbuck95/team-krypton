@@ -17,7 +17,7 @@ export default class SearchRegistrationBox extends Component {
                         <Col>
                             <FormGroup>
                                 <Label for="registration">Registration Number:</Label>
-                                <Input type="text" name="registration" id="registration" placeholder="AB12 XYZ" style={{textAlign:"center"}}/>
+                                <Input type="text" maxLength="8" name="registration" id="registration" placeholder="AB12 XYZ" style={{fontSize:"25px" , textAlign:"center"}}/>
                             </FormGroup>
                         </Col>
                     </Row>

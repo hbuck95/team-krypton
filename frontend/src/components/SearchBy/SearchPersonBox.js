@@ -21,7 +21,7 @@ export default class SearchPersonBox extends Component {
                 homeAddress: e.target[2].value
             }
 
-            localStorage.setItem('searchData', searchData);
+            localStorage.setItem('searchData', JSON.stringify(searchData));
             console.log(searchData);
 
 

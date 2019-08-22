@@ -18,15 +18,18 @@ export default class SearchLocationBox extends Component {
                         <Col md={6}>
                             <FormGroup>
                                 <Label for="latitude">Latitude:</Label>
-                                <Input type="number" name="latitude" id="latitude" placeholder="..." />
+                                <Input type="number" step="0.0001" name="latitude" id="latitude" placeholder="..." />
                             </FormGroup>
                         </Col>
                         <Col md={6}>
                             <FormGroup>
                                 <Label for="longitude">Longitude:</Label>
-                                <Input type="number" name="longitude" id="longitude" placeholder="..." />
+                                <Input type="number" step="0.0001" name="longitude" id="longitude" placeholder="..." />
                             </FormGroup>
                         </Col>
+                    </Row>
+                    <Row>
+                        radius goes here
                     </Row>
                     <FormGroup check row style={{ marginTop: "25px" }}>
                         <Col sm={{ size: 10, offset: 4 }}>

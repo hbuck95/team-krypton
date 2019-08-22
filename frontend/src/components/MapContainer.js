@@ -3,23 +3,25 @@ import { withScriptjs, withGoogleMap, Marker, Circle } from 'react-google-maps';
 //import { DrawingManager } from 'react-google-maps/lib/components/drawing/DrawingManager';
 import API_KEY from '../gmapsApiKey'
 const { GoogleMap } = require("react-google-maps");
+const defaultLatLng = { lat: 52.3555, lng: -1.1743 };
 
 class Map extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            lat: 51.45,
-            lng: -2.58,
+            lat: (localStorage.getItem('latSearch') ? parseFloat(localStorage.getItem('latSearch')) : defaultLatLng.lat),
+            lng: (localStorage.getItem('lngSearch') ? parseFloat(localStorage.getItem('lngSearch')) : defaultLatLng.lng),
             radius: 5000,
-            newLat: 51.45,
-            newLng: -2.58,
-            prevLat: [51.45],
-            prevLng: [-2.58],
+            defaultZoom: (localStorage.getItem('latSearch') && localStorage.getItem('lngSearch') ? 12 : 6),
+            newLat: (localStorage.getItem('latSearch') ? parseFloat(localStorage.getItem('latSearch')) : defaultLatLng.lat),
+            newLng: (localStorage.getItem('lngSearch') ? parseFloat(localStorage.getItem('lngSearch')) : defaultLatLng.lng),
+            prevLat: [(localStorage.getItem('latSearch') ? parseFloat(localStorage.getItem('latSearch')) : defaultLatLng.lat)],
+            prevLng: [(localStorage.getItem('lngSearch') ? parseFloat(localStorage.getItem('lngSearch')) : defaultLatLng.lng)],
             undos: 0,
             changeView: false,
-            viewLat: 51.45,
-            viewLng: -2.58,
+            viewLat: (localStorage.getItem('latSearch') ? parseFloat(localStorage.getItem('latSearch')) : defaultLatLng.lat),
+            viewLng: (localStorage.getItem('lngSearch') ? parseFloat(localStorage.getItem('lngSearch')) : defaultLatLng.lng),
             editcircle: false,
             data: [
                 {
@@ -54,12 +56,15 @@ class Map extends Component {
         }
 
         this.undo = () => {
-            if ((this.state.lat !== this.state.prevLat) && (this.state.lng !== this.state.prevLng))
+            console.log("begin undo")
+            if ((this.state.lat !== this.state.prevLat.length - (this.state.undos + 1)) && (this.state.lng !== this.state.prevLng.length - (this.state.undos + 1))) {
+                console.log(this.state.prevLat, this.state.lat, this.state.undos)
                 this.setState({
                     lat: this.state.prevLat[this.state.prevLat.length - (this.state.undos + 1)],
                     lng: this.state.prevLng[this.state.prevLng.length - (this.state.undos + 1)],
                     undos: (this.state.undos + 1)
                 })
+            }
         }
     }
 
@@ -68,11 +73,11 @@ class Map extends Component {
         return (
             <div>
                 <GoogleMap
-                    defaultZoom={10}
+                    defaultZoom={this.state.defaultZoom}
                     defaultCenter={{ lat: this.state.viewLat, lng: this.state.viewLng }}
                     onClick={() => { this.setState({ editcircle: false }) }}
                     onDblClick={() => { console.log(GoogleMap) }}
-
+                    // onCenterChanged={ (e)=> this.getCenter(e)}
                 >
                     {this.state.data.map(place => {
                         return (<Fragment key={place.id}>
@@ -89,6 +94,7 @@ class Map extends Component {
                         position={{ lat: this.state.lat, lng: this.state.lng }}
                         draggable={true}
                         onDragStart={(e) => {
+                            console.log(this.state.prevLat, this.state.prevLng)
                             this.setState(state => {
                                 const prevLat = [...state.prevLat, parseFloat(e.latLng.lat())];
                                 const prevLng = [...state.prevLng, parseFloat(e.latLng.lng())];
@@ -100,6 +106,7 @@ class Map extends Component {
                         }}
 
                         onDrag={(e) => {
+
                             this.setState({
                                 undos: 0,
                                 lat: parseFloat(Math.round(e.latLng.lat() * 10000) / 10000),
@@ -119,7 +126,7 @@ class Map extends Component {
                         visible={true}
                         editable={this.state.editcircle}
                         onDblClick={() => { this.setState({ editcircle: true }) }}
-                        //onRadiusChanged={}
+                        //onRadiusChanged={(e) => console.log(this.getRadius(e))}
 
 
 
@@ -127,14 +134,14 @@ class Map extends Component {
                 </GoogleMap>
                 <form onSubmit={(e) => { this.onSubmit(e) }}>
                     Latitude:
-                    <input type="number" step="any" value={this.state.newLat} onChange={(e) => { this.setState({ newLat: parseFloat(e.target.value) }) }}></input>
+                    <input type="number" step="0.0001" value={this.state.newLat} onChange={(e) => { this.setState({ newLat: parseFloat(e.target.value) }) }}></input>
                     Longitude:
                     <input type="number" step="0.0001" value={this.state.newLng} onChange={(e) => { this.setState({ newLng: parseFloat(e.target.value) }) }}></input>
                     <br />
                     Radius:
                     <input type="number" value={this.state.radius} onChange={(e) => { this.setState({ radius: parseFloat(e.target.value) }) }}></input>
                     <input type="submit" value="Submit"></input>
-                    <button style={{marginLeft:25}} onClick={this.undo} >Undo</button>
+                    <button style={{ marginLeft: 25 }} onClick={this.undo} >Undo</button>
                 </form>
 
             </div>
@@ -153,7 +160,7 @@ export default function WrappedMap(props) {
                 &v=3.exp&libraries=geometry,drawing,places`}
                 loadingElement={<div style={{ height: "100%" }} />}
                 containerElement={<div style={{ height: "100%" }} />}
-                mapElement={<div style={{ height: "100%" }} prop="123"/> }
+                mapElement={<div style={{ height: "100%" }} prop="123" />}
             />
 
         </div>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 
 import RouterClass from './components/RouterClass'
 import Footer from './components/Footer'
@@ -19,6 +18,7 @@ export default class App extends Component {
       link: '',
       redirect: false
     }
+    localStorage.setItem('test', 'test');
 
   }
   searchData = (data, link) => {
