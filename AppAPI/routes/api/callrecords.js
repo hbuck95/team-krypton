@@ -33,7 +33,7 @@ router.post('/getAssociates', auth.required, (req, res) => {
 
     const suspectCallRecordsBody = {
         callerMSISDN: null
-    };  
+    };
 
     // @route  POST http://localhost:9004/call/getPhoneNumber
     // @desc   Get all EPOS transactions for a bank card
@@ -48,15 +48,13 @@ router.post('/getAssociates', auth.required, (req, res) => {
             // @route  POST http://localhost:9004/call/getCallRecordsOfSuspect
             // @desc   Get all mobile call records where the retrieved phone number is the caller
             //return axios.post(API + "/getCallRecordsOfSuspect", suspectCallRecordsBody, { headers: HEADERS })
-            getCallRecordsOfSuspect(suspectCallRecordsBody);
-
+            getCallRecordsOfSuspect(suspectCallRecordsBody)
         }).then(response => {
 
             // @route  POST http://localhost:9004/call/getCallRecordsOfSuspect
             // @desc   Get all people mobile phone records where the supplied phone number is the receiver of the above calls
             //return axios.post(API + "/getAssosiate", response.data, { headers: HEADERS })
-            getAssociates(response.data);
-
+            getAssociates(response.data)
         }).then(response => {
 
             payload.associates = response.data;
@@ -64,7 +62,7 @@ router.post('/getAssociates', auth.required, (req, res) => {
 
         }).catch(err => {
             console.log(err);
-            return res.status(500).json({message: "An error ocurred whilst processing your request.", error: err});
+            return res.status(500).json({ message: "An error ocurred whilst processing your request.", error: err });
         })
 
 });
