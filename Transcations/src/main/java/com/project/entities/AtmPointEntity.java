@@ -9,15 +9,16 @@ public class AtmPointEntity {
 	private String operator;
 	private String streetName;
 	private String postcode;
-	private int latitude;
-	private int longitude;
+	private String latitude;
+	private String longitude;
 
 	public AtmPointEntity() {
 		super();
 
 	}
 
-	public AtmPointEntity(int atmId, String operator, String streetName, String postcode, int latitude, int longitude) {
+	public AtmPointEntity(int atmId, String operator, String streetName, String postcode, String latitude,
+			String longitude) {
 		super();
 		this.atmId = atmId;
 		this.operator = operator;
@@ -59,19 +60,19 @@ public class AtmPointEntity {
 		this.postcode = postcode;
 	}
 
-	public int getLatitude() {
+	public String getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(int latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 
-	public int getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(int longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 
