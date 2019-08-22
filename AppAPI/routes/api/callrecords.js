@@ -38,3 +38,5 @@ router.post('/getAssociates', auth.required, (req, res) => {
     })
 
 });
+
+module.exports = router;
