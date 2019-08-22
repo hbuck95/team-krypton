@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 
-import { Table, Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Spinner } from 'reactstrap'
+import { Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Spinner } from 'reactstrap'
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.css';
 
-import MapContainer from '../MapContainer'
+import MapContainer from '../../MapContainer'
 import SearchPersonResultTableVertical from './SearchPersonResultTableVertical'
-import SearchPersonResultTableHorizontal from './SearchPersonResultTableHorizontal'
+import TransactionsTab from './SearchPersonTransactionsTab';
+import AssociatesTab from '../Person/AssociatesTab';
 
 const HEADERS = { "Content-Type": "application/json", "Authorization": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiI1ZDVhY2QxMGUyMzlkNDE0YTYxYWU4YWQiLCJleHAiOjE1NzE1NjQ0OTQsImlhdCI6MTU2NjM4MDQ5NH0.snvDQIxmjUl_PuMAbTctBZZrLfWxq1qThdh9pyFrIuA" }
+
+const distinct = (value, index, self) => {
+    return self.indexOf(value) === index;
+}
+
+
 
 export default class SearchPersonResult extends Component {
     constructor(props) {
@@ -18,11 +24,14 @@ export default class SearchPersonResult extends Component {
             activeTab: '1',
             searchData: JSON.parse(localStorage.getItem('searchData')),
             dataLoaded: false,
+            transactionDataLoaded: false,
+            associateDataLoaded: false,
             data: {},
             transactionData: {
                 eposTransactions: [],
                 atmTransactions: []
-            }
+            },
+            associatesData: []
         };
 
 
@@ -35,8 +44,8 @@ export default class SearchPersonResult extends Component {
         }
 
         this.componentDidMount = () => {
-            console.log("search data", this.state.searchData);
-            console.log("localstorage", localStorage.getItem('searchData'))
+            // console.log("search data", this.state.searchData);
+            // console.log("localstorage", localStorage.getItem('searchData'))
 
             props.resetRedirect();
 
@@ -50,41 +59,49 @@ export default class SearchPersonResult extends Component {
                     console.log("res", res)
                     console.log("payload", res.data.payload);
                     this.setState({
+                        dataLoaded: true,
                         data: res.data.payload
-                    },
-                        () => { })
-                    axios.post('http://35.197.200.12:9000/api/transactions/getTransactionsForCitizen', {
-                        "forenames": this.state.searchData.forenames,
-                        "surname": this.state.searchData.surname,
-                        "homeAddress": this.state.searchData.homeAddress
-                    }, { headers: HEADERS })
-                        .then(res => {
-                            console.log("transaction post success!");
-                            console.log("res", res);
-                            console.log("payload", res.data.payload);
-                            console.log("atm", res.data.payload.atmTransactions[0]);
-                            this.setState({
-                                dataLoaded: true,
-                                transactionData: res.data.payload
-                            });
-                        }).catch(res => {
-                            console.log("transaction post failed!");
-                            if (res) {
-                                console.log("error!")
-                            }
-                        })
+                    })
                 }).catch(res => {
                     console.log("citizen post failed!")
                     this.setState({
                         dataLoaded: false
                     })
+                })
+
+            axios.post('http://35.197.200.12:9000/api/transactions/getTransactionsForCitizen', {
+                "forenames": this.state.searchData.forenames,
+                "surname": this.state.searchData.surname,
+                "homeAddress": this.state.searchData.homeAddress
+            }, { headers: HEADERS })
+                .then(res => {
+                    
+                    this.setState({
+                        transactionDataLoaded: true,
+                        transactionData: res.data.payload
+                    });
+                }).catch(res => {
+                    console.log("transaction post failed!");
                     if (res) {
                         console.log("error!")
                     }
                 })
 
-
-
+            axios.post('http://35.197.200.12:9000/api/callrecords/getAssociates', {
+                "forenames": this.state.searchData.forenames,
+                "surname": this.state.searchData.surname,
+                "address": this.state.searchData.homeAddress
+            }, { headers: HEADERS })
+                .then(res => {
+                    console.log("associates post success!");
+                    console.log("data: ", res.data.associates);
+                    this.setState({
+                        associateDataLoaded: true,
+                        associatesData: res.data.associates
+                    })
+                }).catch(() =>
+                    console.log("associates post failed!")
+                )
         }
 
         this.handleAddress = (address) => {
@@ -94,7 +111,7 @@ export default class SearchPersonResult extends Component {
     }
 
     render() {
-        console.log("render: ", this.state.transactionData)
+        console.log("render: ", this.state.data, this.state.transactionData)
         if (this.state.dataLoaded) {
             return (
                 <div >
@@ -136,20 +153,8 @@ export default class SearchPersonResult extends Component {
                                     </Col>
                                 </Row>
                             </TabPane>
-                            <TabPane tabId="2">
-                                <h2>EPOS Transactions</h2>
-                                <SearchPersonResultTableHorizontal passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
-                                    data={this.state.transactionData.eposTransactions}
-                                    headers={['Time Stamp', 'ID', 'Card Number', 'Payee Account', 'Amount']}
-                                />
-
-                                <h2>ATM Transactions</h2>
-
-                                <SearchPersonResultTableHorizontal passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
-                                    data={this.state.transactionData.atmTransactions}
-                                    headers={['Time Stamp', 'ID', 'Card Number', 'Type', 'Amount']}
-                                />
-                            </TabPane>
+                            <TransactionsTab transactionData={this.state.transactionData} />
+                            <AssociatesTab dataLoaded={this.state.associateDataLoaded} associatesData={this.state.associatesData} />
                         </TabContent>
 
                     </Nav>

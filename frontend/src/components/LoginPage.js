@@ -12,6 +12,7 @@ import {
 } from 'reactstrap'
 
 import '../App.css'
+import axios from 'axios';
 
 export default class LoginPage extends Component {
 
@@ -38,6 +39,7 @@ export default class LoginPage extends Component {
 
             console.log(detailsToSend);
 
+            //axios.post('http://localhost:9000/api/users/login')
             //then
             document.location.href = "/home"
             //catch

@@ -3,9 +3,6 @@ import React, { Component } from 'react'
 import '../../css/SearchBoxes.css'
 
 import { Button, Input, Form, Row, Col, FormGroup, Label } from 'reactstrap'
-
-import { Link } from 'react-router-dom'
-
 export default class SearchPersonBox extends Component {
 
     constructor(props) {
@@ -25,7 +22,7 @@ export default class SearchPersonBox extends Component {
             console.log(searchData);
 
 
-            props.passedFunction(searchData, 'result');
+            props.passedFunction('result');
 
         }
 

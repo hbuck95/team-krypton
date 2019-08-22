@@ -5,7 +5,7 @@ import { Table } from 'reactstrap';
 
 
 
-export default class SearchPersonResultTableVertical extends Component {
+export default class ResultTableVertical extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -19,7 +19,7 @@ export default class SearchPersonResultTableVertical extends Component {
     }
 
     render() {
-        console.log("data", this.state.data)
+        console.log("vertical data", this.state.data, this.props.data)
         return (
             <Table hover bordered >
                 <thead>
@@ -37,7 +37,7 @@ export default class SearchPersonResultTableVertical extends Component {
                         //     <td>{b}</td>
                         // </tr>)
                     }
-                    {Object.entries(this.state.data).map((value) =>
+                    {Object.entries(this.props.data).map((value) =>
                         <tr>
                             <th scope="row" width={"20%"}>{value[0]}</th>
                             {/* <th scope="row" width={"20%"}>{this.state.sideHeaders}</th> */}

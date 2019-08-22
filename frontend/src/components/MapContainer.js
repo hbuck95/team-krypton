@@ -48,11 +48,16 @@ class Map extends Component {
 
         this.onSubmit = (e) => {
             e.preventDefault();
-            this.setState({
-                lat: parseFloat(e.target[0].value),
-                lng: parseFloat(e.target[1].value),
-                radius: parseFloat(e.target[2].value)
-            })
+            // if (isNaN(e.target[0].value)  || isNaN(e.target[1].value)) {
+                
+            // }
+            // else {
+                this.setState({
+                    lat: parseFloat(e.target[0].value),
+                    lng: parseFloat(e.target[1].value),
+                    radius: parseFloat(e.target[2].value)
+                })
+            // }
         }
 
         this.undo = () => {
@@ -77,7 +82,7 @@ class Map extends Component {
                     defaultCenter={{ lat: this.state.viewLat, lng: this.state.viewLng }}
                     onClick={() => { this.setState({ editcircle: false }) }}
                     onDblClick={() => { console.log(GoogleMap) }}
-                    // onCenterChanged={ (e)=> this.getCenter(e)}
+                // onCenterChanged={ (e)=> this.getCenter(e)}
                 >
                     {this.state.data.map(place => {
                         return (<Fragment key={place.id}>
@@ -126,21 +131,22 @@ class Map extends Component {
                         visible={true}
                         editable={this.state.editcircle}
                         onDblClick={() => { this.setState({ editcircle: true }) }}
-                        //onRadiusChanged={(e) => console.log(this.getRadius(e))}
+                    //onRadiusChanged={(e) => console.log(this.getRadius(e))}
 
 
 
                     />
                 </GoogleMap>
                 <form onSubmit={(e) => { this.onSubmit(e) }}>
-                    Latitude:
+                    <span style={{ marginRight: 15 }}>Latitude:</span>
                     <input type="number" step="0.0001" value={this.state.newLat} onChange={(e) => { this.setState({ newLat: parseFloat(e.target.value) }) }}></input>
-                    Longitude:
-                    <input type="number" step="0.0001" value={this.state.newLng} onChange={(e) => { this.setState({ newLng: parseFloat(e.target.value) }) }}></input>
-                    <br />
-                    Radius:
-                    <input type="number" value={this.state.radius} onChange={(e) => { this.setState({ radius: parseFloat(e.target.value) }) }}></input>
-                    <input type="submit" value="Submit"></input>
+
+                    <span style={{ marginRight: 15, marginLeft: 25 }}>Longitude:</span>
+                    <input type="number" step="0.0001" value={this.state.newLng} onChange={(e) => { if (!NaN) { this.setState({ newLng: parseFloat(e.target.value) }) } }}></input>
+                    <span style={{ marginRight: 25, marginLeft: 25 }}>Radius:</span>
+                    <input type="number" value={this.state.radius} onChange={(e) => { this.setState({ radius: parseFloat(e.target.value) }) }}>
+                    </input><span style={{ marginLeft: '-20px', color: 'grey' }}>m</span>
+                    <input type="submit" value="Submit" style={{ marginLeft: 25 }}></input>
                     <button style={{ marginLeft: 25 }} onClick={this.undo} >Undo</button>
                 </form>
 

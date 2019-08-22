@@ -21,10 +21,9 @@ export default class App extends Component {
     localStorage.setItem('test', 'test');
 
   }
-  searchData = (data, link) => {
-    console.log(data)
+  searchData = (link) => {
+    // console.log(data)
     this.setState({
-      searchData: data,
       link: link,
       redirect: true
     }

@@ -19,7 +19,7 @@ export default class LandingPage extends Component {
                             <SearchPersonBox passedFunction={this.props.passedFunction} />
                         </Col>
                         <Col>
-                            <SearchLocationBox />
+                            <SearchLocationBox passedFunction={this.props.passedFunction} />
                         </Col>
                         <Col>
                             <SearchRegistrationBox />

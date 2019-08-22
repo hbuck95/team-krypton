@@ -4,14 +4,20 @@ import '../../css/SearchBoxes.css'
 
 
 import MapContainer from '../MapContainer'
-import MapTest from '../MapTest'
 
 export default class SearchLocationPage extends Component {
+    constructor(props) {
+        super(props);
 
+        this.componentDidMount = () => {
+
+            props.resetRedirect();
+        }
+    }
     render() {
-        return(
+        return (
             <div>
-                <MapContainer height="800px" width="1200px"/>
+                <MapContainer height="800px" width="1200px" />
             </div>
         )
     }
