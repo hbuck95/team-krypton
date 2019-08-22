@@ -31,16 +31,10 @@ public class CallRecordsController {
 		this.pmService = pmService;
 	}
 
-	@PostMapping("/getCallRecordsOfSuspect")
-	public List<MobileCallRecordsEntity> getCallRecordsOfSuspect(
-			@RequestBody MobileCallRecordsEntity mobileCallRecordsEntity) {
-		return mcrService.getCallRecordsOfSuspect(mobileCallRecordsEntity);
-	}
-
-	@PostMapping("/getCallRecordsOfAssociate")
-	public List<MobileCallRecordsEntity> getCallRecordsOfAssociate(
-			@RequestBody MobileCallRecordsEntity mobileCallRecordsEntity) {
-		return mcrService.getCallRecordsOfAssociate(mobileCallRecordsEntity);
+	@PostMapping("/getAssociatesByCallRecord")
+	public List<PeopleMobileEntity> getAssoicatesByCallRecord(@RequestBody String phoneNumber) {
+		List<MobileCallRecordsEntity> suspectCallRecords = mcrService.getCallRecordsOfSuspect(phoneNumber);
+		return pmService.getAssociate(suspectCallRecords);
 	}
 
 	@PostMapping("/getAssosiate")
