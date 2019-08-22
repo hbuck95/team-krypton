@@ -2,7 +2,7 @@ package com.project.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "mobileCallRecords")
+@Document(collection = "mobilecallrecords")
 public class MobileCallRecordsEntity {
 
 	private String timestamp;
@@ -26,18 +26,12 @@ public class MobileCallRecordsEntity {
 		this.receiverTowerId = receiverTowerId;
 	}
 
-
-
 	public String getCallerMSISDN() {
 		return callerMSISDN;
 	}
 
-
-
 	public String getReceiverMSISDN() {
 		return receiverMSISDN;
 	}
-
-
 
 }
