@@ -10,6 +10,10 @@ const HEADERS = {
 //URL to the transactions microservice
 const API = "http://localhost:9004/call"
 
+const getPhoneNumber = (body) => {
+    return axios.post(API + "/getPhoneNumber", body, { headers: HEADERS });
+};
+
 router.post('/getAssociates', auth.required, (req, res) => {
 
     //The payload object returned when all axios requests have been resolved
@@ -19,12 +23,13 @@ router.post('/getAssociates', auth.required, (req, res) => {
 
     const suspectCallRecordsBody = {
         callerMSISDN: null
-    };
+    };  
 
     // @route  POST http://localhost:9004/call/getPhoneNumber
     // @desc   Get all EPOS transactions for a bank card
     // @body   {forename: "", surname: "", homeAddress: ""}
-    return axios.post(API + "/getPhoneNumber", req.body, { headers: HEADERS })
+    // return axios.post(API + "/getPhoneNumber", req.body, { headers: HEADERS })
+    getPhoneNumber(req.body)
         .then(response => {
 
             //Assign the phone number retrieved to the suspectcallrecordsbody object for the next axios request.
