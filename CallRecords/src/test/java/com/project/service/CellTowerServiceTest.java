@@ -19,7 +19,7 @@ public class CellTowerServiceTest {
 	@Mock
 	CellTowerRepository repo;
 
-	public static final CellTowerEntity cellTowerEntity1 = new CellTowerEntity(9, "Airwave", "TETRA", "51.21526477",
+	public static final CellTowerEntity cellTowerEntity1 = new CellTowerEntity("9", "Airwave", "TETRA", "51.21526477",
 			"-2.894085973");
 
 //	@Test

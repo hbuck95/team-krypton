@@ -37,12 +37,12 @@ public class CallRecordsControllerTest {
 	@Mock
 	private RestTemplate restTemplate;
 	private static final MobileCallRecordsEntity mobileCallRecordEntitiy1 = new MobileCallRecordsEntity(
-			"2015-05-01T14:01:08.094", "07700 690065", 10572, "07700 500698", "27799");
+			"2015-05-01T14:01:08.094", "07700 690065", "10572", "07700 500698", "27799");
 	private static final MobileCallRecordsEntity mobileCallRecordEntity2 = new MobileCallRecordsEntity(
-			"2015-05-03T12:33:47.012", "07700 745330", 103798, "07700 644987", "127838");
-	public static final CellTowerEntity cellTowerEntity1 = new CellTowerEntity(9, "Airwave", "TETRA", "51.21526477",
+			"2015-05-03T12:33:47.012", "07700 745330", "103798", "07700 644987", "127838");
+	public static final CellTowerEntity cellTowerEntity1 = new CellTowerEntity("9", "Airwave", "TETRA", "51.21526477",
 			"-2.894085973");
-	public static final CellTowerEntity cellTowerEntity2 = new CellTowerEntity(12, "Airwave", "TETRA", "51.3456754",
+	public static final CellTowerEntity cellTowerEntity2 = new CellTowerEntity("12", "Airwave", "TETRA", "51.3456754",
 			"-2.895478732");
 	public static final PeopleMobileEntity peopleMobileEntity1 = new PeopleMobileEntity("Timothy Glenn", "Owen",
 			"08/10/1954", "613 HIGH STREET, STOKE-ON-TRENT, ST6 5PD", "07700 505797", "T-Mobile");

@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "celltower")
 public class CellTowerEntity {
 
-	private int cellTowerId;
+	private String cellTowerId;
 	private String operator;
 	private String type;
 	private String latitude;
@@ -15,7 +15,7 @@ public class CellTowerEntity {
 		super();
 	}
 
-	public CellTowerEntity(int cellTowerId, String operator, String type, String latitude, String longitude) {
+	public CellTowerEntity(String cellTowerId, String operator, String type, String latitude, String longitude) {
 		super();
 		this.cellTowerId = cellTowerId;
 		this.operator = operator;
@@ -56,11 +56,11 @@ public class CellTowerEntity {
 		this.longitude = longitude;
 	}
 
-	public void setCellTowerId(int cellTowerId) {
+	public void setCellTowerId(String cellTowerId) {
 		this.cellTowerId = cellTowerId;
 	}
 
-	public int getCellTowerId() {
+	public String getCellTowerId() {
 		return cellTowerId;
 	}
 
