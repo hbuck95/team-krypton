@@ -3,7 +3,7 @@ package com.project.entity;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "vehicleObservations_subset")
+@Document(collection = "vehicleObservations")
 public class ANPRObservationEntity {
 
 	String ANPRPointId;
