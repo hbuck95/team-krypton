@@ -10,7 +10,7 @@ import com.project.entities.MobileCallRecordsEntity;
 @Repository
 public interface MobileCallRecordsRepo extends MongoRepository<MobileCallRecordsEntity, Long> {
 
-	List<MobileCallRecordsEntity> findByCallerMSISDN(String callerMsisDN);
+	List<MobileCallRecordsEntity> findByCallerMSISDN(String callerMSISDN);
 
 	List<MobileCallRecordsEntity> findByreceiverMSISDN(String receiverMSISDN);
 }
