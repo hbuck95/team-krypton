@@ -3,7 +3,7 @@ package com.project.entity;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "vehicleRegistration_subset")
+@Document(collection = "vehicleRegistration")
 public class VehicleRegistrationEntity {
 
 	@Field("registrationID")
