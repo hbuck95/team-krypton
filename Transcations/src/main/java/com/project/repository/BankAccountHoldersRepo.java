@@ -10,5 +10,5 @@ import com.project.entities.PeopleBankAccountEntity;
 public interface BankAccountHoldersRepo extends MongoRepository<PeopleBankAccountEntity, Long> {
 
 	@Query("{ 'forenames' : ?0, 'surname' : ?1, 'homeAddress' : ?2}")
-	PeopleBankAccountEntity findByForenames(String forenames, String surname, String homeAddress);
+	PeopleBankAccountEntity findByNamesAndLastName(String forenames, String surname, String homeAddress);
 }
