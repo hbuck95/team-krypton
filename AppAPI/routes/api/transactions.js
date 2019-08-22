@@ -11,6 +11,34 @@ const HEADERS = {
 const API = "http://localhost:9006/transactions"
 
 
+// @route   POST api/transactions/getAtmLocation
+// @desc    Get the location of ATMs based on a set of a atm transaction records
+// @body    {eposTransactions: [{eposId: ""},{eposId: ""}], atmTransactions: [{atmId: ""}, {atmId: ""}]}
+// @access  Authentication required via JSToken generated via /users/login
+router.post('/getTransactionLocations', auth.required, (req, res) => {
+
+  //The payload object returned when all axios requests have been resolved
+  const payload = {
+    eposLocations: null,
+    atmLocations: null,
+  };
+
+  return axios.post(API + "/getAtmLocation", req.body.atmTransactions, { headers: HEADERS })
+    .then(response => {
+      payload.atmLocations = response.data;
+      return axios.post(API + "/getEposLocation", req.body.eposTransactions, { headers: HEADERS })
+    })    
+    .then(response => {
+      payload.eposLocations = response.data;
+    })
+    .then(() => {
+      res.status(200).json(payload).end();
+    })
+
+});
+
+
+
 // @route   POST api/transactions/getTransactionsForCitizen
 // @desc    Get all a citizens bank account record and bank card information
 // @body    {forename: "", surname: "", homeAddress: ""}
