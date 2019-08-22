@@ -2,7 +2,7 @@ package com.project.entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "anprcamera_subset")
+@Document(collection = "anprcamera")
 public class ANPRCameraEntity {
 
 	Integer anprId;
