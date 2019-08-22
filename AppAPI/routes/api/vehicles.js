@@ -13,7 +13,7 @@ const findVehicleRegistration = (body) => {
     return axios.post(API + "/getVehicle", body, { headers: HEADERS });
 };
 
-axios.post("/getVehicle", auth.required, (req, res) => {
+router.post("/getVehicle", auth.required, (req, res) => {
 
     const payload = {
         vehicleRegistration: null
