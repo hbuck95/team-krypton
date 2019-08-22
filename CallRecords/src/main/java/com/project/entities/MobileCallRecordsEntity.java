@@ -7,7 +7,7 @@ public class MobileCallRecordsEntity {
 
 	private String timestamp;
 	private String callerMSISDN;
-	private int callCellTowerId;
+	private String callCellTowerId;
 	private String receiverMSISDN;
 	private String receiverTowerId;
 
@@ -16,7 +16,7 @@ public class MobileCallRecordsEntity {
 		super();
 	}
 
-	public MobileCallRecordsEntity(String timestamp, String callerMSISDN, int callCellTowerId, String receiverMSISDN,
+	public MobileCallRecordsEntity(String timestamp, String callerMSISDN, String callCellTowerId, String receiverMSISDN,
 			String receiverTowerId) {
 		super();
 		this.timestamp = timestamp;
@@ -34,11 +34,11 @@ public class MobileCallRecordsEntity {
 		this.timestamp = timestamp;
 	}
 
-	public int getCallCellTowerId() {
+	public String getCallCellTowerId() {
 		return callCellTowerId;
 	}
 
-	public void setCallCellTowerId(int callCellTowerId) {
+	public void setCallCellTowerId(String callCellTowerId) {
 		this.callCellTowerId = callCellTowerId;
 	}
 
