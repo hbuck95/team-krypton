@@ -24,7 +24,9 @@ public class CellTowerServiceImpl implements CellTowerService {
 	public List<CellTowerEntity> getCellTowers(List<MobileCallRecordsEntity> mobileCallRecordsEntity) {
 		List<CellTowerEntity> locations = new ArrayList<>();
 		for (int i = 0; i < mobileCallRecordsEntity.size(); i++) {
-			String cellTowerId = mobileCallRecordsEntity.get(i).getCallCellTowerId();
+			String id = mobileCallRecordsEntity.get(i).getCallCellTowerId();
+
+			int cellTowerId = id == null ? 0 : Integer.parseInt(id);
 			CellTowerEntity location = repo.findByCellTowerId(cellTowerId);
 			locations.add(location);
 		}
