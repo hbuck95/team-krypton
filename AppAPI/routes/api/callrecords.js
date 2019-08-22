@@ -27,6 +27,10 @@ router.post('/getAssociates', auth.required, (req, res) => {
     return axios.post(API + "/getPhoneNumber", req.body, { headers: HEADERS })
         .then(response => {
 
+            if (res.statusCode !== 200) {
+                return res.status(res.statusCode).json({ payload: "Unable to locate resource /getPhoneNumber" });
+            }
+
             //Assign the phone number retrieved to the suspectcallrecordsbody object for the next axios request.
             suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
 
@@ -36,11 +40,19 @@ router.post('/getAssociates', auth.required, (req, res) => {
 
         }).then(response => {
 
+            if (res.statusCode !== 200) {
+                return res.status(res.statusCode).json({ payload: "Unable to locate resource /getCallRecordsOfSuspect" });
+            }
+
             // @route  POST http://localhost:9004/call/getCallRecordsOfSuspect
             // @desc   Get all people mobile phone records where the supplied phone number is the receiver of the above calls
             return axios.post(API + "/getAssosiate", response.data, { headers: HEADERS })
 
         }).then(response => {
+
+            if (res.statusCode !== 200) {
+                return res.status(res.statusCode).json({ payload: "Unable to locate resource /getAssosiate" });
+            }
 
             payload.associates = response.data;
             return res.status(200).json(payload).end();
