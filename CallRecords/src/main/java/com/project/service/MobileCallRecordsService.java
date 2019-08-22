@@ -8,5 +8,5 @@ public interface MobileCallRecordsService {
 
 	List<MobileCallRecordsEntity> getCallRecordsOfSuspect(MobileCallRecordsEntity mobileCallRecordsEntity);
 
-	List<MobileCallRecordsEntity> getCallRecordsOfAssosiate(MobileCallRecordsEntity mobileCallRecordsEntity);
+	List<MobileCallRecordsEntity> getCallRecordsOfAssociate(MobileCallRecordsEntity mobileCallRecordsEntity);
 }

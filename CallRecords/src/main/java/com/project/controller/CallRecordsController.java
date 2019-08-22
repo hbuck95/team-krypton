@@ -37,15 +37,15 @@ public class CallRecordsController {
 		return mcrService.getCallRecordsOfSuspect(mobileCallRecordsEntity);
 	}
 
-	@PostMapping("/getCallRecordsOfAssosiate")
-	public List<MobileCallRecordsEntity> getCallRecordsOfAssosiate(
+	@PostMapping("/getCallRecordsOfAssociate")
+	public List<MobileCallRecordsEntity> getCallRecordsOfAssociate(
 			@RequestBody MobileCallRecordsEntity mobileCallRecordsEntity) {
-		return mcrService.getCallRecordsOfAssosiate(mobileCallRecordsEntity);
+		return mcrService.getCallRecordsOfAssociate(mobileCallRecordsEntity);
 	}
 
 	@PostMapping("/getAssosiate")
-	public PeopleMobileEntity getAssosiate(@RequestBody PeopleMobileEntity peopleMobileEntity) {
-		return pmService.getAssosiate(peopleMobileEntity);
+	public PeopleMobileEntity getAssociate(@RequestBody PeopleMobileEntity peopleMobileEntity) {
+		return pmService.getAssociate(peopleMobileEntity);
 	}
 
 	@PostMapping("/getCellTower")

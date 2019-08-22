@@ -60,9 +60,9 @@ public class CallRecordsControllerTest {
 		List<MobileCallRecordsEntity> Mock_List = new ArrayList<>();
 		Mock_List.add(mobileCallRecordEntitiy1);
 		Mock_List.add(mobileCallRecordEntity2);
-		Mockito.when(mcrService.getCallRecordsOfAssosiate(mobileCallRecordEntitiy1)).thenReturn(Mock_List);
-		assertEquals(Mock_List, controller.getCallRecordsOfAssosiate(mobileCallRecordEntitiy1));
-		Mockito.verify(mcrService).getCallRecordsOfAssosiate(mobileCallRecordEntitiy1);
+		Mockito.when(mcrService.getCallRecordsOfAssociate(mobileCallRecordEntitiy1)).thenReturn(Mock_List);
+		assertEquals(Mock_List, controller.getCallRecordsOfAssociate(mobileCallRecordEntitiy1));
+		Mockito.verify(mcrService).getCallRecordsOfAssociate(mobileCallRecordEntitiy1);
 	}
 
 	@Test
@@ -74,8 +74,8 @@ public class CallRecordsControllerTest {
 
 	@Test
 	public void getAssociate() {
-		Mockito.when(pmService.getAssosiate(peopleMobileEntity)).thenReturn(peopleMobileEntity);
-		Assert.assertEquals(peopleMobileEntity, controller.getAssosiate(peopleMobileEntity));
+		Mockito.when(pmService.getAssociate(peopleMobileEntity)).thenReturn(peopleMobileEntity);
+		Assert.assertEquals(peopleMobileEntity, controller.getAssociate(peopleMobileEntity));
 	}
 
 }
