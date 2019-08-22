@@ -2,7 +2,7 @@ package com.project.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "epos_subset")
+@Document(collection = "epos")
 public class EposEntity {
 
 	private int id;
