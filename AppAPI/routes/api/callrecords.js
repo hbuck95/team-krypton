@@ -56,6 +56,9 @@ router.post('/getAssociates', auth.required, (req, res) => {
 
             payload.associates = response.data;
             return res.status(200).json(payload).end();
+        }).catch(err => {
+            console.log(err);
+            return err;
         })
 
 });
