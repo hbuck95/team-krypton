@@ -8,6 +8,6 @@ import com.project.entities.CellTowerEntity;
 @Repository
 public interface CellTowerRepository extends MongoRepository<CellTowerEntity, Long> {
 
-	CellTowerEntity findByCellTowerId(String cellTowerId);
+	CellTowerEntity findByCellTowerId(int cellTowerId);
 
 }
