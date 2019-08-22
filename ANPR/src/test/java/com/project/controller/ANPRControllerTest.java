@@ -36,8 +36,10 @@ public class ANPRControllerTest {
 	@Mock
 	private VehicleRegistrationService vrService;
 
-	private static final ANPRCameraEntity ANPR_CAMERA = new ANPRCameraEntity(4, "Stafford Road, A34", "52.70225114",
+	private static final ANPRCameraEntity ANPR_CAMERA1 = new ANPRCameraEntity(4, "Stafford Road, A34", "52.70225114",
 			"-2.036851876");
+	private static final ANPRCameraEntity ANPR_CAMERA2 = new ANPRCameraEntity(6, "Stafford Road, A34", "53.82336337",
+			"-8.479851852");
 	private static final ANPRObservationEntity ANPR_OBSERVATION1 = new ANPRObservationEntity("5538",
 			"2015-05-01T09:08:51.975", "IU22 HFF");
 	private static final ANPRObservationEntity ANPR_OBSERVATION2 = new ANPRObservationEntity("5538",
@@ -71,9 +73,15 @@ public class ANPRControllerTest {
 
 	@Test
 	public void getANPRCameraTest() {
-		Mockito.when(anprcService.findById(ANPR_CAMERA)).thenReturn(ANPR_CAMERA);
-		assertEquals(ANPR_CAMERA, controller.getANPRCamera(ANPR_CAMERA));
-		Mockito.verify(anprcService).findById(ANPR_CAMERA);
+		List<ANPRObservationEntity> Mock_List = new ArrayList<>();
+		Mock_List.add(ANPR_OBSERVATION1);
+		Mock_List.add(ANPR_OBSERVATION2);
+		List<ANPRCameraEntity> MOCK_LIST = new ArrayList<>();
+		MOCK_LIST.add(ANPR_CAMERA1);
+		MOCK_LIST.add(ANPR_CAMERA2);
+		Mockito.when(anprcService.findById(Mock_List)).thenReturn(MOCK_LIST);
+		assertEquals(MOCK_LIST, controller.getANPRCamera(Mock_List));
+		Mockito.verify(anprcService).findById(Mock_List);
 	}
 
 	@Test
