@@ -27,9 +27,9 @@ public class MobileCallRecordsServiceTests {
 	MobileCallRecordsRepo repo;
 
 	private static final MobileCallRecordsEntity mobileCallRecordEntity1 = new MobileCallRecordsEntity(
-			"2015-05-01T14:01:08.094", "07700 690065", "10572", "07700 500698", "27799");
+			"2015-05-01T14:01:08.094", "07700 690065", 10572, "07700 500698", "27799");
 	private static final MobileCallRecordsEntity mobileCallRecordEntity2 = new MobileCallRecordsEntity(
-			"2015-05-03T12:33:47.012", "07700 745330", "103798", "07700 644987", "127838");
+			"2015-05-03T12:33:47.012", "07700 745330", 103798, "07700 644987", "127838");
 
 	@Test
 	public void getCallRecordsOfSuspect() {
