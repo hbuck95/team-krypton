@@ -24,6 +24,38 @@ public class EpostransactionEntity {
 		this.amount = amount;
 	}
 
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public int getPayeeAccount() {
+		return payeeAccount;
+	}
+
+	public void setPayeeAccount(int payeeAccount) {
+		this.payeeAccount = payeeAccount;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public void setEposId(int eposId) {
+		this.eposId = eposId;
+	}
+
+	public void setBankCardNumber(Long bankCardNumber) {
+		this.bankCardNumber = bankCardNumber;
+	}
+
 	public int getEposId() {
 		return eposId;
 	}
