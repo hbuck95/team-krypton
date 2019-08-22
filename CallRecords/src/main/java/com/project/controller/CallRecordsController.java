@@ -31,23 +31,17 @@ public class CallRecordsController {
 		this.pmService = pmService;
 	}
 
-	@PostMapping("/getAssociatesByCallRecord")
-	public List<PeopleMobileEntity> getAssoicatesByCallRecord(@RequestBody String phoneNumber) {
-		List<MobileCallRecordsEntity> suspectCallRecords = mcrService.getCallRecordsOfSuspect(phoneNumber);
-		return pmService.getAssociate(suspectCallRecords);
+	@PostMapping("/getCallRecordsOfSuspect")
+	public List<MobileCallRecordsEntity> getCallRecordsOfSuspect(
+			@RequestBody MobileCallRecordsEntity mobileCallRecordsEntity) {
+		return mcrService.getCallRecordsOfSuspect(mobileCallRecordsEntity);
 	}
-//
-//	@PostMapping("/getCallRecordsOfSuspect")
-//	public List<MobileCallRecordsEntity> getCallRecordsOfSuspect(
-//			@RequestBody MobileCallRecordsEntity mobileCallRecordsEntity) {
-//		return mcrService.getCallRecordsOfSuspect(mobileCallRecordsEntity);
-//	}
-//
-//	@PostMapping("/getCallRecordsOfAssociate")
-//	public List<MobileCallRecordsEntity> getCallRecordsOfAssociate(
-//			@RequestBody MobileCallRecordsEntity mobileCallRecordsEntity) {
-//		return mcrService.getCallRecordsOfAssociate(mobileCallRecordsEntity);
-//	}
+
+	@PostMapping("/getCallRecordsOfAssociate")
+	public List<MobileCallRecordsEntity> getCallRecordsOfAssociate(
+			@RequestBody MobileCallRecordsEntity mobileCallRecordsEntity) {
+		return mcrService.getCallRecordsOfAssociate(mobileCallRecordsEntity);
+	}
 
 	@PostMapping("/getAssosiate")
 	public List<PeopleMobileEntity> getAssociate(@RequestBody List<MobileCallRecordsEntity> mobileCallRecordsEntity) {

@@ -6,7 +6,7 @@ import com.project.entities.MobileCallRecordsEntity;
 
 public interface MobileCallRecordsService {
 
-	List<MobileCallRecordsEntity> getCallRecordsOfSuspect(String suspectPhoneNumber);
+	List<MobileCallRecordsEntity> getCallRecordsOfSuspect(MobileCallRecordsEntity mobileCallRecordsEntity);
 
 	List<MobileCallRecordsEntity> getCallRecordsOfAssociate(MobileCallRecordsEntity mobileCallRecordsEntity);
 }
