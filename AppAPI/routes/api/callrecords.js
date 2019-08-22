@@ -21,69 +21,30 @@ router.post('/getAssociates', auth.required, (req, res) => {
         callerMSISDN: null
     };
 
+    // @route  POST http://localhost:9004/call/getPhoneNumber
+    // @desc   Get all EPOS transactions for a bank card
+    // @body   {forename: "", surname: "", homeAddress: ""}
     return axios.post(API + "/getPhoneNumber", req.body, { headers: HEADERS })
-    .then(response => {
+        .then(response => {
 
-        console.log("/getPhoneNumber");
-        console.log(response.data);
-        console.log(response.data.phoneNumber);
-        suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
+            //Assign the phone number retrieved to the suspectcallrecordsbody object for the next axios request.
+            suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
 
-        return axios.post(API + "/getCallRecordsOfSuspect", suspectCallRecordsBody, { headers: HEADERS})
+            // @route  POST http://localhost:9004/call/getCallRecordsOfSuspect
+            // @desc   Get all mobile call records where the retrieved phone number is the caller
+            return axios.post(API + "/getCallRecordsOfSuspect", suspectCallRecordsBody, { headers: HEADERS })
 
-    }).then(response => {
-        console.log("/getCallRecordsofSuspect");
-        console.log("Body:" + suspectCallRecordsBody.callerMSISDN);
-        console.log(response.data);
+        }).then(response => {
 
-        return axios.post(API + "/getAssosiate", response.data, { headers: HEADERS })
+            // @route  POST http://localhost:9004/call/getCallRecordsOfSuspect
+            // @desc   Get all people mobile phone records where the supplied phone number is the receiver of the above calls
+            return axios.post(API + "/getAssosiate", response.data, { headers: HEADERS })
 
-    }).then(response => {
-        console.log("/getAssosiate");
-        console.log("Body:" + response.body);
-        console.log(response.data);
+        }).then(response => {
 
-        payload.associates = response.data;
-        return res.status(200).json(payload).end();
-    })
-
-});
-
-
-
-
-
-
-
-router.post('/test', auth.required, (req, res) => {
-
-    //The payload object returned when all axios requests have been resolved
-    const payload = {
-        associates: null
-    };
-
-    const suspectCallRecordsBody = {
-        callerMSISDN: null
-    };
-
-    return axios.post(API + "/getPhoneNumber", req.body, { headers: HEADERS })
-    .then(response => {
-
-        console.log("/getPhoneNumber");
-        console.log(response.data);
-        console.log(response.data.phoneNumber);
-        suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
-
-        return axios.post(API + "/getAssociatesByCallRecord", response.data.phoneNumber, { headers: HEADERS})
-
-    }).then(response => {
-        console.log("/getAssociatesByCallRecord");
-        console.log("Body:" + response.body);
-        console.log(response.data);
-
-        payload.associates = response.data;
-        return res.status(200).json(payload).end();
-    })
+            payload.associates = response.data;
+            return res.status(200).json(payload).end();
+        })
 
 });
 
