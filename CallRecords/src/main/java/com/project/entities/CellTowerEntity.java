@@ -24,9 +24,44 @@ public class CellTowerEntity {
 		this.longitude = longitude;
 	}
 
+	public String getOperator() {
+		return operator;
+	}
+
+	public void setOperator(String operator) {
+		this.operator = operator;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public void setCellTowerId(int cellTowerId) {
+		this.cellTowerId = cellTowerId;
+	}
+
 	public int getCellTowerId() {
 		return cellTowerId;
 	}
-
 
 }

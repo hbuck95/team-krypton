@@ -26,6 +26,38 @@ public class MobileCallRecordsEntity {
 		this.receiverTowerId = receiverTowerId;
 	}
 
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public String getCallCellTowerId() {
+		return callCellTowerId;
+	}
+
+	public void setCallCellTowerId(String callCellTowerId) {
+		this.callCellTowerId = callCellTowerId;
+	}
+
+	public String getReceiverTowerId() {
+		return receiverTowerId;
+	}
+
+	public void setReceiverTowerId(String receiverTowerId) {
+		this.receiverTowerId = receiverTowerId;
+	}
+
+	public void setCallerMSISDN(String callerMSISDN) {
+		this.callerMSISDN = callerMSISDN;
+	}
+
+	public void setReceiverMSISDN(String receiverMSISDN) {
+		this.receiverMSISDN = receiverMSISDN;
+	}
+
 	public String getCallerMSISDN() {
 		return callerMSISDN;
 	}
