@@ -2,9 +2,7 @@ package com.project.rest;
 
 import static org.junit.Assert.assertEquals;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.junit.Test;
@@ -26,23 +24,21 @@ public class AuditProducerControllerTest {
 
 	@InjectMocks
 	private AuditProducerController controller;
-	
+
 	@Mock
 	private AuditService service;
-	
-	@Mock 
+
+	@Mock
 	private RestTemplate restTemplate;
-	
+
 	@Mock
 	private JmsTemplate jmsTemplate;
-	
-	 
-	
+
 	private static final AuditEntry auditEntry1 = new AuditEntry("testusername", "testurl", "testsearch", "testdate");
-	private static final AuditEntry auditEntry2 = new AuditEntry("testusername2", "testurl2", "testsearch2", "testdate2");
+	private static final AuditEntry auditEntry2 = new AuditEntry("testusername2", "testurl2", "testsearch2",
+			"testdate2");
 	private static final AuditEntry blankAuditEntry = new AuditEntry("null", "null", "null", "null");
 
-	
 	@Test
 	public void getAllAudits() {
 		List<AuditEntry> test_list = new ArrayList<>();
@@ -52,7 +48,7 @@ public class AuditProducerControllerTest {
 		assertEquals(test_list, controller.getAllAudits());
 		Mockito.verify(service).getAllAudits();
 	}
-	
+
 	@Test
 	public void getAuditsForUser() {
 		List<AuditEntry> test_list = new ArrayList<>();
@@ -61,11 +57,13 @@ public class AuditProducerControllerTest {
 		assertEquals(test_list, controller.getAuditsForUser(auditEntry1));
 		Mockito.verify(service).getAuditsForUser("testusername");
 	}
-	
+
 	@Test
 	public void createAudit() {
-		Mockito.when(service.createAudit(blankAuditEntry)).thenReturn("{response: \"Your audit entry was successfully saved to the database.\"}");
-		assertEquals("{response: \"Your audit entry was successfully saved to the database.\"}", controller.createAudit(blankAuditEntry));
-		
+		Mockito.when(service.createAudit(blankAuditEntry))
+				.thenReturn("{response: \"Your audit entry was successfully saved to the database.\"}");
+		assertEquals("{response: \"Your audit entry was successfully saved to the database.\"}",
+				controller.createAudit(blankAuditEntry));
+
 	}
 }
