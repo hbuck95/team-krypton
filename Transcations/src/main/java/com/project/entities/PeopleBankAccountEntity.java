@@ -2,7 +2,7 @@ package com.project.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "peoplebankaccount_subset")
+@Document(collection = "peoplebankaccount")
 public class PeopleBankAccountEntity {
 
 	private int bankAccountId;
