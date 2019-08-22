@@ -44,8 +44,8 @@ public class CallRecordsController {
 	}
 
 	@PostMapping("/getAssosiate")
-	public PeopleMobileEntity getAssociate(@RequestBody PeopleMobileEntity peopleMobileEntity) {
-		return pmService.getAssociate(peopleMobileEntity);
+	public List<PeopleMobileEntity> getAssociate(@RequestBody List<MobileCallRecordsEntity> mobileCallRecordsEntity) {
+		return pmService.getAssociate(mobileCallRecordsEntity);
 	}
 
 	@PostMapping("/getCellTower")

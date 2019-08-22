@@ -42,8 +42,10 @@ public class CallRecordsControllerTest {
 			"2015-05-03T12:33:47.012", "07700 745330", "103798", "07700 644987", "127838");
 	public static final CellTowerEntity cellTowerEntity1 = new CellTowerEntity(9, "Airwave", "TETRA", "51.21526477",
 			"-2.894085973");
-	public static final PeopleMobileEntity peopleMobileEntity = new PeopleMobileEntity("Timothy Glenn", "Owen",
+	public static final PeopleMobileEntity peopleMobileEntity1 = new PeopleMobileEntity("Timothy Glenn", "Owen",
 			"08/10/1954", "613 HIGH STREET, STOKE-ON-TRENT, ST6 5PD", "07700 505797", "T-Mobile");
+	public static final PeopleMobileEntity peopleMobileEntity2 = new PeopleMobileEntity("Harry", "Buck", "02/10/1995",
+            "620 HIGH STREET, STOKE-ON-TRENT, ST6 5PD", "07700 505890", "O2");
 
 	@Test
 	public void getCallRecordsOfSuspect() {
@@ -73,9 +75,15 @@ public class CallRecordsControllerTest {
 	}
 
 	@Test
-	public void getAssociate() {
-		Mockito.when(pmService.getAssociate(peopleMobileEntity)).thenReturn(peopleMobileEntity);
-		Assert.assertEquals(peopleMobileEntity, controller.getAssociate(peopleMobileEntity));
-	}
+    public void getAssociate() {
+        List<MobileCallRecordsEntity> Mock_List = new ArrayList<>();
+        Mock_List.add(mobileCallRecordEntitiy1);
+        Mock_List.add(mobileCallRecordEntity2);
+        List<PeopleMobileEntity> MOCK_LIST = new ArrayList<>();
+        MOCK_LIST.add(peopleMobileEntity1);
+        MOCK_LIST.add(peopleMobileEntity2);
+        Mockito.when(pmService.getAssociate(Mock_List)).thenReturn(MOCK_LIST);
+        Assert.assertEquals(MOCK_LIST, controller.getAssociate(Mock_List));
+    }
 
 }
