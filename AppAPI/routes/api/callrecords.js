@@ -14,6 +14,16 @@ const getPhoneNumber = (body) => {
     return axios.post(API + "/getPhoneNumber", body, { headers: HEADERS });
 };
 
+const getCallRecordsOfSuspect = (body) => {
+    return axios.post(API + "/getCallRecordsOfSuspect", body, { headers: HEADERS })
+};
+
+const getAssociates = (body) => {
+    return axios.post(API + "/getAssosiate", body, { headers: HEADERS })
+};
+
+
+
 router.post('/getAssociates', auth.required, (req, res) => {
 
     //The payload object returned when all axios requests have been resolved
@@ -37,13 +47,15 @@ router.post('/getAssociates', auth.required, (req, res) => {
 
             // @route  POST http://localhost:9004/call/getCallRecordsOfSuspect
             // @desc   Get all mobile call records where the retrieved phone number is the caller
-            return axios.post(API + "/getCallRecordsOfSuspect", suspectCallRecordsBody, { headers: HEADERS })
+            //return axios.post(API + "/getCallRecordsOfSuspect", suspectCallRecordsBody, { headers: HEADERS })
+            getCallRecordsOfSuspect(suspectCallRecordsBody);
 
         }).then(response => {
 
             // @route  POST http://localhost:9004/call/getCallRecordsOfSuspect
             // @desc   Get all people mobile phone records where the supplied phone number is the receiver of the above calls
-            return axios.post(API + "/getAssosiate", response.data, { headers: HEADERS })
+            //return axios.post(API + "/getAssosiate", response.data, { headers: HEADERS })
+            getAssociates(response.data);
 
         }).then(response => {
 
