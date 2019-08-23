@@ -52,6 +52,8 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
         })
         .then(response => {
             payload.anprCamera = response.data;
+        })
+        .then(() => {
             return res.status(200).json(payload).end();
         })
         .catch(err => {
