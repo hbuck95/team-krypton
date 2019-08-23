@@ -61,9 +61,9 @@ router.post('/getAssociates', auth.required, (req, res) => {
         .then(response => {
             //Assign the phone number retrieved to the suspectcallrecordsbody object for the next axios request.
             suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
-            return makeRequest.axiosPost(API + GET_CALL_RECORDS_OF_SUSPECT, suspectCallRecordsBody)//getCallRecordsOfSuspect(suspectCallRecordsBody)
+            return makeRequest.axiosPost(API + GET_CALL_RECORDS_OF_SUSPECT, suspectCallRecordsBody)
         }).then(response => {
-            return makeRequest.axiosPost(API + GET_ASSOCIATES, response.data)//getAssociates(response.data)
+            return makeRequest.axiosPost(API + GET_ASSOCIATES, response.data)
         }).then(response => {
             payload.associates = _.uniqWith(response.data, _.isEqual);
             return res.status(200).json(payload).end();
@@ -76,6 +76,7 @@ router.post('/getAssociates', auth.required, (req, res) => {
 router.post("/getCellTowers", auth.required, (req, res) => {
 
     const payload = {
+        callRecords: null,
         cellTowers: null
     };
 
@@ -83,14 +84,14 @@ router.post("/getCellTowers", auth.required, (req, res) => {
         callerMSISDN: null
     };
 
-    //getPhoneNumber(req.body)
     makeRequest.axiosPost(API + GET_PHONE_NUMBER, req.body)
         .then(response => {
             //Assign the phone number retrieved to the suspectcallrecordsbody object for the next axios request.
             suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
-            return makeRequest.axiosPost(API + GET_CALL_RECORDS_OF_SUSPECT, suspectCallRecordsBody)//getCallRecordsOfSuspect(suspectCallRecordsBody)
+            return makeRequest.axiosPost(API + GET_CALL_RECORDS_OF_SUSPECT, suspectCallRecordsBody)
         }).then(response => {
-            return makeRequest.axiosPost(API + GET_CELL_TOWER, response.data)//getCellTower(response.data)
+            payload.callRecords = response.data;
+            return makeRequest.axiosPost(API + GET_CELL_TOWER, response.data)
         })
         .then(response => {
             payload.cellTowers = response.data;
