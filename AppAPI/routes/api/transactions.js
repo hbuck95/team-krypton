@@ -2,6 +2,8 @@ const router = require('express').Router();
 const auth = require('../auth');
 const axios = require('axios');
 
+const makeRequest = require('../../util/makeRequest');
+
 //Headers used in each axios request
 const HEADERS = {
   'Content-Type': 'application/json'
@@ -10,6 +12,20 @@ const HEADERS = {
 //URL to the transactions microservice
 const API = "http://localhost:9006/transactions"
 
+const GET_ATM_LOCATION = "/getAtmLocation";
+const GET_EPOS_LOCATION = "/getEposLocation";
+
+// @route  POST http://localhost:9006/transactions/getAccountHolder
+// @desc   Get a citizens bank account record
+// @body   {forename: "", surname: "", homeAddress: ""}
+const GET_ACCOUNT_HOLDER = "/getAccountHolder";
+const GET_BANK_CARD = "/getBankCard";
+const GET_ATM_TRANSACTIONS = "/getAtmTransactions";
+
+// @route  POST http://localhost:9006/transactions/getEposTransactions
+// @desc   Get all EPOS transactions for a bank card
+// @body   {bankCardNumber: ""}
+const GET_EPOS_TRANSACTIONS = "/getEposTransactions";
 
 // @route   POST api/transactions/getAtmLocation
 // @desc    Get the location of ATMs based on a set of a atm transaction records
@@ -23,24 +39,23 @@ router.post('/getTransactionLocations', auth.required, (req, res) => {
     tmLocataions: null,
   };
 
-  console.log("Initial body: ", req.body);
-
-  return axios.post(API + "/getAtmLocation", req.body.atmTransactions, { headers: HEADERS })
+  //return axios.post(API + "/getAtmLocation", req.body.atmTransactions, { headers: HEADERS })
+  return makeRequest.axiosPost(API + GET_ATM_LOCATION, req.body.atmTransactions)
     .then(response => {
-      console.log("Body: ", req.body);
-      console.log("Data: ", response.data);
       payload.atmLocations = response.data;
-      return axios.post(API + "/getEposLocation", req.body.eposTransactions, { headers: HEADERS })
+      //return axios.post(API + "/getEposLocation", req.body.eposTransactions, { headers: HEADERS })
+      return makeRequest.axiosPost(API + GET_EPOS_LOCATION, req.body.eposLocations)
     })
     .then(response => {
-      console.log("Body: ", req.body);
-      console.log("Data: ", response.data);
       payload.eposLocations = response.data;
     })
     .then(() => {
-      console.log("Payload: ", payload);
       res.status(200).json(payload).end();
     })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json({ message: "An error ocurred whilst processing your request.", error: err });
+    });
 
 });
 
@@ -76,59 +91,31 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
   };
 
 
-  // @route  POST http://localhost:9006/transactions/getAccountHolder
-  // @desc   Get a citizens bank account record
-  // @body   {forename: "", surname: "", homeAddress: ""}
-  return axios.post(API + "/getAccountHolder", req.body, { headers: HEADERS })
-    .then(response => {
 
-      //If the status code OK is not returned end the request early and return that the account holder cannot be found
-      if (res.statusCode !== 200) {
-        return res.status(400).json({ payload: "Unable to find Account Holder!" });
-      }
+  //return axios.post(API + "/getAccountHolder", req.body, { headers: HEADERS })
+  return makeRequest.axiosPost(API + GET_ACCOUNT_HOLDER, req.body)
+    .then(response => {
 
       // Assign the accountNumber from the retrieved record to the bankCardBody object.
       bankCardBody.accountNumber = response.data.accountNumber
 
-
-      // @route  POST http://localhost:9006/transactions/getAccountHolder
-      // @desc   Get a citizens bank account record
-      // @body   {forename: "", surname: "", homeAddress: ""}
-      return axios.post(API + "/getBankCard", bankCardBody, { headers: HEADERS })
+      //return axios.post(API + "/getBankCard", bankCardBody, { headers: HEADERS })
+      return makeRequest.axiosPost(API + GET_BANK_CARD, bankCardBody)
     }).then(response => {
-
-      //If the status code OK is not returned end the request early and return that the bank card cannot be found
-      if (res.statusCode !== 200) {
-        return res.status(400).json({ payload: "Unable to find Bank Card!" });
-      }
 
       //Assign the retrieved bank card information to the bankCard object
       transactionBody.bankCardNumber = response.data.cardNumber;
 
-
-      // @route  POST http://localhost:9006/transactions/getEposTransactions
-      // @desc   Get all EPOS transactions for a bank card
-      // @body   {bankCardNumber: ""}
-      return axios.post(API + "/getEposTransactions", transactionBody, { headers: HEADERS })
+      //return axios.post(API + "/getEposTransactions", transactionBody, { headers: HEADERS })
+      return makeRequest.axiosPost(API + GET_EPOS_TRANSACTIONS, transactionBody)
     }).then(response => {
-
-      //If the status code OK is not returned end the request early and return that the resource cannot be found
-      if (res.statusCode !== 200) {
-        console.log(res.statusCode + ": " + res.statusMessage);
-        return res.status(400).json({ payload: "Requested resources could not be found." });
-      }
 
       //Assign the EPOS transaction record(s) to the payload object
       payload.epos.transactions = response.data;
 
-      return axios.post(API + "/getAtmTransactions", transactionBody, { headers: HEADERS })
+      //return axios.post(API + "/getAtmTransactions", transactionBody, { headers: HEADERS })
+      return makeRequest.axiosPost(API + GET_ATM_TRANSACTIONS, transactionBody)
     }).then(response => {
-
-      //If the status code OK is not returned end the request early and return that the resource cannot be found
-      if (res.statusCode !== 200) {
-        console.log(res.statusCode + ": " + res.statusMessage);
-        return res.status(400).json({ payload: "Requested resources could not be found." });
-      }
 
       //Assign the retrieved bank card information to the payload object
       payload.atm.transactions = response.data;
