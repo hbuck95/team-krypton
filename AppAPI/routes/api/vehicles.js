@@ -46,8 +46,8 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
             console.log("/getVehicleRegistrations")
             console.log(response);
             console.log("Body: ", req.body);
-            anprObservationsBody.vehicleRegistrationNumber = response.data.vehicleRegistrationNo;
-            return makeRequest.axiosPost(API + GET_ANPR_OBSERVATIONS, anprObservationsBody)
+            //anprObservationsBody.vehicleRegistrationNumber = response.data.vehicleRegistrationNo;
+            return makeRequest.axiosPost(API + GET_ANPR_OBSERVATIONS, response.data)
         })
         .then(response => {
             console.log("/getANPRObservations")
