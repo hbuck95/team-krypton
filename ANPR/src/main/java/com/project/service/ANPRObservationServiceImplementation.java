@@ -26,8 +26,8 @@ public class ANPRObservationServiceImplementation implements ANPRObservationServ
 		List<ANPRObservationEntity> vehicles = new ArrayList<ANPRObservationEntity>();
 		for (int i = 0; i < vehicleRegistrationEntity.size(); i++) {
 			String vehicleRegistrationNumber = vehicleRegistrationEntity.get(i).getVehicleRegistrationNo();
-			ANPRObservationEntity vehicle = repo.findByVehicleRegistrationNumber(vehicleRegistrationNumber);
-			vehicles.add(vehicle);
+			List<ANPRObservationEntity> vehicle = repo.findByVehicleRegistrationNumber(vehicleRegistrationNumber);
+			vehicles.addAll(vehicle);
 		}
 		return vehicles;
 	}
