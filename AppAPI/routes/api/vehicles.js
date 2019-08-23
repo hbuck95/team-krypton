@@ -2,6 +2,8 @@ const router = require('express').Router();
 const auth = require('../auth');
 const axios = require('axios');
 
+const makeRequest = require('../../util/makeRequest');
+
 const HEADERS = {
     'Content-Type': 'application/json'
 };
@@ -9,7 +11,7 @@ const HEADERS = {
 //URL to the transactions microservice
 const API = "http://localhost:9005/ANPR"
 
-const GET_VEHICLE_REGISTRATIONS = "/getVehiceRegistrations";
+const GET_VEHICLE_REGISTRATIONS = "/getVehicleRegistrations";
 
 const findVehicleRegistration = (body) => {
     return axios.post(API + "/getVehicleRegistrations", body, { headers: HEADERS });
@@ -25,7 +27,8 @@ router.post("/getVehicleRegistrations", auth.required, (req, res) => {
         vehicleRegistration: null
     };
 
-    makeAxiosPost(GET_VEHICLE_REGISTRATIONS, req.body)
+    //makeAxiosPost(GET_VEHICLE_REGISTRATIONS, req.body)
+    makeRequest.axiosPost(API + GET_VEHICLE_REGISTRATIONS, req.body)
         .then(response => {
             payload.vehicleRegistration = response.data;
         })
