@@ -31,7 +31,7 @@ router.post("/getVehicle", auth.required, (req, res) => {
 router.post("/getVehicleRegistrations", auth.required, (req, res) => {
 
     const payload = {
-        vehicleRegistrations = null
+        vehicleRegistrations: null
     };
 
     makeRequest.axiosPost(API + GET_VEHICLE_REGISTRATIONS, req.body)
