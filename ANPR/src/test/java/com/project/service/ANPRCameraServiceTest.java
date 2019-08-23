@@ -17,7 +17,7 @@ import com.project.repository.ANPRCameraRepository;
 public class ANPRCameraServiceTest {
 
 	@InjectMocks
-	ANPRCameraServiceImplementation service;
+	ANPRCameraServiceImplementation impl;
 
 	@Mock
 	ANPRCameraRepository repo;

@@ -55,6 +55,16 @@ public class VehicleRegistrationServiceTest {
 	}
 
 	@Test
+	public void findByRegistrationTest(){
+	Mockito.when(repo.findByVehicleRegistrationNo("QN03 WUU")).thenReturn(VEHICLE1);
+	assertEquals(VEHICLE1, service.findByRegistration(VEHICLE1));
+	Mockito.verify(repo).findByVehicleRegistrationNo("QN03 WUU");
+	
+	
+		
+	}
+	
+	@Test
 	public void defaultConstructorTest() {
 		VehicleRegistrationEntity entity = new VehicleRegistrationEntity();
 		assertEquals(VehicleRegistrationEntity.class, entity.getClass());
