@@ -8,6 +8,8 @@ const API = "http://localhost:9005/ANPR"
 //Endpoint URLs
 const GET_VEHICLE_REGISTRATIONS = "/getVehicleRegistrations";
 const GET_VEHICLE = "/getVehicle";
+const GET_ANPR_OBSERVATIONS = "/getANPRObservations";
+const GET_ANPR_CAMERA = "/getANPRCamera";
 
 router.post("/getVehicle", auth.required, (req, res) => {
 
@@ -28,16 +30,28 @@ router.post("/getVehicle", auth.required, (req, res) => {
         });
 });
 
-router.post("/getVehicleRegistrations", auth.required, (req, res) => {
+router.post("/getAnprCameras", auth.required, (req, res) => {
 
     const payload = {
-        vehicleRegistrations: null
+        anprObservations: null,
+        anprCamera: null
+    };
+
+    const anprObservationsBody = {
+        vehicleRegistrationNumber: null
     };
 
     makeRequest.axiosPost(API + GET_VEHICLE_REGISTRATIONS, req.body)
         .then(response => {
-            payload.vehicleRegistrations = response.data;
-        }).then(() => {
+            anprObservationsBody.vehicleRegistrationNumber = response.data.vehicleRegistrationNo;
+            makeRequest.axiosPost(API + GET_ANPR_OBSERVATIONS, anprObservationsBody)
+        })
+        .then(response => {
+            payload.anprObservations = response.data;
+            makeRequest.axiosPost(API + GET_ANPR_CAMERA, response.data)
+        })
+        .then(response => {
+            payload.anprCamera = response.data;
             res.status(200).json(payload).end();
         })
         .catch(err => {
