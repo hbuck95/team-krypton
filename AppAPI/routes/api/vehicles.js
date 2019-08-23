@@ -51,14 +51,14 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
         })
         .then(response => {
             console.log("/getANPRObservations")
-            console.log(response);
+            console.log("Data: ", response.data);
             console.log("Body: ", req.body);
             payload.anprObservations = response.data;
             return makeRequest.axiosPost(API + GET_ANPR_CAMERA, response.data)
         })
         .then(response => {
             console.log("/getANPRCamera")
-            console.log(response);
+            console.log("Data: ", response.data);
             console.log("Body: ", req.body);
             payload.anprCamera = response.data;
         })
