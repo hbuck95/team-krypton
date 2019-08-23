@@ -12,6 +12,7 @@ const HEADERS = {
 const API = "http://localhost:9005/ANPR"
 
 const GET_VEHICLE_REGISTRATIONS = "/getVehicleRegistrations";
+const GET_VEHICLE = "/getVehicle";
 
 const findVehicleRegistration = (body) => {
     return axios.post(API + "/getVehicleRegistrations", body, { headers: HEADERS });
@@ -21,14 +22,14 @@ const makeAxiosPost = (endpoint, body) => {
     return axios.post(API + endpoint, body, {headers: HEADERS});
 };
 
-router.post("/getVehicleRegistrations", auth.required, (req, res) => {
+router.post("/getVehicle", auth.required, (req, res) => {
 
     const payload = {
         vehicleRegistration: null
     };
 
     //makeAxiosPost(GET_VEHICLE_REGISTRATIONS, req.body)
-    makeRequest.axiosPost(API + GET_VEHICLE_REGISTRATIONS, req.body)
+    makeRequest.axiosPost(API + GET_VEHICLE, req.body)
         .then(response => {
             payload.vehicleRegistration = response.data;
         })
