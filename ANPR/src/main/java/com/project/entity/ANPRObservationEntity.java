@@ -3,7 +3,7 @@ package com.project.entity;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "vehicleObservations")
+@Document(collection = "vehicleobservations")
 public class ANPRObservationEntity {
 
 	String ANPRPointId;
@@ -20,6 +20,22 @@ public class ANPRObservationEntity {
 
 	public ANPRObservationEntity() {
 
+	}
+
+	public String getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public void setANPRPointId(String aNPRPointId) {
+		ANPRPointId = aNPRPointId;
+	}
+
+	public void setVehicleRegistrationNumber(String vehicleRegistrationNumber) {
+		this.vehicleRegistrationNumber = vehicleRegistrationNumber;
 	}
 
 	public String getVehicleRegistrationNumber() {
