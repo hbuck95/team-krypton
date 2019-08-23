@@ -44,15 +44,15 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
     makeRequest.axiosPost(API + GET_VEHICLE_REGISTRATIONS, req.body)
         .then(response => {
             anprObservationsBody.vehicleRegistrationNumber = response.data.vehicleRegistrationNo;
-            makeRequest.axiosPost(API + GET_ANPR_OBSERVATIONS, anprObservationsBody)
+            return makeRequest.axiosPost(API + GET_ANPR_OBSERVATIONS, anprObservationsBody)
         })
         .then(response => {
             payload.anprObservations = response.data;
-            makeRequest.axiosPost(API + GET_ANPR_CAMERA, response.data)
+            return makeRequest.axiosPost(API + GET_ANPR_CAMERA, response.data)
         })
         .then(response => {
             payload.anprCamera = response.data;
-            res.status(200).json(payload).end();
+            return res.status(200).json(payload).end();
         })
         .catch(err => {
             console.log(err);
