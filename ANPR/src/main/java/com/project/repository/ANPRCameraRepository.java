@@ -10,6 +10,6 @@ import com.project.entity.ANPRCameraEntity;
 public interface ANPRCameraRepository extends MongoRepository<ANPRCameraEntity, Long> {
 
 	@Query("{ 'anprId' : ?0}")
-	ANPRCameraEntity findByAnprId(String anprId);
+	ANPRCameraEntity findByAnprId(int anprId);
 
 }

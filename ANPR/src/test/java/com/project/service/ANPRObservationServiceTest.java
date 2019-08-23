@@ -22,9 +22,9 @@ public class ANPRObservationServiceTest {
 	@Mock
 	ANPRObservationRepository repo;
 
-	private static final ANPRObservationEntity ANPR_OBSERVATION1 = new ANPRObservationEntity("5538",
+	private static final ANPRObservationEntity ANPR_OBSERVATION1 = new ANPRObservationEntity(5538,
 			"2015-05-01T09:08:51.975", "IU22 HFF");
-	private static final ANPRObservationEntity ANPR_OBSERVATION2 = new ANPRObservationEntity("5538",
+	private static final ANPRObservationEntity ANPR_OBSERVATION2 = new ANPRObservationEntity(5538,
 			"2015-05-01T09:10:45.975", "IU22 HFF");
 
 //	@Test

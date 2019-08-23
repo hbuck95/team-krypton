@@ -6,12 +6,12 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "vehicleobservations")
 public class ANPRObservationEntity {
 
-	String ANPRPointId;
+	int ANPRPointId;
 	@Field("timestamp")
 	String timeStamp;
 	String vehicleRegistrationNumber;
 
-	public ANPRObservationEntity(String aNPRPointId, String timeStamp, String vehicleRegistrationNumber) {
+	public ANPRObservationEntity(int aNPRPointId, String timeStamp, String vehicleRegistrationNumber) {
 		super();
 		ANPRPointId = aNPRPointId;
 		this.timeStamp = timeStamp;
@@ -30,7 +30,7 @@ public class ANPRObservationEntity {
 		this.timeStamp = timeStamp;
 	}
 
-	public void setANPRPointId(String aNPRPointId) {
+	public void setANPRPointId(int aNPRPointId) {
 		ANPRPointId = aNPRPointId;
 	}
 
@@ -42,7 +42,7 @@ public class ANPRObservationEntity {
 		return vehicleRegistrationNumber;
 	}
 
-	public String getANPRPointId() {
+	public int getANPRPointId() {
 		return ANPRPointId;
 	}
 
