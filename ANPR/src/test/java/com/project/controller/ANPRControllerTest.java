@@ -36,9 +36,9 @@ public class ANPRControllerTest {
 	@Mock
 	private VehicleRegistrationService vrService;
 
-	private static final ANPRCameraEntity ANPR_CAMERA1 = new ANPRCameraEntity(4, "Stafford Road, A34", "52.70225114",
+	private static final ANPRCameraEntity ANPR_CAMERA1 = new ANPRCameraEntity("4", "Stafford Road, A34", "52.70225114",
 			"-2.036851876");
-	private static final ANPRCameraEntity ANPR_CAMERA2 = new ANPRCameraEntity(6, "Stafford Road, A34", "53.82336337",
+	private static final ANPRCameraEntity ANPR_CAMERA2 = new ANPRCameraEntity("6", "Stafford Road, A34", "53.82336337",
 			"-8.479851852");
 	private static final ANPRObservationEntity ANPR_OBSERVATION1 = new ANPRObservationEntity("5538",
 			"2015-05-01T09:08:51.975", "IU22 HFF");
