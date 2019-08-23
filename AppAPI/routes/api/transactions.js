@@ -138,9 +138,9 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
       payload.atm.transactionLocations = response.data
 
       return axios.post(API + "/getEposLocation", payload.epos.transactions, { headers: HEADERS })
-    }).then(() => {
+    }).then(response => {
       payload.epos.transactionLocations = response.data
-
+    }).then(() => {
       //End the request chain by returning the payload object with a status code of OK.
       return res.status(200).json({ payload: payload });
     }).catch(err => {
