@@ -8,7 +8,7 @@ const HEADERS = {
 };
 
 const API = "http://localhost:9003/citizen"
-const GET_CITIZEN = "/gitCitizen";
+const GET_CITIZEN = "/getCitizen";
 
 router.post('/getCitizen', auth.required, (req, res) => {
     return makeRequest.axiosPost(API + GET_CITIZEN, req.body)
