@@ -4,6 +4,11 @@ const HEADERS = {
     'Content-Type': 'application/json'
 };
 
-module.exports = axiosPost = (endpoint, body) => {
-    return axios.post(endpoint, body, { headers: HEADERS} );
-};
+module.exports = {
+
+    axiosPost: function (endpoint, body) {
+        return axios.post(endpoint, body, { headers: HEADERS });
+    }
+
+}
+
