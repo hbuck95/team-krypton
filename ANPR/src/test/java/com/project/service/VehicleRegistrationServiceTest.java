@@ -38,9 +38,10 @@ public class VehicleRegistrationServiceTest {
 		List<VehicleRegistrationEntity> MOCK_LIST = new ArrayList<>();
 		MOCK_LIST.add(VEHICLE1);
 		MOCK_LIST.add(VEHICLE2);
-		Mockito.when(repo.findByForenamesAndSurname("Patricia Jane", "Adams")).thenReturn(MOCK_LIST);
+		Mockito.when(repo.findByForenames("Patricia Jane", "Adams", "3 CANNON LANE, PINNER, HA5 1HH"))
+				.thenReturn(MOCK_LIST);
 		assertEquals(MOCK_LIST, service.findByForenamesAndSurname(VEHICLE1));
-		Mockito.verify(repo).findByForenamesAndSurname("Patricia Jane", "Adams");
+		Mockito.verify(repo).findByForenames("Patricia Jane", "Adams", "3 CANNON LANE, PINNER, HA5 1HH");
 	}
 
 	@Test

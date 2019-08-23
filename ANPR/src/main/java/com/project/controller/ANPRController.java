@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.entity.ANPRCameraEntity;
 import com.project.entity.ANPRObservationEntity;
-import com.project.entity.VehicleEntity;
 import com.project.entity.VehicleRegistrationEntity;
 import com.project.service.ANPRCameraService;
 import com.project.service.ANPRObservationService;
@@ -61,8 +60,9 @@ public class ANPRController {
 	}
 
 	@PostMapping("/getVehicle")
-	public VehicleEntity findVehicleByRegistration(@RequestBody VehicleEntity vehicleEntity) {
-		return vehicleService.findVehicleByRegistration(vehicleEntity);
+	public VehicleRegistrationEntity findVehicleByRegistration(
+			@RequestBody VehicleRegistrationEntity vehicleRegistrationEntity) {
+		return vehicleRegistrationService.findByRegistration(vehicleRegistrationEntity);
 	}
 
 }

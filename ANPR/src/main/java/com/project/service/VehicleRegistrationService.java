@@ -11,4 +11,6 @@ public interface VehicleRegistrationService {
 
 	public List<VehicleRegistrationEntity> getAll();
 
+	public VehicleRegistrationEntity findByRegistration(VehicleRegistrationEntity vehicleRegistrationEntity);
+
 }
