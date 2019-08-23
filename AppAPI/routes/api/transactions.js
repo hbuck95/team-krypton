@@ -20,7 +20,7 @@ router.post('/getTransactionLocations', auth.required, (req, res) => {
   //The payload object returned when all axios requests have been resolved
   const payload = {
     eposLocations: null,
-    atmLocations: null,
+    tmLocataions: null,
   };
 
   console.log("Initial body: ", req.body);
@@ -55,8 +55,14 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
 
   //The payload object returned when all axios requests have been resolved
   const payload = {
-    eposTransactions: null,
-    atmTransactions: null
+    atm : {
+      transactions: null,
+      transactionLocations: null
+    },
+    epos : {
+      transactions: null,
+      transactionLocations: null
+    }
   };
 
   //The object used in the body of the /getBankCard axios request.
@@ -116,7 +122,7 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
       }
 
       //Assign the EPOS transaction record(s) to the payload object
-      payload.eposTransactions = response.data;
+      payload.epos.transactions = response.data;
 
       return axios.post(API + "/getAtmTransactions", transactionBody, { headers: HEADERS })
 
@@ -129,8 +135,13 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
       }
 
       //Assign the retrieved bank card information to the payload object
-      payload.atmTransactions = response.data;
+      payload.atm.transactions = response.data;
 
+      return axios.post(API + "/getAtmLocation", payload.atm.transactions, { headers: HEADERS })
+    }).then(response => {
+        payload.atm.transactionLocations = response.data
+
+        return axios.post(API + "/getEposLocation", payload.epos.transactions, { headers: HEADERS })
     }).then(() => {
 
       //End the request chain by returning the payload object with a status code of OK.
