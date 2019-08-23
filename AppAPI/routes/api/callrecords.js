@@ -2,6 +2,7 @@ const router = require('express').Router();
 const auth = require('../auth');
 const axios = require('axios');
 const _ = require('lodash');
+const makeRequest = require('../../util/makeRequest');
 
 //Headers used in each axios request
 const HEADERS = {
@@ -10,6 +11,11 @@ const HEADERS = {
 
 //URL to the transactions microservice
 const API = "http://localhost:9004/call"
+
+const GET_PHONE_NUMBER = "/getPhoneNumber";
+const GET_CALL_RECORDS_OF_SUSPECT = "/getCallRecordsOfSuspect";
+const GET_ASSOCIATES = "/getAssosiate";
+const GET_CELL_TOWER = "/getCellTower";
 
 
 // @route  POST http://localhost:9004/call/getPhoneNumber
@@ -51,13 +57,13 @@ router.post('/getAssociates', auth.required, (req, res) => {
         callerMSISDN: null
     };
 
-    getPhoneNumber(req.body)
+    makeRequest.axiosPost(API+GET_PHONE_NUMBER, req.body)
         .then(response => {
             //Assign the phone number retrieved to the suspectcallrecordsbody object for the next axios request.
             suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
-            return getCallRecordsOfSuspect(suspectCallRecordsBody)
+            return makeRequest.axiosPost(API + GET_CALL_RECORDS_OF_SUSPECT, suspectCallRecordsBody)//getCallRecordsOfSuspect(suspectCallRecordsBody)
         }).then(response => {
-            return getAssociates(response.data)
+            return makeRequest.axiosPost(API + GET_ASSOCIATES, response.data)//getAssociates(response.data)
         }).then(response => {
             payload.associates = _.uniqWith(response.data, _.isEqual);
             return res.status(200).json(payload).end();
@@ -77,13 +83,14 @@ router.post("/getCellTowers", auth.required, (req, res) => {
         callerMSISDN: null
     };
 
-    getPhoneNumber(req.body)
+    //getPhoneNumber(req.body)
+    makeRequest.axiosPost(API + GET_PHONE_NUMBER, req.body)
         .then(response => {
             //Assign the phone number retrieved to the suspectcallrecordsbody object for the next axios request.
             suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
-            return getCallRecordsOfSuspect(suspectCallRecordsBody)
+            return makeRequest.axiosPost(API + GET_CALL_RECORDS_OF_SUSPECT, suspectCallRecordsBody)//getCallRecordsOfSuspect(suspectCallRecordsBody)
         }).then(response => {
-            return getCellTower(response.data)
+            return makeRequest.axiosPost(API + GET_CELL_TOWER, response.data)//getCellTower(response.data)
         })
         .then(response => {
             payload.cellTowers = response.data;
