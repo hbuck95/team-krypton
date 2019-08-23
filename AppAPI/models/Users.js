@@ -23,9 +23,7 @@ UsersSchema.methods.validatePassword = function(password) {
 UsersSchema.methods.generateJWT = function() {
   const today = new Date();
   const expirationDate = new Date(today);
-  today.setMinutes(1);
-  expirationDate.setDate(today.getDate());
-  expirationDate.setTime(today.getTime());
+  expirationDate.setDate(today.getDate() + 1);
 
   return jwt.sign({
     username: this.username,
