@@ -8,12 +8,11 @@ import SearchPersonResultTableVertical from './SearchPersonResultTableVertical'
 import TransactionsTab from './TransactionsTab';
 import AssociatesTab from '../Person/AssociatesTab';
 
-const HEADERS = { "Content-Type": "application/json", "Authorization": `Token ${sessionStorage.getItem('authKey')}` }
 
 export default class SearchPersonResult extends Component {
     constructor(props) {
         super(props);
-
+        
         this.state = {
             activeTab: '1',
             searchData: JSON.parse(localStorage.getItem('searchData')),
@@ -27,8 +26,8 @@ export default class SearchPersonResult extends Component {
             },
             associatesData: []
         };
-
-
+        
+        
         this.toggle = (tab) => {
             if (this.state.activeTab !== tab) {
                 this.setState({
@@ -36,12 +35,12 @@ export default class SearchPersonResult extends Component {
                 });
             }
         }
-
+        
         this.componentDidMount = () => {
-            // console.log("search data", this.state.searchData);
-            // console.log("localstorage", localStorage.getItem('searchData'))
-
+            
             props.resetRedirect();
+            
+            let HEADERS = { "Content-Type": "application/json", "Authorization": `Token ${sessionStorage.getItem('authKey')}` }
 
             axios.post('http://35.197.200.12:9000/api/citizen/getCitizen', {
                 "forenames": this.state.searchData.forenames,
@@ -58,6 +57,7 @@ export default class SearchPersonResult extends Component {
                     })
                 }).catch(res => {
                     console.log("citizen post failed!")
+                    console.log(sessionStorage.getItem('authKey'))
                     this.setState({
                         dataLoaded: false
                     })
