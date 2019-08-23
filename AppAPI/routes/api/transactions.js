@@ -31,7 +31,7 @@ router.post('/getTransactionLocations', auth.required, (req, res) => {
       console.log("Data: ", response.data);
       payload.atmLocations = response.data;
       return axios.post(API + "/getEposLocation", req.body.eposTransactions, { headers: HEADERS })
-    })    
+    })
     .then(response => {
       console.log("Body: ", req.body);
       console.log("Data: ", response.data);
@@ -55,11 +55,11 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
 
   //The payload object returned when all axios requests have been resolved
   const payload = {
-    atm : {
+    atm: {
       transactions: null,
       transactionLocations: null
     },
-    epos : {
+    epos: {
       transactions: null,
       transactionLocations: null
     }
@@ -95,8 +95,6 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
       // @desc   Get a citizens bank account record
       // @body   {forename: "", surname: "", homeAddress: ""}
       return axios.post(API + "/getBankCard", bankCardBody, { headers: HEADERS })
-
-
     }).then(response => {
 
       //If the status code OK is not returned end the request early and return that the bank card cannot be found
@@ -112,7 +110,6 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
       // @desc   Get all EPOS transactions for a bank card
       // @body   {bankCardNumber: ""}
       return axios.post(API + "/getEposTransactions", transactionBody, { headers: HEADERS })
-
     }).then(response => {
 
       //If the status code OK is not returned end the request early and return that the resource cannot be found
@@ -125,7 +122,6 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
       payload.epos.transactions = response.data;
 
       return axios.post(API + "/getAtmTransactions", transactionBody, { headers: HEADERS })
-
     }).then(response => {
 
       //If the status code OK is not returned end the request early and return that the resource cannot be found
@@ -139,14 +135,14 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
 
       return axios.post(API + "/getAtmLocation", payload.atm.transactions, { headers: HEADERS })
     }).then(response => {
-        payload.atm.transactionLocations = response.data
+      payload.atm.transactionLocations = response.data
 
-        return axios.post(API + "/getEposLocation", payload.epos.transactions, { headers: HEADERS })
+      return axios.post(API + "/getEposLocation", payload.epos.transactions, { headers: HEADERS })
     }).then(() => {
+      payload.epos.transactionLocations = response.data
 
       //End the request chain by returning the payload object with a status code of OK.
       return res.status(200).json({ payload: payload });
-
     }).catch(err => {
 
       //Handle any errors thrown up throughout the promise chain
