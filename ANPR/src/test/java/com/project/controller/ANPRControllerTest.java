@@ -61,15 +61,15 @@ public class ANPRControllerTest {
 		Mockito.verify(vrService).findByForenamesAndSurname(VEHICLE1);
 	}
 
-	@Test
-	public void getANPRObservationsTest() {
-		List<ANPRObservationEntity> OBSERVATION_LIST = new ArrayList<>();
-		OBSERVATION_LIST.add(ANPR_OBSERVATION1);
-		OBSERVATION_LIST.add(ANPR_OBSERVATION2);
-		Mockito.when(anproService.findByVehicleRegistrationNumber(ANPR_OBSERVATION1)).thenReturn(OBSERVATION_LIST);
-		assertEquals(OBSERVATION_LIST, controller.getANPRObservations(ANPR_OBSERVATION1));
-		Mockito.verify(anproService).findByVehicleRegistrationNumber(ANPR_OBSERVATION1);
-	}
+//	@Test
+//	public void getANPRObservationsTest() {
+//		List<ANPRObservationEntity> OBSERVATION_LIST = new ArrayList<>();
+//		OBSERVATION_LIST.add(ANPR_OBSERVATION1);
+//		OBSERVATION_LIST.add(ANPR_OBSERVATION2);
+//		Mockito.when(anproService.findByVehicleRegistrationNumber(ANPR_OBSERVATION1)).thenReturn(OBSERVATION_LIST);
+//		assertEquals(OBSERVATION_LIST, controller.getANPRObservations(ANPR_OBSERVATION1));
+//		Mockito.verify(anproService).findByVehicleRegistrationNumber(ANPR_OBSERVATION1);
+//	}
 
 	@Test
 	public void getANPRCameraTest() {

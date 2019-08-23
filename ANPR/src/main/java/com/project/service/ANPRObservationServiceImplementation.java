@@ -1,11 +1,13 @@
 package com.project.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.entity.ANPRObservationEntity;
+import com.project.entity.VehicleRegistrationEntity;
 import com.project.repository.ANPRObservationRepository;
 
 @Service
@@ -19,9 +21,15 @@ public class ANPRObservationServiceImplementation implements ANPRObservationServ
 	}
 
 	@Override
-	public List<ANPRObservationEntity> findByVehicleRegistrationNumber(ANPRObservationEntity anprObservationEntity) {
-		String vehicleRegistrationNumber = anprObservationEntity.getVehicleRegistrationNumber();
-		return repo.findByVehicleRegistrationNumber(vehicleRegistrationNumber);
+	public List<ANPRObservationEntity> findByVehicleRegistrationNumber(
+			List<VehicleRegistrationEntity> vehicleRegistrationEntity) {
+		List<ANPRObservationEntity> vehicles = new ArrayList<ANPRObservationEntity>();
+		for (int i = 0; i < vehicleRegistrationEntity.size(); i++) {
+			String vehicleRegistrationNumber = vehicleRegistrationEntity.get(i).getVehicleRegistrationNo();
+			ANPRObservationEntity vehicle = repo.findByVehicleRegistrationNumber(vehicleRegistrationNumber);
+			vehicles.add(vehicle);
+		}
+		return vehicles;
 	}
 
 }
