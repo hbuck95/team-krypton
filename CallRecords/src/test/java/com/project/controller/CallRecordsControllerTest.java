@@ -69,18 +69,18 @@ public class CallRecordsControllerTest {
 		Mockito.verify(mcrService).getCallRecordsOfAssociate(mobileCallRecordEntitiy1);
 	}
 
-	@Test
-	public void getCellTower() {
-		List<MobileCallRecordsEntity> Mock_List = new ArrayList<>();
-		Mock_List.add(mobileCallRecordEntitiy1);
-		Mock_List.add(mobileCallRecordEntity2);
-		List<CellTowerEntity> MOCK_LIST = new ArrayList<>();
-		MOCK_LIST.add(cellTowerEntity1);
-		MOCK_LIST.add(cellTowerEntity2);
-		Mockito.when(ctService.getCellTowers(Mock_List)).thenReturn(MOCK_LIST);
-		Assert.assertEquals(cellTowerEntity1, controller.getCellTower(Mock_List));
-
-	}
+//	@Test
+//	public void getCellTower() {
+//		List<MobileCallRecordsEntity> Mock_List = new ArrayList<>();
+//		Mock_List.add(mobileCallRecordEntitiy1);
+//		Mock_List.add(mobileCallRecordEntity2);
+//		List<CellTowerEntity> MOCK_LIST = new ArrayList<>();
+//		MOCK_LIST.add(cellTowerEntity1);
+//		MOCK_LIST.add(cellTowerEntity2);
+//		Mockito.when(ctService.getCellTowers(Mock_List)).thenReturn(MOCK_LIST);
+//		Assert.assertEquals(cellTowerEntity1, controller.getCellTower(Mock_List));
+//
+//	}
 
 	@Test
 	public void getAssociate() {
