@@ -11,7 +11,9 @@ import com.project.entity.VehicleRegistrationEntity;
 @Repository
 public interface VehicleRegistrationRepository extends MongoRepository<VehicleRegistrationEntity, Long> {
 
-	@Query("{ 'forenames' : ?0, 'surname' : ?1 }")
-	List<VehicleRegistrationEntity> findByForenamesAndSurname(String forenames, String surname);
+	@Query("{ 'forenames' : ?0, 'surname' : ?1, 'address' : ?2}")
+	List<VehicleRegistrationEntity> findByForenames(String forenames, String surname, String address);
+
+	VehicleRegistrationEntity findByVehicleRegistrationNo(String vehicleRegistrationNo);
 
 }

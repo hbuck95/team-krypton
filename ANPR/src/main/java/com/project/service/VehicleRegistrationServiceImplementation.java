@@ -24,13 +24,20 @@ public class VehicleRegistrationServiceImplementation implements VehicleRegistra
 
 		String forenames = vehicleRegistrationEntity.getForenames();
 		String surname = vehicleRegistrationEntity.getSurname();
+		String address = vehicleRegistrationEntity.getAddress();
 
-		return repo.findByForenamesAndSurname(forenames, surname);
+		return repo.findByForenames(forenames, surname, address);
 	}
 
 	@Override
 	public List<VehicleRegistrationEntity> getAll() {
 		return repo.findAll();
+	}
+
+	@Override
+	public VehicleRegistrationEntity findByRegistration(VehicleRegistrationEntity vehicleRegistrationEntity) {
+		String vehicleRegistrationNo = vehicleRegistrationEntity.getVehicleRegistrationNo();
+		return repo.findByVehicleRegistrationNo(vehicleRegistrationNo);
 	}
 
 }
