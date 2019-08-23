@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { TabPane } from 'reactstrap'
+import { TabPane, Spinner } from 'reactstrap'
 
 import ResultTableHorizontal from './SearchPersonResultTableHorizontal'
 
@@ -9,6 +9,7 @@ export default class TransactionsTab extends Component {
     render() {
 
         console.log("transactions tab render: ", this.props.transactionData)
+        if(this.props.dataLoaded){
         return (
             <TabPane tabId='2'>
                 <h2>EPOS Transactions</h2>
@@ -23,6 +24,12 @@ export default class TransactionsTab extends Component {
                     data={this.props.transactionData.atmTransactions}
                     headers={['Time Stamp', 'ID', 'Card Number', 'Type', 'Amount']}
                 />
+            </TabPane>
+        )
+        }
+        return(
+            <TabPane tabId='3'>
+                <Spinner style={{ width: '5rem', height: '5rem', position: 'fixed', top: '47.5%', left: '47.5%' }} />
             </TabPane>
         )
     }

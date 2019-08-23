@@ -10,9 +10,8 @@ import SearchPersonResult from './SearchBy/Person/SearchPersonResult'
 export default class RouterClass extends Component {
 
     render() {
-        if (!localStorage.getItem('authKey'))
+        if (!sessionStorage.getItem('authKey'))
             console.log("no auth key")
-
         return (
             <Router>
                 <NavbarClass />
@@ -24,7 +23,7 @@ export default class RouterClass extends Component {
                 }
 
                 {
-                    (localStorage.getItem('authKey') && <Redirect push to='/login' />)
+                    (!sessionStorage.getItem('authKey') && <Redirect push to='/login' />)
                 }
                 <Route exact path="/login" component={LoginPage} />
                 <Route path="/search/map" render={() => <SearchLocationPage resetRedirect={this.props.resetRedirect} searchData={this.props.searchData} />} />

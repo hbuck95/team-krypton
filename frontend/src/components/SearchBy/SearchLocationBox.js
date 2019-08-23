@@ -16,9 +16,13 @@ export default class SearchLocationBox extends Component {
             e.preventDefault();
             console.log("location search clicked!")
 
-
-            localStorage.setItem('latSearch', e.target[0].value);
-            localStorage.setItem('lngSearch', e.target[1].value);
+            if (e.target[0].value && e.target[1].value) {
+                localStorage.setItem('latSearch', e.target[0].value);
+                localStorage.setItem('lngSearch', e.target[1].value);
+            } else{
+                localStorage.setItem('latSearch', 53.4741);
+                localStorage.setItem('lngSearch', -2.2866);
+            }
 
             props.passedFunction('map');
 
@@ -35,13 +39,13 @@ export default class SearchLocationBox extends Component {
                         <Col md={6}>
                             <FormGroup>
                                 <Label for="latitude">Latitude:</Label>
-                                <Input type="number" step="0.0001" name="latitude" id="latitude" placeholder="..." />
+                                <Input type="number" step="0.0001" name="latitude" id="latitude" placeholder="e.g. 53.4741" />
                             </FormGroup>
                         </Col>
                         <Col md={6}>
                             <FormGroup>
                                 <Label for="longitude">Longitude:</Label>
-                                <Input type="number" step="0.0001" name="longitude" id="longitude" placeholder="..." />
+                                <Input type="number" step="0.0001" name="longitude" id="longitude" placeholder="e.g. -2.2866" />
                             </FormGroup>
                         </Col>
                     </Row>

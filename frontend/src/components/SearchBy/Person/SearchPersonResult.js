@@ -5,16 +5,10 @@ import axios from 'axios';
 
 import MapContainer from '../../MapContainer'
 import SearchPersonResultTableVertical from './SearchPersonResultTableVertical'
-import TransactionsTab from './SearchPersonTransactionsTab';
+import TransactionsTab from './TransactionsTab';
 import AssociatesTab from '../Person/AssociatesTab';
 
-const HEADERS = { "Content-Type": "application/json", "Authorization": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiI1ZDVhY2QxMGUyMzlkNDE0YTYxYWU4YWQiLCJleHAiOjE1NzE1NjQ0OTQsImlhdCI6MTU2NjM4MDQ5NH0.snvDQIxmjUl_PuMAbTctBZZrLfWxq1qThdh9pyFrIuA" }
-
-const distinct = (value, index, self) => {
-    return self.indexOf(value) === index;
-}
-
-
+const HEADERS = { "Content-Type": "application/json", "Authorization": `Token ${sessionStorage.getItem('authKey')}` }
 
 export default class SearchPersonResult extends Component {
     constructor(props) {
@@ -153,7 +147,7 @@ export default class SearchPersonResult extends Component {
                                     </Col>
                                 </Row>
                             </TabPane>
-                            <TransactionsTab transactionData={this.state.transactionData} />
+                            <TransactionsTab dataLoaded={this.state.transactionDataLoaded} transactionData={this.state.transactionData} />
                             <AssociatesTab dataLoaded={this.state.associateDataLoaded} associatesData={this.state.associatesData} />
                         </TabContent>
 

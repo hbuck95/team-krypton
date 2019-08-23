@@ -11,8 +11,12 @@ import {
     FormText
 } from 'reactstrap'
 
+import { Redirect } from 'react-router-dom'
+
 import '../App.css'
 import axios from 'axios';
+
+const HEADERS = { "Content-Type": "application/json" }
 
 export default class LoginPage extends Component {
 
@@ -22,7 +26,8 @@ export default class LoginPage extends Component {
         this.state = {
             name: '',
             pass: '',
-            warning: ''
+            warning: '',
+            loginSuccess: false
         }
 
         this.handleSubmit = (e) => {
@@ -34,20 +39,28 @@ export default class LoginPage extends Component {
                 username: this.state.name,
                 password: this.state.pass
             }
-            e.target[0].value = '';
-            e.target[1].value = '';
+            // e.target[0].value = '';
+            // e.target[1].value = '';
 
             console.log(detailsToSend);
 
-            //axios.post('http://localhost:9000/api/users/login')
-            //then
-            document.location.href = "/home"
-            //catch
-            e.target[0].value = this.state.name;
-            this.setState({
-                pass: '',
-                warning: 'Incorrect password'
-            });
+            axios.post('http://35.197.200.12:9000/api/users/login', { user: detailsToSend }, { headers: HEADERS })
+                .then((res) => {
+                    console.log(res);
+                    sessionStorage.setItem('authKey', res.data.token)
+                    this.setState({
+                        loginSuccess: true
+                    })
+                })
+                .catch((res) => {
+                    console.log(res)
+                    sessionStorage.removeItem('authKey');
+                    // e.target[0].value = this.state.name;
+                    this.setState({
+                        pass: '',
+                        warning: 'Incorrect user name or password...'
+                    });
+                })
 
         }
 
@@ -63,6 +76,15 @@ export default class LoginPage extends Component {
 
 
     render() {
+        sessionStorage.setItem('loggedOut', true)
+        sessionStorage.removeItem('loggingOut');
+        if (this.state.loginSuccess) {
+            console.log("auth key accepted!")
+            return (<Redirect
+                push to='/home'
+            />)
+        }
+
         return (
             <div style={{ boxShadow: "0px 5px 3px grey", margin: 'auto', marginTop: "100px", backgroundColor: '#d8dcdb', width: '40%', maxWidth: '550px', minWidth: '400px', padding: "40px" }} className="rounded .align-center">
                 <h2 style={{ textAlign: 'center', paddingBottom: "25px" }}>LOG IN:</h2>
