@@ -5,12 +5,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "anprcamera")
 public class ANPRCameraEntity {
 
-	String anprId;
+	int anprId;
 	String streetName;
 	String latitude;
 	String longitude;
 
-	public ANPRCameraEntity(String anprId, String streetName, String latitude, String longitude) {
+	public ANPRCameraEntity(int anprId, String streetName, String latitude, String longitude) {
 		this.anprId = anprId;
 		this.streetName = streetName;
 		this.latitude = latitude;
@@ -21,7 +21,7 @@ public class ANPRCameraEntity {
 
 	}
 
-	public String getAnprId() {
+	public int getAnprId() {
 		return anprId;
 	}
 
@@ -49,7 +49,7 @@ public class ANPRCameraEntity {
 		this.longitude = longitude;
 	}
 
-	public void setAnprId(String anprId) {
+	public void setAnprId(int anprId) {
 		this.anprId = anprId;
 	}
 

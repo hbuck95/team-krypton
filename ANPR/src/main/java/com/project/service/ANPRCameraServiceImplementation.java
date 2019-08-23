@@ -24,7 +24,7 @@ public class ANPRCameraServiceImplementation implements ANPRCameraService {
 	public List<ANPRCameraEntity> findById(List<ANPRObservationEntity> anprObservationEntity) {
 		List<ANPRCameraEntity> locations = new ArrayList<>();
 		for (int i = 0; i < anprObservationEntity.size(); i++) {
-			String anprId = anprObservationEntity.get(i).getANPRPointId();
+			int anprId = anprObservationEntity.get(i).getANPRPointId();
 			ANPRCameraEntity location = repo.findByAnprId(anprId);
 			locations.add(location);
 		}
