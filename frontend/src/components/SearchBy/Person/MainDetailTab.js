@@ -17,12 +17,12 @@ export default class MainDetailTab extends Component {
                                     <Col >
                                         <SearchPersonResultTableVertical passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
                                             data={{
-                                                'Forenames': this.state.data.forenames,
-                                                'Surname': this.state.data.surname,
-                                                'Sex': this.state.data.sex,
-                                                'Address': this.state.data.homeAddress,
-                                                'Date of birth': this.state.data.dateOfBirth,
-                                                'Place of birth': this.state.data.placeOfBirth
+                                                'Forenames': this.props.data.forenames,
+                                                'Surname': this.props.data.surname,
+                                                'Sex': this.props.data.sex,
+                                                'Address': this.props.data.homeAddress,
+                                                'Date of birth': this.props.data.dateOfBirth,
+                                                'Place of birth': this.props.data.placeOfBirth
                                             }}
                                             topHeaders={['Fields', 'Data']}
                                         />

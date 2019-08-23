@@ -3,10 +3,9 @@ import React, { Component } from 'react'
 import { Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Spinner } from 'reactstrap'
 import axios from 'axios';
 
-import MapContainer from '../../MapContainer'
-import SearchPersonResultTableVertical from './SearchPersonResultTableVertical'
+
 import TransactionsTab from './TransactionsTab';
-import AssociatesTab from '../Person/AssociatesTab';
+import AssociatesTab from './AssociatesTab';
 import MainDetailTab from './MainDetailTab';
 
 
@@ -127,29 +126,9 @@ export default class SearchPersonResult extends Component {
                             </NavLink>
                         </NavItem>
                         <TabContent activeTab={this.state.activeTab}>
-                            <MainDetailTab dataLoaded={this.state.dataLoaded} data={this.state.data} />
-                            {/* <TabPane tabId="1">
-                                <Row style={{ marginLeft: 0, marginRight: 0 }}>
-                                    <Col >
-                                        <SearchPersonResultTableVertical passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
-                                            data={{
-                                                'Forenames': this.state.data.forenames,
-                                                'Surname': this.state.data.surname,
-                                                'Sex': this.state.data.sex,
-                                                'Address': this.state.data.homeAddress,
-                                                'Date of birth': this.state.data.dateOfBirth,
-                                                'Place of birth': this.state.data.placeOfBirth
-                                            }}
-                                            topHeaders={['Fields', 'Data']}
-                                        />
-                                    </Col>
-                                    <Col md="auto">
-                                        <MapContainer height="400px" width="500px" style={{ marginTop: 50, marginRight: 50 }} data={[{ lat: 50.809310, lng: -1.070670 }]} />
-                                    </Col>
-                                </Row>
-                            </TabPane> */}
-                            <TransactionsTab dataLoaded={this.state.transactionDataLoaded} transactionData={this.state.transactionData} />
-                            <AssociatesTab dataLoaded={this.state.associateDataLoaded} associatesData={this.state.associatesData} />
+                            <MainDetailTab style={{marginTop:"100px"}} dataLoaded={this.state.dataLoaded} data={this.state.data} />
+                            <TransactionsTab style={{marginTop:"100px"}} dataLoaded={this.state.transactionDataLoaded} transactionData={this.state.transactionData} />
+                            <AssociatesTab style={{marginTop:"100px"}} dataLoaded={this.state.associateDataLoaded} associatesData={this.state.associatesData} />
                         </TabContent>
 
                     </Nav>

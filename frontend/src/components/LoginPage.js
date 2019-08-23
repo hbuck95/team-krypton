@@ -39,8 +39,6 @@ export default class LoginPage extends Component {
                 username: this.state.name,
                 password: this.state.pass
             }
-            // e.target[0].value = '';
-            // e.target[1].value = '';
 
             console.log(detailsToSend);
 
@@ -55,7 +53,6 @@ export default class LoginPage extends Component {
                 .catch((res) => {
                     console.log(res)
                     sessionStorage.removeItem('authKey');
-                    // e.target[0].value = this.state.name;
                     this.setState({
                         pass: '',
                         warning: 'Incorrect user name or password...'

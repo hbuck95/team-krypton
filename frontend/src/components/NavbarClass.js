@@ -22,6 +22,7 @@ export default class NavbarClass extends Component {
             loggingOut: (sessionStorage.getItem('loggingOut'))
         }
 
+
         this.selectedStyle = { backgroundColor: "#f26521" };
 
         this.logout = (e) => {
@@ -35,6 +36,8 @@ export default class NavbarClass extends Component {
                 this.setState({
                     loggingOut: sessionStorage.getItem('loggingOut')
                 })
+
+                this.props.toggleLoggedOut();
             }
         }
 
@@ -43,27 +46,28 @@ export default class NavbarClass extends Component {
 
     render() {
 
-        if (!sessionStorage.getItem('authKey')){
-            sessionStorage.setItem('authKey', 'default')
+        if (this.props.loggedOut){//!sessionStorage.getItem('authKey')) {
             return (
                 <Redirect push to='/login' />
             )
         }
-        return (
-            <div className="Selected" style={{ zIndex: "10" }}>
-                <Navbar color="dark" dark expand="md">
-                    <NavbarBrand tag={Link} to="/home"><h2 style={{ color: "white" }}>krypton</h2></NavbarBrand>
-                    <Nav className="ml-auto" navbar>
-                        <NavItem>
-                            <NavLink tag={Link} to="/help" style={{ fontSize: 25 }}>help</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink onClick={(e) => { this.logout(e) }} style={{ fontSize: 25 }}>{sessionStorage.getItem('loggedOut') === 'loggedOut' ? 'log in' : 'log out'}</NavLink>
-                        </NavItem>
-                    </Nav>
-                </Navbar>
-            </div>
-        );
+        else {
+            return (
+                <div className="Selected" style={{ zIndex: "10" }}>
+                    <Navbar color="dark" dark expand="md">
+                        <NavbarBrand tag={Link} to="/home"><h2 style={{ color: "white" }}>krypton</h2></NavbarBrand>
+                        <Nav className="ml-auto" navbar>
+                            <NavItem>
+                                <NavLink tag={Link} to="/help" style={{ fontSize: 25 }}>help</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink onClick={(e) => { this.logout(e) }} style={{ fontSize: 25 }}>{sessionStorage.getItem('loggedOut') === 'loggedOut' ? 'log in' : 'log out'}</NavLink>
+                            </NavItem>
+                        </Nav>
+                    </Navbar>
+                </div>
+            );
+        }
 
     }
 }

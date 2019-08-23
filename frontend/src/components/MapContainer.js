@@ -131,10 +131,8 @@ class Map extends Component {
                         visible={true}
                         editable={this.state.editcircle}
                         onDblClick={() => { this.setState({ editcircle: true }) }}
-                    //onRadiusChanged={(e) => console.log(this.getRadius(e))}
-
-
-
+                        onRadiusChanged={(e) => console.log("radius change", e)}
+                        
                     />
                 </GoogleMap>
                 <form onSubmit={(e) => { this.onSubmit(e) }}>
