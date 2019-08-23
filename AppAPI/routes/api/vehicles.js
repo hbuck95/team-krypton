@@ -10,10 +10,10 @@ const HEADERS = {
 const API = "http://localhost:9005/ANPR"
 
 const findVehicleRegistration = (body) => {
-    return axios.post(API + "/getVehicle", body, { headers: HEADERS });
+    return axios.post(API + "/getVehicleRegistrations", body, { headers: HEADERS });
 };
 
-router.post("/getVehicle", auth.required, (req, res) => {
+router.post("/getVehicleRegistrations", auth.required, (req, res) => {
 
     const payload = {
         vehicleRegistration: null
