@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 import '../../css/SearchBoxes.css'
 
-import { Link } from 'react-router-dom'
-
 
 import { Button, Input, Form, Row, Col, FormGroup, Label } from 'reactstrap'
 

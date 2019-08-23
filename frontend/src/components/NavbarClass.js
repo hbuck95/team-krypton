@@ -18,7 +18,8 @@ export default class NavbarClass extends Component {
         super(props);
 
         this.state = {
-            loginout: (sessionStorage.getItem('authKey') ? 'log out' : 'login')
+            loginout: (sessionStorage.getItem('authKey') ? 'log out' : 'login'),
+            loggingOut: (sessionStorage.getItem('loggingOut'))
         }
 
         this.selectedStyle = { backgroundColor: "#f26521" };
@@ -26,19 +27,24 @@ export default class NavbarClass extends Component {
         this.logout = (e) => {
             e.preventDefault();
             console.log("logout clicked")
-            if (sessionStorage.getItem('loggedOut') === false) {
+            console.log(sessionStorage.getItem('loggedOut'))
+            if (sessionStorage.getItem('loggedOut')) {
                 console.log("user is logged in trying to log out")
-                sessionStorage.setItem('loggingOut', true);
+                sessionStorage.setItem('loggingOut', 'true');
                 sessionStorage.removeItem('authKey')
+                this.setState({
+                    loggingOut: sessionStorage.getItem('loggingOut')
+                })
             }
         }
 
-        
+
     }
 
     render() {
 
-        if (!sessionStorage.getItem('loggedOut') && sessionStorage.getItem('loggingOut')) {
+        if (!sessionStorage.getItem('authKey')){
+            sessionStorage.setItem('authKey', 'default')
             return (
                 <Redirect push to='/login' />
             )
@@ -52,7 +58,7 @@ export default class NavbarClass extends Component {
                             <NavLink tag={Link} to="/help" style={{ fontSize: 25 }}>help</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink onClick={(e) => { this.logout(e) }} style={{ fontSize: 25 }}>{sessionStorage.getItem('loggedOut') ? 'log in' : 'log out'}</NavLink>
+                            <NavLink onClick={(e) => { this.logout(e) }} style={{ fontSize: 25 }}>{sessionStorage.getItem('loggedOut') === 'loggedOut' ? 'log in' : 'log out'}</NavLink>
                         </NavItem>
                     </Nav>
                 </Navbar>

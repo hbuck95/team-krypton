@@ -7,6 +7,7 @@ import MapContainer from '../../MapContainer'
 import SearchPersonResultTableVertical from './SearchPersonResultTableVertical'
 import TransactionsTab from './TransactionsTab';
 import AssociatesTab from '../Person/AssociatesTab';
+import MainDetailTab from './MainDetailTab';
 
 
 export default class SearchPersonResult extends Component {
@@ -39,7 +40,7 @@ export default class SearchPersonResult extends Component {
         this.componentDidMount = () => {
             
             props.resetRedirect();
-            
+
             let HEADERS = { "Content-Type": "application/json", "Authorization": `Token ${sessionStorage.getItem('authKey')}` }
 
             axios.post('http://35.197.200.12:9000/api/citizen/getCitizen', {
@@ -126,7 +127,8 @@ export default class SearchPersonResult extends Component {
                             </NavLink>
                         </NavItem>
                         <TabContent activeTab={this.state.activeTab}>
-                            <TabPane tabId="1">
+                            <MainDetailTab dataLoaded={this.state.dataLoaded} data={this.state.data} />
+                            {/* <TabPane tabId="1">
                                 <Row style={{ marginLeft: 0, marginRight: 0 }}>
                                     <Col >
                                         <SearchPersonResultTableVertical passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
@@ -139,14 +141,13 @@ export default class SearchPersonResult extends Component {
                                                 'Place of birth': this.state.data.placeOfBirth
                                             }}
                                             topHeaders={['Fields', 'Data']}
-                                            sideHeaders={['Forenames', 'Surname', 'Sex', 'Address', 'Date of birth', 'Place of birth']}
                                         />
                                     </Col>
                                     <Col md="auto">
                                         <MapContainer height="400px" width="500px" style={{ marginTop: 50, marginRight: 50 }} data={[{ lat: 50.809310, lng: -1.070670 }]} />
                                     </Col>
                                 </Row>
-                            </TabPane>
+                            </TabPane> */}
                             <TransactionsTab dataLoaded={this.state.transactionDataLoaded} transactionData={this.state.transactionData} />
                             <AssociatesTab dataLoaded={this.state.associateDataLoaded} associatesData={this.state.associatesData} />
                         </TabContent>

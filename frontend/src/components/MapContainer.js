@@ -145,7 +145,7 @@ class Map extends Component {
                     <input type="number" step="0.0001" value={this.state.newLng} onChange={(e) => { if (!NaN) { this.setState({ newLng: parseFloat(e.target.value) }) } }}></input>
                     <span style={{ marginRight: 25, marginLeft: 25 }}>Radius:</span>
                     <input type="number" value={this.state.radius} onChange={(e) => { this.setState({ radius: parseFloat(e.target.value) }) }}>
-                    </input><span style={{ marginLeft: '-20px', color: 'grey' }}>m</span>
+                    </input><span style={{ marginLeft: '-30px', color: 'grey' }}>m</span>
                     <input type="submit" value="Submit" style={{ marginLeft: 25 }}></input>
                     <button style={{ marginLeft: 25 }} onClick={this.undo} >Undo</button>
                 </form>

@@ -76,8 +76,8 @@ export default class LoginPage extends Component {
 
 
     render() {
-        sessionStorage.setItem('loggedOut', true)
-        sessionStorage.removeItem('loggingOut');
+        sessionStorage.setItem('loggedOut', 'loggedOut')
+        sessionStorage.setItem('loggingOut', false);
         if (this.state.loginSuccess) {
             console.log("auth key accepted!")
             return (<Redirect

@@ -17,8 +17,8 @@ export default class LandingPage extends Component {
             return (
                 <div>
                     <h1 style={{ margin: "auto" }}>SEARCH BY...</h1>
-                    <div style={{ marginTop: "100px", width: "80%" }}>
-                        <Row style={{ marginLeft: 0, marginRight: 0 }}>
+                    <div style={{ marginTop: "100px", width: "100%" }}>
+                        <Row style={{ width: '100%', marginLeft: 0, marginRight: 0 }}>
                             <Col >
                                 <SearchPersonBox passedFunction={this.props.passedFunction} />
                             </Col>
@@ -33,7 +33,7 @@ export default class LandingPage extends Component {
                 </div>
             )
         }
-        return(
+        return (
             <Redirect push to='/login' />
         )
     }
