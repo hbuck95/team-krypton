@@ -3,7 +3,7 @@ const secrets = require('../config/secrets')
 
 const getTokenFromHeaders = (req) => {
   console.log("Token: ", req.headers.authorization);
-  var token = headers.authorization, decoded;
+  var token = req.headers.authorization, decoded;
   decoded = jwt.verify(token, secret.secretToken);
   console.log("Decoded: ", decoded);
 
