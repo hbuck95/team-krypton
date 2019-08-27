@@ -17,10 +17,9 @@ router.post("/getVehicle", auth.required, (req, res) => {
         vehicle: null
     };
 
-    return makeRequest.createAudit("/getVehicle", req.body, req.header("Authorization"))
-        .then(() => {
-            return makeRequest.axiosPost(API + GET_VEHICLE, req.body)
-        })
+    makeRequest.createAudit("/getVehicle", req.body, req.header("Authorization"));
+
+    return makeRequest.axiosPost(API + GET_VEHICLE, req.body)
         .then(response => {
             payload.vehicle = response.data;
         })
@@ -40,10 +39,9 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
         anprCamera: null
     };
 
-    return makeRequest.createAudit("/getAnprCameras", req.body, req.header("Authorization"))
-        .then(() => {
-            return makeRequest.axiosPost(API + GET_VEHICLE_REGISTRATIONS, req.body)
-        })
+    makeRequest.createAudit("/getAnprCameras", req.body, req.header("Authorization"));
+
+    return makeRequest.axiosPost(API + GET_VEHICLE_REGISTRATIONS, req.body)
         .then(response => {
             console.log("/getVehicleRegistrations")
             console.log(response);

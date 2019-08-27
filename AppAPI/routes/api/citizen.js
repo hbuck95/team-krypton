@@ -11,10 +11,9 @@ const GET_CITIZEN = "/getCitizen";
 
 router.post('/getCitizen', auth.required, (req, res) => {
 
-    return makeRequest.createAudit("/getCitizen", req.body, req.header("Authorization"))
-        .then(() => {
-            return makeRequest.axiosPost(API + GET_CITIZEN, req.body)
-        })
+    makeRequest.createAudit("/getCitizen", req.body, req.header("Authorization"));
+
+    return makeRequest.axiosPost(API + GET_CITIZEN, req.body)
         .then(response => {
             return res.status(200).json({ payload: response.data }).end();
         })
