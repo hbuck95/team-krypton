@@ -30,4 +30,9 @@ public class EposServiceImpl implements EposService {
 		}
 		return eposPoints;
 	}
+
+	@Override
+	public List<EposEntity> getAll() {
+		return repo.findAll();
+	}
 }

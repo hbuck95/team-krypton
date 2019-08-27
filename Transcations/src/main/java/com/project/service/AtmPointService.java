@@ -9,4 +9,6 @@ public interface AtmPointService {
 
 	List<AtmPointEntity> getAtmLocations(List<AtmtransactionsEntity> atmTransactionsEntity);
 
+	List<AtmPointEntity> getAll();
+
 }

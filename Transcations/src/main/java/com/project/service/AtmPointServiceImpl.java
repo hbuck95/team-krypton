@@ -31,4 +31,9 @@ public class AtmPointServiceImpl implements AtmPointService {
 		return atmPoints;
 	}
 
+	@Override
+	public List<AtmPointEntity> getAll() {
+		return repo.findAll();
+	}
+
 }

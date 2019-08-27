@@ -9,4 +9,6 @@ public interface EposService {
 
 	List<EposEntity> getEposLocations(List<EpostransactionEntity> eposTransactionsEntity);
 
+	List<EposEntity> getAll();
+
 }

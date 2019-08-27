@@ -3,6 +3,7 @@ package com.project.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -72,6 +73,16 @@ public class TransactionsController {
 	@PostMapping("/getEposLocation")
 	public List<EposEntity> getEposLocation(@RequestBody List<EpostransactionEntity> eposTransactionsEntity) {
 		return eService.getEposLocations(eposTransactionsEntity);
+	}
+
+	@GetMapping("/getAllAtmLocations")
+	public List<AtmPointEntity> getAllAtmLocations() {
+		return apService.getAll();
+	}
+
+	@GetMapping("/getAllEposLocations")
+	public List<EposEntity> getAllEposLocations() {
+		return eService.getAll();
 	}
 
 }
