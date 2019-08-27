@@ -5,14 +5,16 @@ const webtoken = require('jsonwebtoken');  //https://npmjs.org/package/node-json
 const getTokenFromHeaders = (req) => {
   console.log("Token: ", req.headers.authorization);
 
-  const usertoken = req.headers.authorization;
-const token = usertoken.split(' ');
-const decoded = webtoken.verify(token[1], secrets.phrase);
-console.log(decoded);
+  if (req.headers && req.headers.authorization) {
+    const usertoken = req.headers.authorization;
+    const token = usertoken.split(' ');
+    const decoded = webtoken.verify(token[1], secrets.phrase);
+    console.log(decoded);
+  }
 
   const { headers: { authorization } } = req;
 
-  if(authorization && authorization.split(' ')[0] === 'Token') {
+  if (authorization && authorization.split(' ')[0] === 'Token') {
     return authorization.split(' ')[1];
   }
   return null;
