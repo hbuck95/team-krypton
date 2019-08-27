@@ -35,8 +35,10 @@ router.post('/getAssociates', auth.required, (req, res) => {
         callerMSISDN: null
     };
 
-    makeRequest.axiosPost(API+GET_PHONE_NUMBER, req.body)
-        .then(response => {
+    return makeRequest.createAudit("/getAssociates", req.body, req.header("Authorization"))
+        .then(() => {
+            return makeRequest.axiosPost(API + GET_PHONE_NUMBER, req.body, req.header("Authorization"))
+        }).then(response => {
             //Assign the phone number retrieved to the suspectcallrecordsbody object for the next axios request.
             suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
             return makeRequest.axiosPost(API + GET_CALL_RECORDS_OF_SUSPECT, suspectCallRecordsBody)
@@ -62,7 +64,10 @@ router.post("/getCellTowers", auth.required, (req, res) => {
         callerMSISDN: null
     };
 
-    makeRequest.axiosPost(API + GET_PHONE_NUMBER, req.body)
+    return makeRequest.createAudit("/getCellTowers", req.body, req.header("Authorization"))
+        .then(() => {
+            return makeRequest.axiosPost(API + GET_PHONE_NUMBER, req.body)
+        })
         .then(response => {
             //Assign the phone number retrieved to the suspectcallrecordsbody object for the next axios request.
             suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;

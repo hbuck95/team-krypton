@@ -17,7 +17,10 @@ router.post("/getVehicle", auth.required, (req, res) => {
         vehicle: null
     };
 
-    makeRequest.axiosPost(API + GET_VEHICLE, req.body)
+    return makeRequest.createAudit("/getVehicle", req.body, req.header("Authorization"))
+        .then(() => {
+            return makeRequest.axiosPost(API + GET_VEHICLE, req.body)
+        })
         .then(response => {
             payload.vehicle = response.data;
         })
@@ -37,16 +40,14 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
         anprCamera: null
     };
 
-    const anprObservationsBody = {
-        vehicleRegistrationNumber: null
-    };
-
-    makeRequest.axiosPost(API + GET_VEHICLE_REGISTRATIONS, req.body)
+    return makeRequest.createAudit("/getAnprCameras", req.body, req.header("Authorization"))
+        .then(() => {
+            return makeRequest.axiosPost(API + GET_VEHICLE_REGISTRATIONS, req.body)
+        })
         .then(response => {
             console.log("/getVehicleRegistrations")
             console.log(response);
             console.log("Body: ", req.body);
-            //anprObservationsBody.vehicleRegistrationNumber = response.data.vehicleRegistrationNo;
             return makeRequest.axiosPost(API + GET_ANPR_OBSERVATIONS, response.data)
         })
         .then(response => {
@@ -63,7 +64,7 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
             payload.anprCamera = response.data;
         })
         .then(() => {
-            console.log("Payload: ",payload);
+            console.log("Payload: ", payload);
             return res.status(200).json(payload).end();
         })
         .catch(err => {
