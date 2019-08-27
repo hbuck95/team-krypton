@@ -35,9 +35,9 @@ public class ANPRController {
 		this.vehicleService = vehicleService;
 	}
 
-	@GetMapping("/getAll")
-	public List<VehicleRegistrationEntity> getAll() {
-		return vehicleRegistrationService.getAll();
+	@GetMapping("getAll")
+	public List<ANPRCameraEntity> getAllCameras() {
+		return anprCameraService.getAllCameras();
 	}
 
 	@PostMapping("/getVehicleRegistrations")

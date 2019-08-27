@@ -31,4 +31,9 @@ public class ANPRCameraServiceImplementation implements ANPRCameraService {
 		return locations;
 	}
 
+	@Override
+	public List<ANPRCameraEntity> getAllCameras() {
+		return repo.findAll();
+	}
+
 }
