@@ -5,6 +5,7 @@ const session = require('express-session');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const errorHandler = require('errorhandler');
+const secrets = require('./config/secrets');
 
 //Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
@@ -18,7 +19,7 @@ app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'j0llY_w1ll1am$', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
+app.use(session({ secret: secrets.phrase, cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
 
 //Configure Mongoose
 const db = require("./config/keys").mongoURI;
