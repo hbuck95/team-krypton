@@ -9,4 +9,6 @@ public interface ANPRCameraService {
 
 	List<ANPRCameraEntity> findById(List<ANPRObservationEntity> anprObservationEntity);
 
+	List<ANPRCameraEntity> getAllCameras();
+
 }
