@@ -1,7 +1,6 @@
 const newman = require('newman');
 const collection = require('./BAE.postman_collection.json')
 const treeify = require('treeify');
-const { app } = require('./server');
 
 newman.run({
   collection,
