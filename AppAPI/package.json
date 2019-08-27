@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "node app.js",
+    "test": "node postmanTest.js",
+    "coverage": "nyc npm run test",
+    "report": "nyc --reporter=html report"
   },
   "keywords": [],
   "author": "",
@@ -23,5 +26,13 @@
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
+  },
+
+  "nyc":{
+    "exclude": [
+      "node_modules",
+"coverage",
+"postmanTest"
+    ]
   }
 }
