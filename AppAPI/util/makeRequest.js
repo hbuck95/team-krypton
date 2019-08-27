@@ -5,7 +5,8 @@ const HEADERS = {
 };
 
 module.exports = {
-    axiosPost: function (endpoint, body) {
+    axiosPost: function (endpoint, body, h) {
+        console.log(h);
         return axios.post(endpoint, body, { headers: HEADERS });
     }
 }
