@@ -13,7 +13,7 @@ public class AtmPointEntity {
 	private String longitude;
 
 	public AtmPointEntity() {
-		super();
+	
 
 	}
 
