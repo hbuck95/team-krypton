@@ -40,7 +40,6 @@ export default class NavbarClass extends Component {
     }
 
     render() {
-        console.log("logged out: ", this.props.loggedOut)
         if (this.props.loggingOut && !this.props.loggedOut){
             return (
                 <Redirect push to='/login' />
@@ -50,11 +49,11 @@ export default class NavbarClass extends Component {
             return (
                 <div className="Selected" style={{ zIndex: "10" }}>
                     <Navbar color="dark" dark expand="md">
-                        <NavbarBrand tag={Link} to="/home"><h2 style={{ color: "white" }}>krypton</h2></NavbarBrand>
+                        <NavbarBrand tag={Link} to="/home"><h2 style={{ color: "white" }}>Krypton</h2></NavbarBrand>
                         <Nav className="ml-auto" navbar>
-                            <NavItem>
+                            {/* <NavItem>
                                 <NavLink tag={Link} to="/help" style={{ fontSize: 25 }}>help</NavLink>
-                            </NavItem>
+                            </NavItem> */}
                             <NavItem>
                                 <NavLink onClick={(e) => { this.logout(e) }} key={this.props.loggedOut} style={{ fontSize: 25 }}>{this.props.loggedOut ? 'log in' : 'log out'}</NavLink>
                             </NavItem>

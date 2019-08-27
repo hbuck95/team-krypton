@@ -4,6 +4,7 @@ import RouterClass from './components/RouterClass'
 import Footer from './components/Footer'
 
 import './css/Navbar.css'
+import HELP_TEXT from './components/HelpText';
 
 
 
@@ -53,8 +54,28 @@ export default class App extends Component {
     })
   }
 
+  setHelpText = (page) => {
+    let helpText = '';
+
+    switch (page) {
+      case 'login':
+        helpText = HELP_TEXT.login
+        break;
+      case 'landing page':
+        helpText = HELP_TEXT.landingPage;
+        break;
+      default:
+        helpText = <p>Your details are shown on screen</p>
+        break;
+    }
+    this.setState({
+      helpText: helpText
+    })
+  }
+
   componentDidMount = () => {
-    if(!sessionStorage.getItem('authKey')){
+    sessionStorage.setItem('authKey', 'authkey')
+    if (!sessionStorage.getItem('authKey')) {
       this.setState({
         loggedOut: true
       })
@@ -70,8 +91,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <RouterClass loggedOut={this.state.loggedOut} toggleLoggingOut={this.toggleLoggingOut} toggleLoggedOut={this.toggleLoggedOut} redirect={this.state.redirect} resetRedirect={this.resetRedirect} link={this.state.link} passedFunction={this.searchData} searchData={this.state.searchData} />
-        <Footer />
+        <RouterClass setHelpText={this.setHelpText}  loggedOut={this.state.loggedOut} toggleLoggingOut={this.toggleLoggingOut} toggleLoggedOut={this.toggleLoggedOut} redirect={this.state.redirect} resetRedirect={this.resetRedirect} link={this.state.link} passedFunction={this.searchData} searchData={this.state.searchData} />
+        <Footer helpText={this.state.helpText}/>
       </div>
     );
   }

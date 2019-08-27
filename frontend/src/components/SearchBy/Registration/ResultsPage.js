@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
-import { Spinner } from 'reactstrap'
+import { Spinner, TabContent, Nav, NavItem, NavLink } from 'reactstrap'
 import ResultTableHorizontal from '../ResultTableHorizontal';
 import ResultTableVertical from '../ResultTableVertical';
 
@@ -48,6 +48,28 @@ export default class RegistrationResultPage extends Component {
             console.log(this.state.data)
             return (
                 <div>
+                    <Nav tabs style={{ width: "100%" }}>
+                        <NavItem>
+                            <NavLink onClick={() => { this.toggle('1') }}>
+                                Main Details
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink onClick={() => { this.toggle('2') }}>
+                                Transactions
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink onClick={() => { this.toggle('3') }}>
+                                Associates
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink onClick={() => { this.toggle('4') }}>
+                                Known locations
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
                     <ResultTableHorizontal passedStyle={{ width: "80%", marginLeft: 50, marginTop: 50 }}
                         data={[
                             {

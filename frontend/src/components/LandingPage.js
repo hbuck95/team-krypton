@@ -9,7 +9,9 @@ import SearchRegistrationBox from './SearchBy/SearchRegistrationBox'
 import SearchLocationBox from './SearchBy/SearchLocationBox'
 
 export default class LandingPage extends Component {
-
+    componentDidMount=()=>{
+        this.props.setHelpText('landing page');
+    }
 
     render() {
         sessionStorage.setItem('loggedOut', false);
