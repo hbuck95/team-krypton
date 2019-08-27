@@ -5,16 +5,7 @@ const jwtDecode = require('../util/jwtDecode');
 
 const getTokenFromHeaders = (req) => {
   console.log("Token: ", req.headers.authorization);
-
-  jwtDecode.getUser(req);
-
-  // if (req.headers && req.headers.authorization) {
-  //   const usertoken = req.headers.authorization;
-  //   const token = usertoken.split(' ');
-  //   const decoded = webtoken.verify(token[1], secrets.phrase);
-  //   console.log(decoded);
-  // }
-
+  
   const { headers: { authorization } } = req;
 
   if (authorization && authorization.split(' ')[0] === 'Token') {
