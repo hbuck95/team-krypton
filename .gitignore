@@ -58,6 +58,10 @@ typings/
 .env
 
 # next.js build output
+
+.next node_modulesoperties
+
 .next node_modules
 
 /.metadata/
+
