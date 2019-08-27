@@ -1,0 +1,118 @@
+version: "3.3" 
+services: 
+    jolly_williams_alpha:
+      image: mongo:latest
+      ports:
+      - target: 27017
+        published: 9011
+
+    jolly_williams_bravo: 
+      image: mongo:latest 
+      ports: 
+      - target: 27017
+        published: 9012  
+        protocol: tcp 
+      volumes:
+      - '/krypton/Docker/mongoDBBravo:/data/db'
+      command: mongod --auth
+      depends_on:
+        - jolly_williams_alpha
+
+    audit_consumer:
+      build:
+        context: ./AuditConsumerBE
+        dockerfile: dockerfile
+      ports:
+      - target: 9010
+        published: 9010
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+
+    audit_producer:
+      build:
+        context: ./AuditProducerBE
+        dockerfile: dockerfile
+      ports:
+      - target: 9002
+        published: 9002
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+        - audit_consumer
+
+    citizen:
+      build:
+        context: ./Citizen
+        dockerfile: dockerfile
+      ports:
+      - target: 9003
+        published: 9003
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+        - audit_consumer
+        - audit_producer
+
+    call_records:
+      build:
+        context: ./CallRecords
+        dockerfile: dockerfile
+      ports:
+      - target: 9004
+        published: 9004
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+        - audit_consumer
+        - audit_producer
+        - citizen
+
+    anpr:
+      build:
+        context: ./ANPR
+        dockerfile: dockerfile
+      ports:
+      - target: 9005
+        published: 9005
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+        - audit_consumer
+        - audit_producer
+        - citizen
+        - call_records
+
+    transactions:
+      build:
+        context: ./Transcations
+        dockerfile: dockerfile
+      ports:
+      - target: 9006
+        published: 9006
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+        - audit_consumer
+        - audit_producer
+        - citizen
+        - call_records
+        - anpr
+
+    app:
+      build:
+        context: ./AppAPI
+        dockerfile: dockerfile
+      ports:
+      - target: 9000
+        published: 9000
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+        - audit_consumer
+        - audit_producer
+        - citizen
+        - call_records
+        - anpr
+        - transactions
+
