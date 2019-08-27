@@ -5,8 +5,8 @@ const HEADERS = {
 };
 
 module.exports = {
-    axiosPost: function (endpoint, body, h) {
-        console.log(h);
+    axiosPost: function (endpoint, body, auth) {
+        console.log("Auth: ", auth);
         return axios.post(endpoint, body, { headers: HEADERS });
     }
 }
