@@ -4,9 +4,11 @@ const webtoken = require('jsonwebtoken');  //https://npmjs.org/package/node-json
 
 const getTokenFromHeaders = (req) => {
   console.log("Token: ", req.headers.authorization);
-  var token = req.headers.authorization, decoded;
-  decoded = webtoken.verify(token, secrets.phrase);
-  console.log("Decoded: ", decoded);
+
+  const usertoken = req.headers.authorization;
+const token = usertoken.split(' ');
+const decoded = webtoken.verify(token[1], secrets.phrase);
+console.log(decoded);
 
   const { headers: { authorization } } = req;
 
