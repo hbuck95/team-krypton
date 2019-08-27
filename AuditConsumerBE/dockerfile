@@ -4,7 +4,7 @@ COPY . .
 RUN mvn clean package
 FROM java:8
 WORKDIR /opt/AuditConsumerBE
-COPY --from=build /build/target/AuditConsumerBE-0.0.1-SNAPSHOT.jar AuditConsumer.jar
+COPY --from=build /build/target/AuditBE-0.0.1-SNAPSHOT.jar AuditConsumer.jar
 EXPOSE 9010
 ENTRYPOINT ["/usr/bin/java", "-jar", "AuditConsumer.jar"]
 
