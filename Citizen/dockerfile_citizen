@@ -1,0 +1,10 @@
+FROM maven:latest as build
+WORKDIR /build
+COPY . .
+RUN mvn clean package
+FROM java:8
+WORKDIR /opt/Citizen
+COPY --from=build /build/target/Citizen-0.0.1-SNAPSHOT.jar Citizen.jar
+EXPOSE 9003
+ENTRYPOINT ["/usr/bin/java", "-jar", "Citizen.jar"]
+
