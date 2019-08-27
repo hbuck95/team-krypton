@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash'
+// import _ from 'lodash'
 
 import { Table } from 'reactstrap';
 
@@ -24,8 +24,8 @@ export default class ResultTableVertical extends Component {
             <Table hover bordered >
                 <thead>
                     <tr>
-                        {this.state.topHeaders.map((header) =>
-                            <th>{header}</th>
+                        {this.state.topHeaders.map((header, i) =>
+                            <th key={header + i}>{header}</th>
                         )}
                     </tr>
                 </thead>
@@ -37,11 +37,11 @@ export default class ResultTableVertical extends Component {
                         //     <td>{b}</td>
                         // </tr>)
                     }
-                    {Object.entries(this.props.data).map((value) =>
+                    {Object.entries(this.props.data).map((value, i) =>
                         <tr>
-                            <th scope="row" width={"20%"}>{value[0]}</th>
+                            <th scope="row" width={"20%"} key={i}>{value[0]}</th>
                             {/* <th scope="row" width={"20%"}>{this.state.sideHeaders}</th> */}
-                            <td>{value[1]}</td>
+                            <td key={value[1]}>{value[1]}</td>
                         </tr>
                     )}
                 </tbody>

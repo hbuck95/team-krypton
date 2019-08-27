@@ -6,6 +6,7 @@ import NavbarClass from './NavbarClass'
 import LandingPage from './LandingPage'
 import SearchLocationPage from './SearchBy/SearchLocationPage'
 import SearchPersonResult from './SearchBy/Person/ResultsPage'
+import RegistrationResultPage from './SearchBy/Registration/ResultsPage';
 
 export default class RouterClass extends Component {
 
@@ -14,7 +15,7 @@ export default class RouterClass extends Component {
             console.log("no auth key")
         return (
             <Router>
-                <NavbarClass loggedOut={this.props.loggedOut} toggleLoggedOut={this.props.toggleLogOut} />
+                <NavbarClass loggedOut={this.props.loggedOut} toggleLoggedOut={this.props.toggleLoggedOut} toggleLoggingOut={this.props.toggleLoggingOut} />
 
                 {
                     (this.props.redirect && <Redirect push to={{
@@ -25,10 +26,11 @@ export default class RouterClass extends Component {
                 {
                     (!sessionStorage.getItem('authKey') && <Redirect push to='/login' />)
                 }
-                <Route exact path="/login" render={()=><LoginPage toggleLoggedOut={this.props.toggleLogOut/>} />
+                <Route exact path="/login" render={()=><LoginPage toggleLoggedOut={this.props.toggleLoggedOut}/>} />
                 <Route path="/search/map" render={() => <SearchLocationPage resetRedirect={this.props.resetRedirect} searchData={this.props.searchData} />} />
                 <Route path="/home" render={() => <LandingPage passedFunction={this.props.passedFunction} />} />
                 <Route path="/search/result" render={() => <SearchPersonResult resetRedirect={this.props.resetRedirect} searchData={this.props.searchData} />} />
+                <Route path="/search/vehicle" render={() => <RegistrationResultPage resetRedirect={this.props.resetRedirect} searchData={this.props.searchData}/>} />
             </Router>
         );
     }

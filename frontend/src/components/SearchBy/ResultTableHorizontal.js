@@ -23,18 +23,18 @@ export default class ResultTableHorizontal extends Component {
                     <thead>
                         <tr>
                             {this.props.headers.map((header) =>
-                                <th>{header}</th>
+                                <th key={header}>{header}</th>
                             )}
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.data.map((data) =>
-                        <tr>
+                        {(!this.props.data.noData) ? this.props.data.map((data, i) =>
+                        <tr key={`data-${i}`}>
                             {Object.values(data).map((value) =>
-                                <td>{value}</td>
+                                <td key={`data-${value}`}>{value}</td>
                             )}
                         </tr>
-                        )}
+                        ) : <td>No transactions on record...</td>}
                     </tbody>
                 </Table>
             )
@@ -43,8 +43,8 @@ export default class ResultTableHorizontal extends Component {
             <Table>
                 <thead>
                     <tr>
-                        {this.state.headers.map((header) =>
-                            <th>{header}</th>
+                        {this.props.headers.map((header) =>
+                            <th key={header}>{header}</th>
                         )}
                     </tr>
                 </thead>

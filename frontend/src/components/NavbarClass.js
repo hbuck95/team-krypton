@@ -28,15 +28,10 @@ export default class NavbarClass extends Component {
         this.logout = (e) => {
             e.preventDefault();
             console.log("logout clicked")
-            console.log(sessionStorage.getItem('loggedOut'))
-            if (sessionStorage.getItem('loggedOut')) {
+            if (!this.props.loggedOut) {
                 console.log("user is logged in trying to log out")
-                sessionStorage.setItem('loggingOut', 'true');
                 sessionStorage.removeItem('authKey')
-                this.setState({
-                    loggingOut: sessionStorage.getItem('loggingOut')
-                })
-
+                
                 this.props.toggleLoggedOut();
             }
         }
@@ -45,8 +40,8 @@ export default class NavbarClass extends Component {
     }
 
     render() {
-
-        if (this.props.loggedOut){//!sessionStorage.getItem('authKey')) {
+        console.log("logged out: ", this.props.loggedOut)
+        if (this.props.loggingOut && !this.props.loggedOut){
             return (
                 <Redirect push to='/login' />
             )
@@ -61,7 +56,7 @@ export default class NavbarClass extends Component {
                                 <NavLink tag={Link} to="/help" style={{ fontSize: 25 }}>help</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={(e) => { this.logout(e) }} style={{ fontSize: 25 }}>{sessionStorage.getItem('loggedOut') === 'loggedOut' ? 'log in' : 'log out'}</NavLink>
+                                <NavLink onClick={(e) => { this.logout(e) }} key={this.props.loggedOut} style={{ fontSize: 25 }}>{this.props.loggedOut ? 'log in' : 'log out'}</NavLink>
                             </NavItem>
                         </Nav>
                     </Navbar>

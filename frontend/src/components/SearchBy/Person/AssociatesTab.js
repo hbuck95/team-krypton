@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { TabPane, Spinner } from 'reactstrap'
 
-import ResultTableHorizontal from './SearchPersonResultTableHorizontal'
+import ResultTableHorizontal from '../ResultTableHorizontal'
 
 
 export default class AssociatesTab extends Component {

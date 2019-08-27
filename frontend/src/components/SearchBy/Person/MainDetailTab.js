@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 import { TabPane, Spinner, Row, Col } from 'reactstrap'
 
-import SearchPersonResultTableVertical from './SearchPersonResultTableVertical'
+import ResultTableVertical from '../ResultTableVertical'
 import MapContainer from '../../MapContainer'
 
 export default class MainDetailTab extends Component {
+    
 
     render() {
 
@@ -15,7 +16,7 @@ export default class MainDetailTab extends Component {
             <TabPane tabId="1">
                                 <Row style={{ marginLeft: 0, marginRight: 0 }}>
                                     <Col >
-                                        <SearchPersonResultTableVertical passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
+                                        <ResultTableVertical passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
                                             data={{
                                                 'Forenames': this.props.data.forenames,
                                                 'Surname': this.props.data.surname,

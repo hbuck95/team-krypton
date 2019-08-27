@@ -18,7 +18,8 @@ export default class App extends Component {
       link: '',
       redirect: false,
 
-      loggedOut: true
+      loggedOut: true,
+      loggingOut: false
     }
     localStorage.setItem('test', 'test');
     // sessionStorage.setItem('authKey', 'default');
@@ -46,11 +47,30 @@ export default class App extends Component {
     })
   }
 
+  toggleLoggingOut = () => {
+    this.setState({
+      loggingOut: !this.state.loggingOut
+    })
+  }
+
+  componentDidMount = () => {
+    if(!sessionStorage.getItem('authKey')){
+      this.setState({
+        loggedOut: true
+      })
+    } else {
+      this.setState({
+        loggedOut: false
+      })
+    }
+
+  }
+
 
   render() {
     return (
       <div>
-        <RouterClass loggedOut={this.state.loggedOut} toggleLoggedOut={this.toggleLoggedOut} redirect={this.state.redirect} resetRedirect={this.resetRedirect} link={this.state.link} passedFunction={this.searchData} searchData={this.state.searchData} />
+        <RouterClass loggedOut={this.state.loggedOut} toggleLoggingOut={this.toggleLoggingOut} toggleLoggedOut={this.toggleLoggedOut} redirect={this.state.redirect} resetRedirect={this.resetRedirect} link={this.state.link} passedFunction={this.searchData} searchData={this.state.searchData} />
         <Footer />
       </div>
     );

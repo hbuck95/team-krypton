@@ -33,22 +33,19 @@ export default class LoginPage extends Component {
         this.handleSubmit = (e) => {
             e.preventDefault();
 
-
-
             let detailsToSend = {
                 username: this.state.name,
                 password: this.state.pass
             }
-
-            console.log(detailsToSend);
-
+            
             axios.post('http://35.197.200.12:9000/api/users/login', { user: detailsToSend }, { headers: HEADERS })
                 .then((res) => {
                     console.log(res);
                     sessionStorage.setItem('authKey', res.data.token)
                     this.setState({
                         loginSuccess: true
-                    })
+                    },
+                    () => {this.props.toggleLoggedOut()})
                 })
                 .catch((res) => {
                     console.log(res)

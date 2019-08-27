@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { TabPane, Spinner } from 'reactstrap'
 
-import ResultTableHorizontal from './SearchPersonResultTableHorizontal'
+import ResultTableHorizontal from '../ResultTableHorizontal'
 
 export default class TransactionsTab extends Component {
 
@@ -14,7 +14,7 @@ export default class TransactionsTab extends Component {
             <TabPane tabId='2'>
                 <h2>EPOS Transactions</h2>
                 <ResultTableHorizontal passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
-                    data={this.props.transactionData.epos.transactions}
+                    data={this.props.transactionData.epos.transactions.length !== 0 ? this.props.transactionData.epos.transactions : {noData: true}}
                     headers={['Time Stamp', 'ID', 'Card Number', 'Payee Account', 'Amount']}
                 />
 
