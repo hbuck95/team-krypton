@@ -1,10 +1,11 @@
 const jwt = require('express-jwt');
 const secrets = require('../config/secrets')
+const webtoken = require('jsonwebtoken');  //https://npmjs.org/package/node-jsonwebtoken
 
 const getTokenFromHeaders = (req) => {
   console.log("Token: ", req.headers.authorization);
   var token = req.headers.authorization, decoded;
-  decoded = jwt.verify(token, secrets.phrase);
+  decoded = webtoken.verify(token, secrets.phrase);
   console.log("Decoded: ", decoded);
 
   const { headers: { authorization } } = req;
