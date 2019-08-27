@@ -10,6 +10,9 @@ const API = "http://localhost:9003/citizen"
 const GET_CITIZEN = "/getCitizen";
 
 router.post('/getCitizen', auth.required, (req, res) => {
+
+    makeRequest.createAudit("/getCitizen", req.body, req.header("Authorization"));
+
     return makeRequest.axiosPost(API + GET_CITIZEN, req.body)
         .then(response => {
             return res.status(200).json({ payload: response.data }).end();

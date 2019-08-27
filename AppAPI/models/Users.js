@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
+const secrets = require('../config/secrets');
 
 const { Schema } = mongoose;
 
@@ -29,7 +30,7 @@ UsersSchema.methods.generateJWT = function() {
     username: this.username,
     id: this._id,
     exp: parseInt(expirationDate.getTime() / 1000, 10),
-  }, 'secret');
+  }, secrets.phrase);
 }
 
 UsersSchema.methods.toAuthJSON = function() {

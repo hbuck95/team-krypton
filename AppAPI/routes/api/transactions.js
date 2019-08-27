@@ -44,13 +44,15 @@ router.post('/getTransactionLocations', auth.required, (req, res) => {
   //The payload object returned when all axios requests have been resolved
   const payload = {
     eposLocations: null,
-    atmLocataions: null,
+    atmLocations: null,
   };
+
+  makeRequest.createAudit("/getTransactionLocations", req.body, req.header("Authorization"));
 
   return makeRequest.axiosPost(API + GET_ATM_LOCATION, req.body.atmTransactions)
     .then(response => {
       payload.atmLocations = response.data;
-      return makeRequest.axiosPost(API + GET_EPOS_LOCATION, req.body.eposLocations)
+      return makeRequest.axiosPost(API + GET_EPOS_LOCATION, req.body.eposTransactions)
     })
     .then(response => {
       payload.eposLocations = response.data;
@@ -93,6 +95,8 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
     bankCardNumber: null
   };
 
+  makeRequest.createAudit("/getTransactionsForCitizen", req.body, req.header("Authorization"));
+
   return makeRequest.axiosPost(API + GET_ACCOUNT_HOLDER, req.body)
     .then(response => {
 
@@ -131,7 +135,7 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
       //End the request chain by returning the payload object with a status code of OK.
       return res.status(200).json({ payload: payload }).end();
     }).catch(err => {
-      
+
       console.log(err);
       return res.status(500).json({ error: err });
     })
