@@ -33,4 +33,10 @@ public class CellTowerServiceImpl implements CellTowerService {
 		return locations;
 	}
 
+	@Override
+	public List<CellTowerEntity> getAllCellTowers() {
+		return repo.findAll();
+
+	}
+
 }
