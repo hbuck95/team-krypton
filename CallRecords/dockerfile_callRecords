@@ -1,0 +1,10 @@
+FROM maven:latest as build
+WORKDIR /build
+COPY . .
+RUN mvn clean package
+FROM java:8
+WORKDIR /opt/CallRecords
+COPY --from=build /build/target/CallRecords-0.0.1-SNAPSHOT.jar CallRecords.jar
+EXPOSE 9004
+ENTRYPOINT ["/usr/bin/java", "-jar", "CallRecords.jar"]
+
