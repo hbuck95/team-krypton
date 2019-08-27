@@ -44,13 +44,13 @@ router.post('/getTransactionLocations', auth.required, (req, res) => {
   //The payload object returned when all axios requests have been resolved
   const payload = {
     eposLocations: null,
-    atmLocataions: null,
+    atmLocations: null,
   };
 
   return makeRequest.axiosPost(API + GET_ATM_LOCATION, req.body.atmTransactions)
     .then(response => {
       payload.atmLocations = response.data;
-      return makeRequest.axiosPost(API + GET_EPOS_LOCATION, req.body.eposLocations)
+      return makeRequest.axiosPost(API + GET_EPOS_LOCATION, req.body.eposTransactions)
     })
     .then(response => {
       payload.eposLocations = response.data;
