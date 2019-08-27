@@ -60,7 +60,6 @@ public class VehicleRegistrationServiceTest {
 	assertEquals(VEHICLE1, service.findByRegistration(VEHICLE1));
 	Mockito.verify(repo).findByVehicleRegistrationNo("QN03 WUU");
 	
-	
 		
 	}
 	

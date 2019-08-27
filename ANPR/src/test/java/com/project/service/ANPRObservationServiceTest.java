@@ -2,10 +2,14 @@ package com.project.service;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -27,16 +31,19 @@ public class ANPRObservationServiceTest {
 	private static final ANPRObservationEntity ANPR_OBSERVATION2 = new ANPRObservationEntity(5538,
 			"2015-05-01T09:10:45.975", "IU22 HFF");
 
-//	@Test
-//	public void getANPRObservation() {
-//		List<ANPRObservationEntity> MOCK_LIST = new ArrayList<>();
-//		MOCK_LIST.add(ANPR_OBSERVATION1);
-//		MOCK_LIST.add(ANPR_OBSERVATION2);
-//		Mockito.when(repo.findByVehicleRegistrationNumber("IU22 HFF")).thenReturn(MOCK_LIST);
-//		assertEquals(MOCK_LIST, service.findByVehicleRegistrationNumber(ANPR_OBSERVATION1));
-//		Mockito.verify(repo).findByVehicleRegistrationNumber("IU22 HFF");
-//
-//	}
+	@Test
+	public void findByVehicleRegistrationNumber() {
+		List<ANPRObservationEntity> MOCK_LIST = new ArrayList<>();
+		MOCK_LIST.add(ANPR_OBSERVATION1);
+		MOCK_LIST.add(ANPR_OBSERVATION2);
+		Mockito.when(repo.findByVehicleRegistrationNumber("IU22 HFF")).thenReturn(MOCK_LIST);
+		assertEquals(MOCK_LIST, service.findByVehicleRegistrationNumber(ANPR_OBSERVATION1));
+		Mockito.verify(repo).findByVehicleRegistrationNumber("IU22 HFF");
+
+	}
+	
+	
+	
 
 	@Test
 	public void defaultConstructorTest() {
