@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const secrets = require('../config/secrets');
 
 exports.getUser = function (req) {
     if (req.headers && req.headers.authorization) {
