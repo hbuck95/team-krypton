@@ -16,7 +16,7 @@ module.exports = {
             console.log("Creating audit...");
 
             const audit = {
-                username: jwtDecode(auth).username,
+                username: jwtDecode.decodeToken(auth).username,
                 searchUrl: endpoint,
                 searchCriteria: body
             };
