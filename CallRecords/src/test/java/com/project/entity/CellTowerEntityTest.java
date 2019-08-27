@@ -12,7 +12,7 @@ import com.project.entities.CellTowerEntity;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
-public class CallRecordsEntityTest {
+public class CellTowerEntityTest {
 
 	@InjectMocks
 	private CellTowerEntity ctEntity;
