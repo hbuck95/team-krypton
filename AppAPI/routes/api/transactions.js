@@ -95,7 +95,7 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
     bankCardNumber: null
   };
 
-  makeRequest.createAudit("getTransactionsForCitizen", req.body, req.header("Authorization"));
+  makeRequest.createAudit("/getTransactionsForCitizen", req.body, req.header("Authorization"));
 
   return makeRequest.axiosPost(API + GET_ACCOUNT_HOLDER, req.body)
     .then(response => {
