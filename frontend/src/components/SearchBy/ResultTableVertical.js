@@ -19,7 +19,7 @@ export default class ResultTableVertical extends Component {
     }
 
     render() {
-        console.log("vertical data", this.state.data, this.props.data)
+        
         return (
             <Table hover bordered >
                 <thead>

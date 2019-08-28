@@ -15,8 +15,7 @@ export default class ResultTableHorizontal extends Component {
     }
 
     render() {
-        console.log("horizontal render: ", this.state.data, this.props.data)
-        console.log("no data:", this.props.noData)
+        
         if (this.props.data !== undefined && !this.props.data.noData) {
             console.log("error handle" , this.props.data)
             return (
