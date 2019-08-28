@@ -93,12 +93,13 @@ Examples of some of the issues we identified are:
 
 ---
 ## Front-End Design 
-## Wireframes
+### Wireframes
 ![LFwireframe](/Docs/LFwireframe.PNG)
 Low fidelity wireframes designed during Sprint one.
 front-end in React.
 ![hf](/Docs/hfWireframe.PNG)
 High-Fidelity wireframes: Used for guidence and planning when developing the 
+### Final Appearance
 
 
 ## Testing
