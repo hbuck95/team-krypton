@@ -2,7 +2,7 @@ const router = require('express').Router();
 const auth = require('../auth');
 const makeRequest = require('../../util/makeRequest');
 
-const API = "citizen/citizen"
+const API = "http://citizen:9003/citizen"
 
 // @route  POST http://localhost:9003/citizen/getCitizen
 // @desc   Get a citizen record based on their forenames, surname, and address
@@ -11,7 +11,7 @@ const GET_CITIZEN = "/getCitizen";
 
 router.post('/getCitizen', auth.required, (req, res) => {
 
-    makeRequest.createAudit("/getCitizen", req.body, req.header("Authorization"));
+    //makeRequest.createAudit("/getCitizen", req.body, req.header("Authorization"));
 
     return makeRequest.axiosPost(API + GET_CITIZEN, req.body)
         .then(response => {
