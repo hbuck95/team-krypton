@@ -67,7 +67,7 @@ ATM: SpringBoot, Port: 9009
 
 
 ## Risk Graph
-![RiskGraph](/Docs/RiskGraph.png)
+![RiskGraph](/Docs/RiskGraph.PNG)
 
 To forecast issues likely to occur during the 2.5 week project and allocate time for potential issues we used a Risk Graph.
 
@@ -92,7 +92,7 @@ Examples of some of the issues we identified are:
 ![Architecture](/Docs/LoginSequence.png)
 
 ## Testing
-![Junit](/Docs/JunitANPR.png)
+![Junit](/Docs/JunitANPR.PNG)
 To cover our source code, Junit and Mockito tests were written and run. Jacoco and SonarQube reporting gave test coverage scores, code smells and highlighted bugs for our work.
  
 [Link to Surefire Report Example](/Docs/ANPR - Surefire Report.pdf)
