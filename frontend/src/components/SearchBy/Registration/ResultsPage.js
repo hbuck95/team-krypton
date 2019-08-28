@@ -129,14 +129,9 @@ export default class RegistrationResultPage extends Component {
                         <TabPane tabId='2'>
                             <h2>ANPR Cameras</h2>
                             <ResultTableHorizontal passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
-                                data={this.state.locationsData !== {} ?{
-                                    timeStamp: this.state.locationsData.timeStamp,
-                                    streetName: this.state.locationsData.streetName,
-                                    latitude: this.state.locationsData.latitude,
-                                    longitude: this.state.locationsData.longitude,
-                                    anprId: this.state.locationsData.anprId
-                                } :{noData: 'No ANPR Camera locations' }}
-                                headers={['Time Stamp', 'Street Name', 'Longitude', 'Latitude', 'ANPR ID']} />
+                                data={this.state.locationsData !== {} ?
+                                    this.state.locationsData : { noData: 'No ANPR Camera locations' }}
+                                headers={['ANPR', 'Street Name', 'Longitude', 'Latitude', 'Time Stamp']} />
                             <Col md="auto">
                                 <MapContainer height="400px" width="500px" style={{ marginTop: 50, marginRight: 50 }} data={[{ lat: 50.809310, lng: -1.070670 }]} />
                             </Col>
