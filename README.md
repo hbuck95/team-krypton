@@ -22,11 +22,11 @@ Technologies
 
 ## Authors
 
-Harry
-James
-Krystal
-Jack
-Tania 
+- Harry
+- James
+- Krystal
+- Jack
+- Tania 
 
 
 
