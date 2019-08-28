@@ -8,6 +8,7 @@ import TransactionsTab from './TransactionsTab';
 import AssociatesTab from './AssociatesTab';
 import MainDetailTab from './MainDetailTab';
 
+import IP from '../../../ipaddress'
 import GEO_API_KEY from '../../../geocoderApiKey';
 import KnownLocationsTab from './KnownLocationsTab';
 
@@ -66,7 +67,7 @@ export default class SearchPersonResult extends Component {
                 .catch(res => {
                     console.log("geocoder fail", res);
                 })
-            axios.post('http://35.197.200.12:9000/api/citizen/getCitizen', {
+            axios.post(`${IP}/api/citizen/getCitizen`, {
                 "forenames": this.state.searchData.forenames,
                 "surname": this.state.searchData.surname,
                 "homeAddress": this.state.searchData.homeAddress
@@ -92,7 +93,7 @@ export default class SearchPersonResult extends Component {
                     }
                 })
 
-            axios.post('http://35.197.200.12:9000/api/transactions/getTransactionsForCitizen', {
+            axios.post(`${IP}/api/transactions/getTransactionsForCitizen`, {
                 "forenames": this.state.searchData.forenames,
                 "surname": this.state.searchData.surname,
                 "homeAddress": this.state.searchData.homeAddress
@@ -117,7 +118,7 @@ export default class SearchPersonResult extends Component {
                     }
                 })
 
-            axios.post('http://35.197.200.12:9000/api/callrecords/getAssociates', {
+            axios.post(`${IP}/api/callrecords/getAssociates`, {
                 "forenames": this.state.searchData.forenames,
                 "surname": this.state.searchData.surname,
                 "address": this.state.searchData.homeAddress
@@ -135,13 +136,13 @@ export default class SearchPersonResult extends Component {
                     console.log("associates post failed!")
                 )
 
-            axios.post('http://35.197.200.12:9000/api/callrecords/getCellTowers',
+            axios.post(`${IP}/api/callrecords/getCellTowers`,
                 {},
                 { headers: HEADERS })
                 .then()
                 .catch()
 
-            axios.post('http://35.197.200.12:9000/api/vehicle/getANPRCameras',
+            axios.post(`${IP}/api/vehicle/getANPRCameras`,
                 {
                     "forenames": this.state.searchData.forenames,
                     "surname": this.state.searchData.surname,

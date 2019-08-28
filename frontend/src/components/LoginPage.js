@@ -22,6 +22,8 @@ import '../App.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 
+import IP from '../ipaddress'
+
 const HEADERS = { "Content-Type": "application/json" }
 
 export default class LoginPage extends Component {
@@ -52,7 +54,7 @@ export default class LoginPage extends Component {
                     sentRequest: true
                 })
 
-                axios.post('http://35.197.200.12:9000/api/users/login', { user: detailsToSend }, { headers: HEADERS })
+                axios.post(`${IP}/api/users/login`, { user: detailsToSend }, { headers: HEADERS })
                     .then((res) => {
                         console.log(res);
                         sessionStorage.setItem('authKey', res.data.token)

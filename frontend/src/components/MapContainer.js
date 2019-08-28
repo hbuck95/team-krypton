@@ -3,6 +3,7 @@ import { Row, Col } from 'reactstrap'
 import { withScriptjs, withGoogleMap, Marker, Circle } from 'react-google-maps';
 //import { DrawingManager } from 'react-google-maps/lib/components/drawing/DrawingManager';
 import API_KEY from '../gmapsApiKey'
+import IP from '../ipaddress'
 const { GoogleMap } = require("react-google-maps");
 const defaultLatLng = { lat: 52.3555, lng: -1.1743, radius: 5000 };
 
