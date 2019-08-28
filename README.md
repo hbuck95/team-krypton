@@ -59,26 +59,34 @@ ATM: SpringBoot, Port: 9009
 
 az configure --defaults location=uksouth
 
-# Create a new resource group 
+## Create a new resource group 
 az group create --name myResourceGroup
 
-# Create a VM
+## Create a VM
 az vm create --resource-group myResourceGroup --name vmName --image UbuntuLTS --generate-ssh-keys
 
-### Installing docker
+## Installing docker
 sudo apt update
 
 sudo apt install docker.io -y
 
 sudo usermod -aG docker $(whoami)
 
-### Installing docker-compose on Linux
+## Installing docker-compose on Linux
 Next install docker-compose on your manager VM.
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 sudo chmod +x /usr/local/bin/docker-compose
 ```
+
+
+cd ~
+git clone https://github.com/hbuck95/team-krypton.git
+cd team-krypton
+docker-compose build
+```
+
 
 
 ---
