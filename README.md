@@ -90,6 +90,8 @@ Examples of some of the issues we identified are:
 
 ## Sequence Diagrams
 ![Architecture](/Docs/LoginSequence.png)
+Sequence Diagrams were drawn up for all three of the given scenarios. Each depict the objects and classes involved, and the sequence of messages exchanged between the classes. They show the order of the interaction visually by using the vertical axis of the diagram to represent what messages are sent and when.
+
 
 ---
 ## Front-End Design 
