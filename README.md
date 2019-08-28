@@ -7,6 +7,8 @@ Table of Contents
 - [Risk Graph](#risk)
 - [How To Use](#how-to-use)
 - [Architecture](#architecture)
+- [Project Planning](#project-planning)
+- [Testing](#testing)
 - [Authors](#authors)
 
 ---
@@ -47,8 +49,6 @@ Epos: SpringBoot, Port: 9008
 ATM: SpringBoot, Port: 9009
 
 ---
-## Sequence Diagrams
-![Architecture](/Docs/LoginSequence.png)
 
 ### Project Planning
 
@@ -62,6 +62,7 @@ ATM: SpringBoot, Port: 9009
 - Jira - Project Planning tool
 - GCP - Live Enviroment
 - Docker - Compose - to build all containers at once from images stored
+
 
 
 
@@ -86,6 +87,8 @@ Examples of some of the issues we identified are:
 * Docker - Issues	Issues with configuration delay progress - Treat
 * Unknown Unknowns - Tolerate
 
+## Sequence Diagrams
+![Architecture](/Docs/LoginSequence.png)
 
 ## Testing
 To cover our source code, Junit and Mockito tests were written and run. Jacoco and SonarQube reporting gave test coverage scores, code smells and highlighted bugs for our work.
