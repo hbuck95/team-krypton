@@ -1,0 +1,54 @@
+div.window { 
+    color: white;
+    width: 220px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background: #474c55;
+
+    position:fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+    text-align: center;
+    margin: 0 auto; 
+
+    visibility: visible;
+  }
+
+  input.closer {
+    float: right;
+    margin-right: 25px;
+    margin-top: 15px;
+    color: rgb(223, 69, 69);
+  }
+
+  div.window label { 
+    height: 30px;
+    display: block;
+    background: #474c55;
+    font-size: larger;
+    border-radius: 5px;
+    padding: .6rem;
+    transition: .4s all linear; 
+  }
+
+  div.window label:before {
+      content: "Click for help"
+  }
+
+  div.window label:hover { 
+    cursor: pointer; background: #515761; 
+    height: 50px;
+  }
+  input.toggle ~ div { 
+    height: 0px; margin: .2rem;
+    overflow: hidden;
+    transition: 0.6s all cubic-bezier(0.72, -0.48, 0.13, 1.4)
+  }
+  input.toggle:checked ~ div { height: 400px;  }
+  input.toggle:checked + label { background: #515761; height: 50px; }
+  input.toggle { display: none; }
+
+  input.toggle:checked + label:before { content: "" }
+  input.toggle:checked + label:after { content: "Click to close" }

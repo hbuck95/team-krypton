@@ -1,0 +1,41 @@
+.Selected {
+    background-color: "#f26521"!important
+}
+
+.App {
+    text-align: center;
+}
+
+#Footer {
+    position: "fixed";
+    left: 0;
+    bottom: 0;
+    background-color: "#474c55";
+    height:"5%";
+    width: "100%";
+    text-align: "center";
+    transition: 0.3s;
+}
+
+#Footer:hover {
+    height:10%;
+    background-color: "grey";
+}
+
+#Footer:active {
+    height:70%;
+}
+
+#helpHeader {
+    color:white;
+    font-size: 20;
+}
+
+#helpText {
+    visibility: hidden;
+}
+
+#helpText:active {
+    visibility: visible;
+}
+
