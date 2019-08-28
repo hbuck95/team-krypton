@@ -1,7 +1,7 @@
 # team-krypton
 ---
 
-##Table of Contents
+Table of Contents
 
 - [Description](#description)
 - [How To Use](#how-to-use)
@@ -10,7 +10,7 @@
 ## Description
 
 ###Technologies
--Java
+- Java
 
 ---
 ## How To Use
