@@ -131,6 +131,17 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
 
       payload.epos.transactionLocations = response.data
     }).then(() => {
+      for(let i in payload.epos.transactionLocations){
+        payload.epos.transactionLocations[i][0] = payload.epos.transactions[i][0]
+      }
+
+      for(let i in payload.atm.transactionLocations){
+        payload.atm.transactionLocations[i][0] = payload.atm.transactions[i][0]
+      }
+
+      console.log("Updated payload: ", payload);
+      
+    }).then(() => {
 
       //End the request chain by returning the payload object with a status code of OK.
       return res.status(200).json({ payload: payload }).end();
