@@ -92,6 +92,9 @@ To cover our source code, Junit and Mockito tests were written and run. Jacoco a
  
 [Link to Surefire Report Example](/Docs/ANPR - Surefire Report.pdf)
 
+Test coverage for the back-end code is at 91.67%.
+Currently no Selenium tests, however this will an improvemnet for furture development.
+
 ## How To Use
 ### Set up
 * GCP/Azure account
