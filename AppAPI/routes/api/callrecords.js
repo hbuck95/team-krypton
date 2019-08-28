@@ -4,7 +4,7 @@ const _ = require('lodash');
 const makeRequest = require('../../util/makeRequest');
 
 //URL to the transactions microservice
-const API = "http://localhost:9004/call"
+const API = "http://call-records:9004/call"
 
 // @route  POST http://localhost:9004/call/getPhoneNumber
 // @desc   Get all EPOS transactions for a bank card
