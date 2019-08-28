@@ -59,9 +59,20 @@ typings/
 
 # next.js build output
 
+.next node_modules
+
+#node modules
+frontend/node_modules
+
+#google maps api key
+frontend/src/gmapsApiKey.js
+
+#geocoder api key
+frontend/src/geocoderApiKey.js
+
+
 .next node_modulesoperties
 
 .next node_modules
 
 /.metadata/
-
