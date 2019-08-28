@@ -112,6 +112,7 @@ High-Fidelity wireframes: Used for guidence and planning when developing the Fro
 To cover our source code, Junit and Mockito tests were written and run. Jacoco and SonarQube reporting gave test coverage scores, code smells and highlighted bugs for our work.
  
 [Link to Surefire Report Example](/Docs/ANPR - Surefire Report.pdf)
+[Link to Final Surefire Report](/Dos/ANPRindex.html)
 
 Test coverage for the back-end code is at 91.67%.
 Currently no Selenium tests, however this will be an improvement for furture development.
