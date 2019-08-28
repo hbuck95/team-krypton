@@ -132,11 +132,11 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
       payload.epos.transactionLocations = response.data
     }).then(() => {
       for(let i in payload.epos.transactionLocations){
-        payload.epos.transactionLocations[i][0] = payload.epos.transactions[i][0]
+        payload.epos.transactionLocations[i].id = payload.epos.transactions[i].timestamp
       }
 
       for(let i in payload.atm.transactionLocations){
-        payload.atm.transactionLocations[i][0] = payload.atm.transactions[i][0]
+        payload.atm.transactionLocations[i].atmId = payload.atm.transactions[i].timeStamp
       }
 
       console.log("Updated payload: ", payload);
