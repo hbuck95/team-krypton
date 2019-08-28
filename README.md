@@ -77,13 +77,13 @@ Terminate - "Situations that need immediate attention" - need to be dealt with e
 
 Examples of some of the issues we identified are:
 
-* Knowledge	Knowledge limited to technologies covered in academy
-Internet	Internet service issues at QA, unable to reach cloud services
-Communication	Poor communication will lead to poor project end result
-Planning	Not completing tasks to customer specification
-New Technologies	New software being utilised with scope, limited knowledge
-Docker Issues	Issues with configuration delay progress
-*Unknown Unknowns
+* Knowledge	- Knowledge limited to technologies covered in academy - Treat
+* Internet	- Internet service issues at QA, unable to reach cloud services - Tolerate
+* Communication - 	Poor communication will lead to poor project end result - Treat
+* Planning	- Not completing tasks to customer specification - Treat
+* New Technologies -	New software being utilised with scope, limited knowledge - Treat
+* Docker - Issues	Issues with configuration delay progress - Treat
+* Unknown Unknowns - Tolerate
 
 ## How To Use
 ### Set up
@@ -135,6 +135,12 @@ docker-compose build
 - Krystal
 - Jack
 - Tania 
+
+## Acknowledgements
+* QA consulting and our amazing instructors.
+* The Product Owners for their advice.
+
+
 
 
 
