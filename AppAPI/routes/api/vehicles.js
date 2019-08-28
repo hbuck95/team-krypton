@@ -35,34 +35,34 @@ router.post("/getVehicle", auth.required, (req, res) => {
 router.post("/getAnprCameras", auth.required, (req, res) => {
 
     const payload = {
-        anprObservations: null,
-        anprCamera: null
+        anpr: null
     };
+
+    const anprObservations = null;
 
     makeRequest.createAudit("/getAnprCameras", req.body, req.header("Authorization"));
 
     return makeRequest.axiosPost(API + GET_VEHICLE_REGISTRATIONS, req.body)
         .then(response => {
-            console.log("/getVehicleRegistrations")
-            console.log(response);
-            console.log("Body: ", req.body);
             return makeRequest.axiosPost(API + GET_ANPR_OBSERVATIONS, response.data)
         })
         .then(response => {
-            console.log("/getANPRObservations")
-            console.log("Data: ", response.data);
-            console.log("Body: ", req.body);
-            payload.anprObservations = response.data;
+            anprObservations = response.data;
             return makeRequest.axiosPost(API + GET_ANPR_CAMERA, response.data)
         })
         .then(response => {
-            console.log("/getANPRCamera")
-            console.log("Data: ", response.data);
-            console.log("Body: ", req.body);
-            payload.anprCamera = response.data;
+            let data = response.data;
+
+            for(let i in anprObservations){
+                data[i].timestamp = anprObservations[i].timeStamp;
+            }
+
+            payload.anpr = data;
         })
         .then(() => {
-            console.log("Payload: ", payload);
+            
+        })
+        .then(() => {
             return res.status(200).json(payload).end();
         })
         .catch(err => {
@@ -70,6 +70,5 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
             return res.status(500).json({ message: "An error ocurred whilst processing your request.", error: err });
         });
 });
-
 
 module.exports = router;
