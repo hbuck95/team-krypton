@@ -92,8 +92,8 @@ Examples of some of the issues we identified are:
 ![Architecture](/Docs/LoginSequence.png)
 
 ---
-### Front-End Design 
-##Wireframes
+## Front-End Design 
+## Wireframes
 ![LFwireframe](/Docs/LFwireframe.PNG)
 Low fidelity wireframes designed during Sprint one.
 front-end in React.
