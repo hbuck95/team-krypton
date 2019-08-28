@@ -51,7 +51,7 @@ ATM: SpringBoot, Port: 9009
 
 ### Project Planning
 
-## Technology
+## Technologies Used
 - Mongo - Database
 - Node - APP and User microservices 
 - SpringBoot - 
