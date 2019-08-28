@@ -35,9 +35,10 @@ router.post("/getVehicle", auth.required, (req, res) => {
 router.post("/getAnprCameras", auth.required, (req, res) => {
 
     const payload = {
-        anprObservations: null,
-        anprCamera: null
+        anpr: null
     };
+
+    const anprObservations = null;
 
     makeRequest.createAudit("/getAnprCameras", req.body, req.header("Authorization"));
 
@@ -46,11 +47,20 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
             return makeRequest.axiosPost(API + GET_ANPR_OBSERVATIONS, response.data)
         })
         .then(response => {
-            payload.anprObservations = response.data;
+            anprObservations = response.data;
             return makeRequest.axiosPost(API + GET_ANPR_CAMERA, response.data)
         })
         .then(response => {
-            payload.anprCamera = response.data;
+            let data = response.data;
+
+            for(let i in anprObservations){
+                data[i].timestamp = anprObservations[i].timeStamp;
+            }
+
+            payload.anpr = data;
+        })
+        .then(() => {
+            
         })
         .then(() => {
             return res.status(200).json(payload).end();
