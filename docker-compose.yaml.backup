@@ -1,0 +1,140 @@
+version: "3.3" 
+services: 
+    jolly-williams-alpha:
+      image: mongo:latest
+      ports:
+      - target: 27017
+        published: 9011
+
+    jolly-williams-bravo: 
+      image: mongo:latest 
+      ports: 
+      - target: 27017
+        published: 9012  
+        protocol: tcp 
+      volumes:
+      - '/krypton/Docker/mongoDBBravo:/data/db'
+      command: mongod --auth
+      depends_on:
+        - jolly_williams_alpha
+
+    audit-consumer:
+      build:
+        context: ./AuditConsumerBE
+        dockerfile: dockerfile
+      links:
+      - "jolly_williams_bravo:jolly_williams_bravo"
+      ports:
+      - target: 9010
+        published: 9010
+      environment:
+        - HOST=jolly_williams_alpha
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+
+    audit-producer:
+      build:
+        context: ./AuditProducerBE
+        dockerfile: dockerfile
+      links:
+      - "jolly_williams_bravo:jolly_williams_bravo"
+      ports:
+      - target: 9002
+        published: 9002
+      environment:
+        - HOST=jolly_williams_alpha
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+        - audit_consumer
+
+    citizen:
+      build:
+        context: ./Citizen
+        dockerfile: dockerfile
+      links:
+      - "jolly_williams_bravo:jolly_williams_bravo"
+      ports:
+      - target: 9003
+        published: 9003
+      environment:
+        - HOST=jolly_williams_bravo
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+        - audit_consumer
+        - audit_producer
+
+    call-records:
+      build:
+        context: ./CallRecords
+        dockerfile: dockerfile
+      links:
+      - "jolly_williams_bravo:jolly_williams_bravo"
+      ports:
+      - target: 9004
+        published: 9004
+      environment:
+        - HOST=jolly_williams_bravo
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+        - audit_consumer
+        - audit_producer
+        - citizen
+
+    anpr:
+      build:
+        context: ./ANPR
+        dockerfile: dockerfile
+      links:
+      - "jolly_williams_bravo:jolly_williams_bravo"
+      ports:
+      - target: 9005
+        published: 9005
+      environment:
+        - HOST=jolly_williams_bravo
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+        - audit_consumer
+        - audit_producer
+        - citizen
+        - call_records
+
+    transactions:
+      build:
+        context: ./Transcations
+        dockerfile: dockerfile
+      links:
+      - "jolly_williams_bravo:jolly_williams_bravo"
+      ports:
+      - target: 9006
+        published: 9006
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+        - audit_consumer
+        - audit_producer
+        - citizen
+        - call_records
+        - anpr
+
+    app:
+      build:
+        context: ./AppAPI
+        dockerfile: dockerfile
+      ports:
+      - target: 9000
+        published: 9000
+      depends_on:
+        - jolly_williams_alpha
+        - jolly_williams_bravo
+        - audit_consumer
+        - audit_producer
+        - citizen
+        - call_records
+        - anpr
+        - transactions
+
