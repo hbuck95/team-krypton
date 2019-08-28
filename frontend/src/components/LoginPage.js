@@ -56,7 +56,7 @@ export default class LoginPage extends Component {
 
             axios.post(`${IP}/api/users/login`, { user: detailsToSend }, { headers: HEADERS })
                 .then((res) => {
-                    console.log(res);
+                    console.log(res.status);
                     sessionStorage.setItem('authKey', res.data.token)
                     this.setState({
                         loginSuccess: true,

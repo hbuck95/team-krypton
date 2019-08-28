@@ -76,22 +76,22 @@ class Map extends Component {
 
             let HEADERS = { "Content-Type": "application/json", "Authorization": `Token ${sessionStorage.getItem('authKey')}` }
 
-            if(sessionStorage.getItem('scenario')=== '3'){
-            axios.post(`${IP}/api/vehicle/getANPRCameras`, {
-                "forenames": this.state.searchData.forenames,
-                "surname": this.state.searchData.surname,
-                "address": this.state.searchData.address
-            },
-            { headers: HEADERS })
-            .then(res => {
-                console.log("success", res)
-                // this.setState({
-                //     data: res.data.payload
-                // })
-            })
-            .catch(res => {
-                console.log("error!", res)
-            })
+            if (sessionStorage.getItem('scenario') === '3') {
+                axios.post(`${IP}/api/vehicle/getANPRCameras`, {
+                    "forenames": this.state.searchData.forenames,
+                    "surname": this.state.searchData.surname,
+                    "address": this.state.searchData.address
+                },
+                    { headers: HEADERS })
+                    .then(res => {
+                        console.log("success", res)
+                        // this.setState({
+                        //     data: res.data.payload
+                        // })
+                    })
+                    .catch(res => {
+                        console.log("error!", res)
+                    })
             }
         }
     }
@@ -100,87 +100,105 @@ class Map extends Component {
     render() {
         return (
             <div>
-                <GoogleMap
-                    defaultZoom={this.state.defaultZoom}
-                    defaultCenter={{ lat: this.state.viewLat, lng: this.state.viewLng }}
-                    onClick={() => { this.setState({ editcircle: false }) }}
-                    onDblClick={(e) => { console.log(e) }}
-                // onCenterChanged={ (e)=> this.getCenter(e)}
-                >
-                    {(this.state.data !== []) && this.state.data.map(place => {
-                        return (<Fragment key={place.id}>
+                <Row>
+                    <Col>
+                        <GoogleMap
+                            defaultZoom={this.state.defaultZoom}
+                            defaultCenter={{ lat: this.state.viewLat, lng: this.state.viewLng }}
+                            onClick={() => { this.setState({ editcircle: false }) }}
+                            onDblClick={(e) => { console.log(e) }}
+                        // onCenterChanged={ (e)=> this.getCenter(e)}
+                        >
+                            {(this.state.data !== []) && this.state.data.map(place => {
+                                return (<Fragment key={place.id}>
+                                    <Marker
+                                        position={{
+                                            lat: parseFloat(place.latitude),
+                                            lng: parseFloat(place.longitude)
+                                        }}
+                                    />
+                                </Fragment>)
+                            })}
+
+
+
                             <Marker
-                                position={{
-                                    lat: parseFloat(place.latitude),
-                                    lng: parseFloat(place.longitude)
+                                position={{ lat: this.state.lat, lng: this.state.lng }}
+                                draggable={true}
+                                onDragStart={(e) => {
+                                    console.log(this.state.prevLat, this.state.prevLng)
+                                    this.setState(state => {
+                                        const prevLat = [...state.prevLat, parseFloat(e.latLng.lat())];
+                                        const prevLng = [...state.prevLng, parseFloat(e.latLng.lng())];
+                                        return {
+                                            prevLat,
+                                            prevLng
+                                        };
+                                    });
                                 }}
+
+                                onDrag={(e) => {
+
+                                    this.setState({
+                                        undos: 0,
+                                        lat: parseFloat(Math.round(e.latLng.lat() * 10000) / 10000),
+                                        lng: parseFloat(Math.round(e.latLng.lng() * 10000) / 10000),
+                                        newLat: parseFloat(Math.round(e.latLng.lat() * 10000) / 10000),
+                                        newLng: parseFloat(Math.round(e.latLng.lng() * 10000) / 10000)
+                                    })
+                                }}
+
                             />
-                        </Fragment>)
-                    })}
-                }
-                
 
-                    <Marker
-                        position={{ lat: this.state.lat, lng: this.state.lng }}
-                        draggable={true}
-                        onDragStart={(e) => {
-                            console.log(this.state.prevLat, this.state.prevLng)
-                            this.setState(state => {
-                                const prevLat = [...state.prevLat, parseFloat(e.latLng.lat())];
-                                const prevLng = [...state.prevLng, parseFloat(e.latLng.lng())];
-                                return {
-                                    prevLat,
-                                    prevLng
-                                };
-                            });
-                        }}
+                            <Circle
+                                defaultCenter={{ lat: this.state.lat, lng: this.state.lng }}
+                                center={{ lat: this.state.lat, lng: this.state.lng }}
+                                defaultRadius={10000}
+                                radius={this.state.radius}
+                                visible={true}
+                                editable={this.state.editcircle}
+                                onDblClick={() => { this.setState({ editcircle: true }) }}
+                                onRadiusChanged={(e) => console.log("radius change", e)}
 
-                        onDrag={(e) => {
-
-                            this.setState({
-                                undos: 0,
-                                lat: parseFloat(Math.round(e.latLng.lat() * 10000) / 10000),
-                                lng: parseFloat(Math.round(e.latLng.lng() * 10000) / 10000),
-                                newLat: parseFloat(Math.round(e.latLng.lat() * 10000) / 10000),
-                                newLng: parseFloat(Math.round(e.latLng.lng() * 10000) / 10000)
-                            })
-                        }}
-
-                    />
-
-                    <Circle
-                        defaultCenter={{ lat: this.state.lat, lng: this.state.lng }}
-                        center={{ lat: this.state.lat, lng: this.state.lng }}
-                        defaultRadius={10000}
-                        radius={this.state.radius}
-                        visible={true}
-                        editable={this.state.editcircle}
-                        onDblClick={() => { this.setState({ editcircle: true }) }}
-                        onRadiusChanged={(e) => console.log("radius change", e)}
-
-                    />
-                </GoogleMap>
-                <form onSubmit={(e) => { this.onSubmit(e) }}>
-                    <Row>
-                        <span >Latitude:</span>
-                        <input type="number" step="0.0001" value={this.state.newLat} onChange={(e) => { this.setState({ newLat: parseFloat(e.target.value) }) }}></input>
-                    </Row>
-                    <Row>
-                        <span >Longitude:</span>
-                        <input type="number" step="0.0001" value={this.state.newLng} onChange={(e) => { if (!NaN) { this.setState({ newLng: parseFloat(e.target.value) }) } }}></input>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <span >Radius:</span>
-                            <input type="number" value={this.state.radius} onChange={(e) => { this.setState({ radius: parseFloat(e.target.value) }) }}>
-                            </input><span style={{ marginLeft: '-30px', color: 'grey' }}>m</span>
-                        </Col>
-                        <Col>
-                            <input type="submit" value="Submit" style={{ marginLeft: 25 }}></input>
-                        </Col>
-                    </Row>
-                    {/* <button style={{ marginLeft: 25 }} onClick={this.undo} >Undo</button> */}
-                </form>
+                            />
+                        </GoogleMap>
+                    </Col>
+                </Row>
+                    <div style={{zIndex: 10, position: 'absolute', right: 10, top: "50%"}}>
+                        <form onSubmit={(e) => { this.onSubmit(e) }}>
+                            <Row>
+                                <Col>
+                                    <span >Latitude:</span>
+                                </Col>
+                                <Col>
+                                    <input type="number" step="0.0001" value={this.state.newLat} onChange={(e) => { this.setState({ newLat: parseFloat(e.target.value) }) }}></input>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <span >Longitude:</span>
+                                </Col>
+                                <Col>
+                                    <input type="number" step="0.0001" value={this.state.newLng} onChange={(e) => { if (!NaN) { this.setState({ newLng: parseFloat(e.target.value) }) } }}></input>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <span >Radius:</span>
+                                </Col>
+                                <Col>
+                                    <input type="number" value={this.state.radius} onChange={(e) => { this.setState({ radius: parseFloat(e.target.value) }) }}>
+                                    </input><span style={{ marginLeft: '-30px', color: 'grey' }}>m</span>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <input type="submit" value="Submit"></input>
+                                </Col>
+                            </Row>
+                            {/* <button style={{ marginLeft: 25 }} onClick={this.undo} >Undo</button> */}
+                        </form>
+                    </div>
 
             </div>
         )
