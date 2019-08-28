@@ -1,7 +1,10 @@
 import React from 'react'
 
 const HELP_TEXT = {
-    login: <p>Log in to your account by entering a valid username and password, then click the 'Sign in' button</p>,
+    login: <div>
+        <p>Welcome to Team Krypton's RedShift Application!</p>
+        <p>Log in to your account by entering a valid username and password, then click the 'Sign in' button</p>
+    </div>,
     landingPage: <div>
         <p>To access a suspect's profile, enter their forenames, surname and home address into the relevant boxes.</p>
         <p>If you wish to search people in a given location, please enter the longitude and latitude</p>

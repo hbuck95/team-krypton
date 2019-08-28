@@ -46,34 +46,34 @@ export default class LoginPage extends Component {
         this.handleSubmit = (e) => {
             e.preventDefault();
             // if (!this.state.name.replace(' ', '') === '' || !this.state.pass.replace(' ', '') === '' ) {
-                let detailsToSend = {
-                    username: this.state.name,
-                    password: this.state.pass
-                }
-                this.setState({
-                    sentRequest: true
+            let detailsToSend = {
+                username: this.state.name,
+                password: this.state.pass
+            }
+            this.setState({
+                sentRequest: true
+            })
+
+            axios.post(`${IP}/api/users/login`, { user: detailsToSend }, { headers: HEADERS })
+                .then((res) => {
+                    console.log(res.status);
+                    sessionStorage.setItem('authKey', res.data.token)
+                    this.setState({
+                        loginSuccess: true,
+                        sentRequest: false
+                    },
+                        () => { this.props.toggleLoggedOut() })
                 })
+                .catch((res) => {
+                    console.log("error: ", res)
 
-                axios.post(`${IP}/api/users/login`, { user: detailsToSend }, { headers: HEADERS })
-                    .then((res) => {
-                        console.log(res);
-                        sessionStorage.setItem('authKey', res.data.token)
-                        this.setState({
-                            loginSuccess: true,
-                            sentRequest: false
-                        },
-                            () => { this.props.toggleLoggedOut() })
-                    })
-                    .catch((res) => {
-                        console.log("error: ", res)
-
-                        sessionStorage.removeItem('authKey');
-                        this.setState({
-                            pass: '',
-                            warning: (res === 'Error: Invalid Credentials' ? 'Incorrect user name or password...' : 'Could not connect to login services...'),
-                            sentRequest: false
-                        });
-                    })
+                    sessionStorage.removeItem('authKey');
+                    this.setState({
+                        pass: '',
+                        warning: (res === 'Error: Invalid Credentials' ? 'Incorrect user name or password...' : 'Could not connect to login services...'),
+                        sentRequest: false
+                    });
+                })
             // }
 
         }
@@ -128,7 +128,7 @@ export default class LoginPage extends Component {
 
                     {this.state.sentRequest ? <Spinner style={{ width: '2rem', height: '2rem' }} /> : <Button >Sign in</Button>}
                 </Form>
-                <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+                <Modal isOpen={this.state.modal} toggle={this.toggleModal} style={{ position: "absolute", left: 0, right: 0, top: "45%", marginLeft: "auto", marginRight: "auto"}}>
                     <ModalHeader toggle={this.toggleModal}>Forgotten Password</ModalHeader>
                     <ModalBody style={{ padding: 25 }}>
                         Please contact your supervisor to retrieve your password.
