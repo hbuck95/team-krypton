@@ -31,14 +31,17 @@ Technologies
 ## Architecture
 
 Front-End: React
+
 APP: Node, Port:9000
+
 Audit: SpringBoot, Port:9002
+
 Citizen: SpringBoot, Port: 9003
 Call Records: SpringBoot, Port: 9004
 ANPR: SpringBoot, Port 9005
 Transactions: SpringBoot, Port 9006
--Epos: SpringBoot, Port: 9008
--ATM: SpringBoot, Port: 9009
+Epos: SpringBoot, Port: 9008
+ATM: SpringBoot, Port: 9009
 
 
 
