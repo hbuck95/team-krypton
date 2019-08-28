@@ -4,6 +4,7 @@
 Table of Contents
 
 - [Description](#description)
+- [Risk Graph](#risk)
 - [How To Use](#how-to-use)
 - [Architecture](#architecture)
 - [Authors](#authors)
@@ -48,6 +49,23 @@ ATM: SpringBoot, Port: 9009
 ---
 ## CI pipeline
 
+### Project Planning
+
+## Technology
+- Mongo - Database
+- Node - APP and User microservices 
+- SpringBoot - 
+- React - Front - End Development 
+- Jenkins - CI Server
+- Git - Version Control System
+- Jira - Project Planning tool
+- GCP - Live Enviroment
+- Docker - Compose - to build all containers at once from images stored
+
+
+
+## Risk Graph
+
 
 ## How To Use
 ### Set up
@@ -85,7 +103,7 @@ cd ~
 git clone https://github.com/hbuck95/team-krypton.git
 cd team-krypton
 docker-compose build
-```
+
 
 
 
