@@ -12,24 +12,24 @@ module.exports = {
     axiosPost: function (endpoint, body, authHeader, src) {
         console.log("Auth: ", authHeader);
 
-        if (authHeader) {
-            console.log("Creating audit...");
+        // if (authHeader) {
+        //     console.log("Creating audit...");
 
-            const audit = {
-                username: jwtDecode.decodeToken(authHeader).username,
-                searchUrl: src,
-                searchCriteria: `${JSON.stringify(body)}`
-            };
+        //     const audit = {
+        //         username: jwtDecode.decodeToken(authHeader).username,
+        //         searchUrl: src,
+        //         searchCriteria: `${JSON.stringify(body)}`
+        //     };
 
-            console.log("Audit: ", audit);
+        //     console.log("Audit: ", audit);
 
-            axios.post(AUDIT_API + AUDIT_CREATE, audit, { headers: HEADERS })
-                .then(response => {
-                    console.log(response);
-                }).catch(err => {
-                    console.log(err);
-                })
-        }
+        //     axios.post(AUDIT_API + AUDIT_CREATE, audit, { headers: HEADERS })
+        //         .then(response => {
+        //             console.log(response);
+        //         }).catch(err => {
+        //             console.log(err);
+        //         })
+        // }
 
         return axios.post(endpoint, body, { headers: HEADERS });
     },
