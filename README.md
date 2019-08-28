@@ -5,6 +5,7 @@ Table of Contents
 
 - [Description](#description)
 - [How To Use](#how-to-use)
+- [Architecture](#architecture)
 - [Authors](#authors)
 
 ---
@@ -19,6 +20,8 @@ Technologies
 #### Installation
 
 ---
+
+## Architecture
 
 ## Authors
 
