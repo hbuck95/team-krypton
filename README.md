@@ -47,7 +47,8 @@ Epos: SpringBoot, Port: 9008
 ATM: SpringBoot, Port: 9009
 
 ---
-## CI pipeline
+## Sequence Diagrams
+![Architecture](/Docs/Login Sequence.png)
 
 ### Project Planning
 
