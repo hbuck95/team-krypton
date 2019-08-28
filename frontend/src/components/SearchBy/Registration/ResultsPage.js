@@ -66,7 +66,6 @@ export default class RegistrationResultPage extends Component {
 
                 }).catch(res => {
                     console.log("vehicle post failed!")
-                    console.log(sessionStorage.getItem('authKey'))
                     this.setState({
                         dataLoaded: false
                     })
@@ -114,7 +113,7 @@ export default class RegistrationResultPage extends Component {
                                         "colour": this.state.data.colour,
                                     }
                                 ]}
-                                headers={['ID', 'Registration Date', 'Registration Number', 'Make', 'Model', 'Colour']}// 'Forenames', 'Surname', 'Address', 'Date of Birth', 'Driver Licence ID']}
+                                headers={['ID', 'Registration Date', 'Registration Number', 'Make', 'Model', 'Colour']}
                             />
                             <ResultTableVertical passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
                                 data={{
@@ -130,8 +129,14 @@ export default class RegistrationResultPage extends Component {
                         <TabPane tabId='2'>
                             <h2>ANPR Cameras</h2>
                             <ResultTableHorizontal passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
-                                data={{ noData: 'No ANPR Camera locations' }}
-                                headers={['Time Stamp', 'Street Name', 'Longitude', 'Latitude']} />
+                                data={this.state.locationsData !== {} ?{
+                                    timeStamp: this.state.locationsData.timeStamp,
+                                    streetName: this.state.locationsData.streetName,
+                                    latitude: this.state.locationsData.latitude,
+                                    longitude: this.state.locationsData.longitude,
+                                    anprId: this.state.locationsData.anprId
+                                } :{noData: 'No ANPR Camera locations' }}
+                                headers={['Time Stamp', 'Street Name', 'Longitude', 'Latitude', 'ANPR ID']} />
                             <Col md="auto">
                                 <MapContainer height="400px" width="500px" style={{ marginTop: 50, marginRight: 50 }} data={[{ lat: 50.809310, lng: -1.070670 }]} />
                             </Col>
