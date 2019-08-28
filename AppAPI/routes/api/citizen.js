@@ -2,7 +2,7 @@ const router = require('express').Router();
 const auth = require('../auth');
 const makeRequest = require('../../util/makeRequest');
 
-const API = "http://citizen/citizen"
+const API = "citizen/citizen"
 
 // @route  POST http://localhost:9003/citizen/getCitizen
 // @desc   Get a citizen record based on their forenames, surname, and address
