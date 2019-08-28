@@ -171,7 +171,6 @@ export default class SearchPersonResult extends Component {
 
     render() {
         console.log("render: ", this.state.data, this.state.transactionData)
-        // if (this.state.dataLoaded) {
             return (
                 <div>
                     <Nav tabs style={{ width: "100%" }}>
@@ -204,13 +203,6 @@ export default class SearchPersonResult extends Component {
                     </TabContent>
                 </div>
             )
-        // } else {
-        //     return (
-        //         <div>
-        //             <Spinner style={{ width: '5rem', height: '5rem', position: 'fixed', top: '47.5%', left: '47.5%' }} />
-        //         </div>
-        //     )
-        // }
 
     }
 }

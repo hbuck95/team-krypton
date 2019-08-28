@@ -40,6 +40,14 @@ export default class RegistrationResultPage extends Component {
                     })
                 })
         }
+
+        this.toggle = (tab) => {
+            if (this.state.activeTab !== tab) {
+                this.setState({
+                    activeTab: tab
+                });
+            }
+        }
     }
 
 
@@ -59,16 +67,7 @@ export default class RegistrationResultPage extends Component {
                                 Transactions
                             </NavLink>
                         </NavItem>
-                        <NavItem>
-                            <NavLink onClick={() => { this.toggle('3') }}>
-                                Associates
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink onClick={() => { this.toggle('4') }}>
-                                Known locations
-                            </NavLink>
-                        </NavItem>
+                        
                     </Nav>
                     <ResultTableHorizontal passedStyle={{ width: "80%", marginLeft: 50, marginTop: 50 }}
                         data={[
