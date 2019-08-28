@@ -5,6 +5,8 @@ import { withScriptjs, withGoogleMap, Marker, Circle } from 'react-google-maps';
 //import { DrawingManager } from 'react-google-maps/lib/components/drawing/DrawingManager';
 import API_KEY from '../gmapsApiKey';
 import IP from '../ipaddress';
+
+import '../css/SearchBoxes.css'
 const { GoogleMap } = require("react-google-maps");
 const defaultLatLng = { lat: 52.3555, lng: -1.1743, radius: 5000 };
 
@@ -164,7 +166,9 @@ class Map extends Component {
                         </GoogleMap>
                     </Col>
                 </Row>
-                    <div style={{zIndex: 10, position: 'absolute', right: 10, top: "50%"}}>
+                    <div className="searchBox" style={{zIndex: 10, position: 'absolute', left: 1225, top: 95}}>
+                        <h5 style={{ textAlign: 'center'}}>Search Parameters</h5>
+                        <br/>
                         <form onSubmit={(e) => { this.onSubmit(e) }}>
                             <Row>
                                 <Col>
@@ -174,6 +178,7 @@ class Map extends Component {
                                     <input type="number" step="0.0001" value={this.state.newLat} onChange={(e) => { this.setState({ newLat: parseFloat(e.target.value) }) }}></input>
                                 </Col>
                             </Row>
+                            <br/>
                             <Row>
                                 <Col>
                                     <span >Longitude:</span>
@@ -182,6 +187,7 @@ class Map extends Component {
                                     <input type="number" step="0.0001" value={this.state.newLng} onChange={(e) => { if (!NaN) { this.setState({ newLng: parseFloat(e.target.value) }) } }}></input>
                                 </Col>
                             </Row>
+                            <br/>
                             <Row>
                                 <Col>
                                     <span >Radius:</span>
@@ -191,6 +197,7 @@ class Map extends Component {
                                     </input><span style={{ marginLeft: '-30px', color: 'grey' }}>m</span>
                                 </Col>
                             </Row>
+                            <br/>
                             <Row>
                                 <Col>
                                     <input type="submit" value="Submit"></input>
