@@ -92,7 +92,7 @@ Examples of some of the issues we identified are:
 ![Architecture](/Docs/LoginSequence.png)
 
 ## Testing
-![Junit](/Docs/JunitANPR.PNG)
+![JunitANPR](/Docs/JunitANPR.PNG)
 To cover our source code, Junit and Mockito tests were written and run. Jacoco and SonarQube reporting gave test coverage scores, code smells and highlighted bugs for our work.
  
 [Link to Surefire Report Example](/Docs/ANPR - Surefire Report.pdf)
