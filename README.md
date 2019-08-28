@@ -75,6 +75,16 @@ Treat - "Come up with a solution" i.e. situations that can be improved and made 
 Terminate - "Situations that need immediate attention" - need to be dealt with early on to prevent issues down the line.
 
 
+Examples of some of the issues we identified are:
+
+* Knowledge	Knowledge limited to technologies covered in academy
+Internet	Internet service issues at QA, unable to reach cloud services
+Communication	Poor communication will lead to poor project end result
+Planning	Not completing tasks to customer specification
+New Technologies	New software being utilised with scope, limited knowledge
+Docker Issues	Issues with configuration delay progress
+*Unknown Unknowns
+
 ## How To Use
 ### Set up
 * GCP/Azure account
