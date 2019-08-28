@@ -33,6 +33,7 @@ Technologies
 ---
 
 ## Architecture
+![Architecture](/Documentation/architecture.jpg)
 
 Front-End: React
 
