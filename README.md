@@ -90,7 +90,7 @@ Examples of some of the issues we identified are:
 ## Testing
 To cover our source code, Junit and Mockito tests were written and run. Jacoco and SonarQube reporting gave test coverage scores, code smells and highlighted bugs for our work.
  
-[Link to Surefire Report Example] (/Docs/ANPR - Surefire Report.pdf)
+[Link to Surefire Report Example](/Docs/ANPR - Surefire Report.pdf)
 
 ## How To Use
 ### Set up
