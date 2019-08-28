@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
-import { Spinner, TabContent, Nav, NavItem, NavLink } from 'reactstrap'
+import { Spinner, TabContent, Nav, NavItem, NavLink, TabPane, Col, Row } from 'reactstrap'
 import ResultTableHorizontal from '../ResultTableHorizontal';
 import ResultTableVertical from '../ResultTableVertical';
+
+import MapContainer from '../../MapContainer'
+
+import IP from '../../../ipaddress'
 
 export default class RegistrationResultPage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            activeTab: '1',
             data: {},
+            locationsData: {},
             searchData: JSON.parse(localStorage.getItem('searchData')),
             dataLoaded: false
         }
@@ -21,7 +27,7 @@ export default class RegistrationResultPage extends Component {
             console.log("search data", this.state.searchData.vehicleRegistrationNo)
             let HEADERS = { "Content-Type": "application/json", "Authorization": `Token ${sessionStorage.getItem('authKey')}` }
 
-            axios.post('http://35.197.200.12:9000/api/vehicle/getVehicle', {
+            axios.post(`${IP}/api/vehicle/getVehicle`, {
                 "vehicleRegistrationNo": this.state.searchData.vehicleRegistrationNo
             }, { headers: HEADERS })
                 .then(res => {
@@ -32,6 +38,24 @@ export default class RegistrationResultPage extends Component {
                         dataLoaded: true,
                         data: res.data.vehicle
                     })
+
+                    axios.post(`${IP}/api/vehicle/getANPRCameras`,
+                        {
+                            "forenames": res.data.vehicle.forenames,
+                            "surname": res.data.vehicle.surname,
+                            "address": res.data.vehicle.address
+                        },
+                        { headers: HEADERS })
+                        .then(res => {
+                            console.log("anpr", res);
+                            this.setState({
+                                locationsData: res.data.payload
+                            })
+                        })
+                        .catch(res => {
+                            console.log("anpr", res);
+                        })
+
                 }).catch(res => {
                     console.log("vehicle post failed!")
                     console.log(sessionStorage.getItem('authKey'))
@@ -64,34 +88,47 @@ export default class RegistrationResultPage extends Component {
                         </NavItem>
                         <NavItem>
                             <NavLink onClick={() => { this.toggle('2') }}>
-                                Transactions
+                                Known Locations
                             </NavLink>
                         </NavItem>
-                        
+
                     </Nav>
-                    <ResultTableHorizontal passedStyle={{ width: "80%", marginLeft: 50, marginTop: 50 }}
-                        data={[
-                            {
-                                "ID": this.state.data.registrationId,
-                                "Registration Date": this.state.data.registrationDate,
-                                "Vehicle Registration No.": this.state.data.vehicleRegistrationNo,
-                                "make": this.state.data.make,
-                                "model": this.state.data.model,
-                                "colour": this.state.data.colour,
-                            }
-                        ]}
-                        headers={['ID', 'Registration Date', 'Registration Number', 'Make', 'Model', 'Colour']}// 'Forenames', 'Surname', 'Address', 'Date of Birth', 'Driver Licence ID']}
-                    />
-                    <ResultTableVertical passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
-                        data={{
-                            'Forenames': this.state.data.forenames,
-                            'Surname': this.state.data.surname,
-                            'Address': this.state.data.address,
-                            'Date of birth': this.state.data.dateOfBirth,
-                            'Driver Licence ID': this.state.data.driverLicenceID
-                        }}
-                        topHeaders={['Fields', 'Data']}
-                    />
+                    <TabContent activeTab={this.state.activeTab}>
+                        <TabPane tabId='1'>
+                            <ResultTableHorizontal passedStyle={{ width: "80%", marginLeft: 50, marginTop: 50 }}
+                                data={[
+                                    {
+                                        "ID": this.state.data.registrationId,
+                                        "Registration Date": this.state.data.registrationDate,
+                                        "Vehicle Registration No.": this.state.data.vehicleRegistrationNo,
+                                        "make": this.state.data.make,
+                                        "model": this.state.data.model,
+                                        "colour": this.state.data.colour,
+                                    }
+                                ]}
+                                headers={['ID', 'Registration Date', 'Registration Number', 'Make', 'Model', 'Colour']}// 'Forenames', 'Surname', 'Address', 'Date of Birth', 'Driver Licence ID']}
+                            />
+                            <ResultTableVertical passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
+                                data={{
+                                    'Forenames': this.state.data.forenames,
+                                    'Surname': this.state.data.surname,
+                                    'Address': this.state.data.address,
+                                    'Date of birth': this.state.data.dateOfBirth,
+                                    'Driver Licence ID': this.state.data.driverLicenceID
+                                }}
+                                topHeaders={['Fields', 'Data']}
+                            />
+                        </TabPane>
+                        <TabPane tabId='2'>
+                            <h2>ANPR Cameras</h2>
+                            <ResultTableHorizontal passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
+                                data={{ noData: 'No ANPR Camera locations' }}
+                                headers={['Time Stamp', 'Street Name', 'Longitude', 'Latitude']} />
+                            <Col md="auto">
+                                <MapContainer height="400px" width="500px" style={{ marginTop: 50, marginRight: 50 }} data={[{ lat: 50.809310, lng: -1.070670 }]} />
+                            </Col>
+                        </TabPane>
+                    </TabContent>
 
 
                 </div>

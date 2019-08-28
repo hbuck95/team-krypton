@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from 'react'
-import { Row, Col } from 'reactstrap'
+import React, { Component, Fragment } from 'react';
+import { Row, Col } from 'reactstrap';
+import axios from 'axios';
 import { withScriptjs, withGoogleMap, Marker, Circle } from 'react-google-maps';
 //import { DrawingManager } from 'react-google-maps/lib/components/drawing/DrawingManager';
-import API_KEY from '../gmapsApiKey'
-import IP from '../ipaddress'
+import API_KEY from '../gmapsApiKey';
+import IP from '../ipaddress';
 const { GoogleMap } = require("react-google-maps");
 const defaultLatLng = { lat: 52.3555, lng: -1.1743, radius: 5000 };
 
@@ -13,6 +14,7 @@ class Map extends Component {
         super(props)
 
         this.state = {
+            searchData: (sessionStorage.getItem('searchData') ? JSON.parse(sessionStorage.getItem('searchData')) : {}),
             lat: (localStorage.getItem('latSearch') ? parseFloat(localStorage.getItem('latSearch')) : defaultLatLng.lat),
             lng: (localStorage.getItem('lngSearch') ? parseFloat(localStorage.getItem('lngSearch')) : defaultLatLng.lng),
             radius: (localStorage.getItem('radiusSearch') ? parseFloat(localStorage.getItem('radiusSearch')) : defaultLatLng.radius),
@@ -55,7 +57,7 @@ class Map extends Component {
                 lat: parseFloat(e.target[0].value),
                 lng: parseFloat(e.target[1].value),
                 radius: parseFloat(e.target[2].value)
-            })
+            });
         }
 
         this.undo = () => {
@@ -66,7 +68,30 @@ class Map extends Component {
                     lat: this.state.prevLat[this.state.prevLat.length - (this.state.undos + 1)],
                     lng: this.state.prevLng[this.state.prevLng.length - (this.state.undos + 1)],
                     undos: (this.state.undos + 1)
-                })
+                });
+            }
+        }
+
+        this.componentDidMount = () => {
+
+            let HEADERS = { "Content-Type": "application/json", "Authorization": `Token ${sessionStorage.getItem('authKey')}` }
+
+            if(sessionStorage.getItem('scenario')=== '3'){
+            axios.post(`${IP}/api/vehicle/getANPRCameras`, {
+                "forenames": this.state.searchData.forenames,
+                "surname": this.state.searchData.surname,
+                "address": this.state.searchData.address
+            },
+            { headers: HEADERS })
+            .then(res => {
+                console.log("success", res)
+                // this.setState({
+                //     data: res.data.payload
+                // })
+            })
+            .catch(res => {
+                console.log("error!", res)
+            })
             }
         }
     }
@@ -79,10 +104,10 @@ class Map extends Component {
                     defaultZoom={this.state.defaultZoom}
                     defaultCenter={{ lat: this.state.viewLat, lng: this.state.viewLng }}
                     onClick={() => { this.setState({ editcircle: false }) }}
-                    onDblClick={() => { console.log(GoogleMap) }}
+                    onDblClick={(e) => { console.log(e) }}
                 // onCenterChanged={ (e)=> this.getCenter(e)}
                 >
-                    {this.state.data.map(place => {
+                    {(this.state.data !== []) && this.state.data.map(place => {
                         return (<Fragment key={place.id}>
                             <Marker
                                 position={{
@@ -92,6 +117,8 @@ class Map extends Component {
                             />
                         </Fragment>)
                     })}
+                }
+                
 
                     <Marker
                         position={{ lat: this.state.lat, lng: this.state.lng }}
