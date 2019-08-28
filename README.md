@@ -45,10 +45,29 @@ Epos: SpringBoot, Port: 9008
 
 ATM: SpringBoot, Port: 9009
 
+---
+## CI pipeline
+
 
 ## How To Use
+### Set up
+*GCP/Azure account
+*Log in and open new cloud shell
 
 #### Installation
+
+
+az configure --defaults location=uksouth
+
+# Create a new resource group 
+az group create --name myResourceGroup
+
+# Create a VM
+az vm create --resource-group myResourceGroup --name vmName --image UbuntuLTS --generate-ssh-keys
+
+
+
+
 
 ---
 
