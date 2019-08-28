@@ -1,9 +1,9 @@
 # team-krypton
 ---
 
-###Table of Contents
+Table of Contents
 
--[Description](#description)
+- [Description](#description)
 - [How To Use](#how-to-use)
 
 ---
