@@ -3,7 +3,7 @@ const auth = require('../auth');
 const makeRequest = require('../../util/makeRequest');
 
 //URL to the transactions microservice
-const API = "http://localhost:9006/transactions"
+const API = "http://transactions:9006/transactions"
 
 // @route  POST http://localhost:9006/transactions/getAtmLocation
 // @desc   Get the location of EPOS transactions made

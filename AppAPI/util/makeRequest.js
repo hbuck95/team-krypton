@@ -5,7 +5,7 @@ const HEADERS = {
     'Content-Type': 'application/json'
 };
 
-const AUDIT_API = "http://localhost:9002/"
+const AUDIT_API = "http://audit-producer:9002/"
 const AUDIT_CREATE = "/create"
 
 module.exports = {

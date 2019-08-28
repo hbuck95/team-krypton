@@ -3,7 +3,7 @@ const auth = require('../auth');
 const makeRequest = require('../../util/makeRequest');
 
 //URL to the transactions microservice
-const API = "http://localhost:9005/ANPR"
+const API = "http://anpr:9005/ANPR"
 
 //Endpoint URLs
 const GET_VEHICLE_REGISTRATIONS = "/getVehicleRegistrations";
