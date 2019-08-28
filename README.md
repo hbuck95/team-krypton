@@ -4,11 +4,11 @@
 Table of Contents
 
 - [Description](#description)
-- [Risk Graph](#risk)
-- [How To Use](#how-to-use)
 - [Architecture](#architecture)
 - [Project Planning](#project-planning)
+- [Front-End Design](#front-end-design)
 - [Testing](#testing)
+- [How To Use](#how-to-use)
 - [Authors](#authors)
 
 ---
@@ -100,7 +100,7 @@ Sequence Diagrams were drawn up for all three of the given scenarios. Each depic
 Low fidelity wireframes designed during Sprint one.
 front-end in React.
 ![hf](/Docs/hfWireframe.PNG)
-High-Fidelity wireframes: Used for guidence and planning when developing the 
+High-Fidelity wireframes: Used for guidence and planning when developing the Front-End in React.
 ### Final Appearance
 
 
@@ -120,22 +120,28 @@ Currently no Selenium tests, however this will an improvement for furture develo
 
 #### Installation
 
-
+```
 az configure --defaults location=uksouth
-
+```
 ## Create a new resource group 
+```
 az group create --name myResourceGroup
+```
 
 ## Create a VM
+
+```
 az vm create --resource-group myResourceGroup --name vmName --image UbuntuLTS --generate-ssh-keys
+```
 
 ## Installing docker
+```
 sudo apt update
 
 sudo apt install docker.io -y
 
 sudo usermod -aG docker $(whoami)
-
+```
 ## Installing docker-compose on Linux
 Next install docker-compose on your manager VM.
 ```
@@ -144,12 +150,12 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-
+```
 cd ~
 git clone https://github.com/hbuck95/team-krypton.git
 cd team-krypton
 docker-compose build
-
+```
 
 
 
