@@ -16,7 +16,7 @@ export default class RegistrationResultPage extends Component {
         this.state = {
             activeTab: '1',
             data: {},
-            locationsData: {},
+            locationsData: [],
             searchData: JSON.parse(localStorage.getItem('searchData')),
             dataLoaded: false
         }
@@ -48,16 +48,16 @@ export default class RegistrationResultPage extends Component {
                         { headers: HEADERS })
                         .then(res => {
                             console.log("anpr", res);
-                            let locationsArr = res.data.anprCamera.map((x, i) => {
-                                let temp = res.data.anprObservations.find(e => e.anprpointId === x.anprId)
-                                if (temp.timeStamp) {
-                                    x.timeStamp = temp.timeStamp
-                                }
-                                return x;
-                            })
-                            console.log(locationsArr)
+                            // let locationsArr = res.data.anpr.map((x, i) => {
+                            //     let temp = res.data.anprObservations.find(e => e.anprpointId === x.anprId)
+                            //     if (temp.timeStamp) {
+                            //         x.timeStamp = temp.timeStamp
+                            //     }
+                            //     return x;
+                            // })
+                            // console.log(locationsArr)
                             this.setState({
-                                locationsData: locationsArr
+                                locationsData: res.data.anpr
                             })
                         })
                         .catch(res => {
