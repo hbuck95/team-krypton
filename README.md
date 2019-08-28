@@ -48,7 +48,7 @@ ATM: SpringBoot, Port: 9009
 
 ---
 ## Sequence Diagrams
-![Architecture](/Docs/Login Sequence.png)
+![Architecture](/Docs/LoginSequence.png)
 
 ### Project Planning
 
