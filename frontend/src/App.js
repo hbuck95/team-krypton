@@ -74,7 +74,6 @@ export default class App extends Component {
   }
 
   componentDidMount = () => {
-    sessionStorage.setItem('authKey', 'authkey')
     if (!sessionStorage.getItem('authKey')) {
       this.setState({
         loggedOut: true
@@ -91,8 +90,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <RouterClass setHelpText={this.setHelpText}  loggedOut={this.state.loggedOut} toggleLoggingOut={this.toggleLoggingOut} toggleLoggedOut={this.toggleLoggedOut} redirect={this.state.redirect} resetRedirect={this.resetRedirect} link={this.state.link} passedFunction={this.searchData} searchData={this.state.searchData} />
-        <Footer helpText={this.state.helpText}/>
+        <RouterClass helpText={this.state.helpText} setHelpText={this.setHelpText} loggedOut={this.state.loggedOut} toggleLoggingOut={this.toggleLoggingOut} toggleLoggedOut={this.toggleLoggedOut} redirect={this.state.redirect} resetRedirect={this.resetRedirect} link={this.state.link} passedFunction={this.searchData} searchData={this.state.searchData} />
+        
       </div>
     );
   }

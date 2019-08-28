@@ -17,9 +17,11 @@ export default class SearchLocationBox extends Component {
             if (e.target[0].value && e.target[1].value) {
                 localStorage.setItem('latSearch', e.target[0].value);
                 localStorage.setItem('lngSearch', e.target[1].value);
-            } else{
+                localStorage.setItem('radiusSearch', e.target[2].value);
+            } else {
                 localStorage.setItem('latSearch', 53.4741);
                 localStorage.setItem('lngSearch', -2.2866);
+                localStorage.setItem('radiusSearch', 5000);
             }
 
             props.passedFunction('map');
@@ -48,7 +50,12 @@ export default class SearchLocationBox extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        radius goes here
+                        <Col>
+                            <FormGroup>
+                                <Label for="radius">Radius:</Label>
+                                <Input type="number" step="1" name="radius" id="radius" placeholder="e.g. 5000" />
+                            </FormGroup>
+                        </Col>
                     </Row>
                     <FormGroup check row style={{ marginTop: "25px" }}>
                         <Col sm={{ size: 10, offset: 4 }}>

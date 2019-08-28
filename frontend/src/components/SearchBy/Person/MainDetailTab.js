@@ -9,9 +9,6 @@ export default class MainDetailTab extends Component {
 
 
     render() {
-
-        console.log("main tab render: ", this.props.transactionData)
-        console.log("dataloaded", this.props.dataLoaded)
         if (this.props.dataLoaded) {
             return (
                 <TabPane tabId="1">
@@ -37,7 +34,7 @@ export default class MainDetailTab extends Component {
             )
         }
         return (
-            <TabPane tabId='3'>
+            <TabPane tabId='1'>
                 <Spinner style={{ width: '5rem', height: '5rem', position: 'fixed', top: '47.5%', left: '47.5%' }} />
             </TabPane>
         )

@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/Navbar.css';
 import '../css/Footer.css'
-import HELP_TEXT from './HelpText';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleUp, faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom'
+
+library.add(faChevronCircleUp, faChevronCircleDown);
 
 
 
@@ -84,7 +86,7 @@ export default class Footer extends Component {
                         <label htmlFor="toggle"></label>
                         <div style={{ paddingRight: "75px", paddingLeft: "75px" }}>
                             {this.props.helpText}
-                            <p style={{bottom: 0, left: 0}}>© Copyright: Team Krypton, 2019</p>
+                            <Link to='/teamkrypton' style={{bottom: 0, left: 0}}>© Copyright: Team Krypton, 2019</Link>
                         </div>
                     </div>
                 </div>

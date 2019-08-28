@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react'
+import { Row, Col } from 'reactstrap'
 import { withScriptjs, withGoogleMap, Marker, Circle } from 'react-google-maps';
 //import { DrawingManager } from 'react-google-maps/lib/components/drawing/DrawingManager';
 import API_KEY from '../gmapsApiKey'
 const { GoogleMap } = require("react-google-maps");
 const defaultLatLng = { lat: 52.3555, lng: -1.1743 };
+
 
 class Map extends Component {
     constructor(props) {
@@ -49,14 +51,14 @@ class Map extends Component {
         this.onSubmit = (e) => {
             e.preventDefault();
             // if (isNaN(e.target[0].value)  || isNaN(e.target[1].value)) {
-                
+
             // }
             // else {
-                this.setState({
-                    lat: parseFloat(e.target[0].value),
-                    lng: parseFloat(e.target[1].value),
-                    radius: parseFloat(e.target[2].value)
-                })
+            this.setState({
+                lat: parseFloat(e.target[0].value),
+                lng: parseFloat(e.target[1].value),
+                radius: parseFloat(e.target[2].value)
+            })
             // }
         }
 
@@ -132,20 +134,29 @@ class Map extends Component {
                         editable={this.state.editcircle}
                         onDblClick={() => { this.setState({ editcircle: true }) }}
                         onRadiusChanged={(e) => console.log("radius change", e)}
-                        
+
                     />
                 </GoogleMap>
                 <form onSubmit={(e) => { this.onSubmit(e) }}>
-                    <span style={{ marginRight: 15 }}>Latitude:</span>
-                    <input type="number" step="0.0001" value={this.state.newLat} onChange={(e) => { this.setState({ newLat: parseFloat(e.target.value) }) }}></input>
-
-                    <span style={{ marginRight: 15, marginLeft: 25 }}>Longitude:</span>
-                    <input type="number" step="0.0001" value={this.state.newLng} onChange={(e) => { if (!NaN) { this.setState({ newLng: parseFloat(e.target.value) }) } }}></input>
-                    <span style={{ marginRight: 25, marginLeft: 25 }}>Radius:</span>
-                    <input type="number" value={this.state.radius} onChange={(e) => { this.setState({ radius: parseFloat(e.target.value) }) }}>
-                    </input><span style={{ marginLeft: '-30px', color: 'grey' }}>m</span>
-                    <input type="submit" value="Submit" style={{ marginLeft: 25 }}></input>
-                    <button style={{ marginLeft: 25 }} onClick={this.undo} >Undo</button>
+                    <Row>
+                        <span >Latitude:</span>
+                        <input type="number" step="0.0001" value={this.state.newLat} onChange={(e) => { this.setState({ newLat: parseFloat(e.target.value) }) }}></input>
+                    </Row>
+                    <Row>
+                        <span >Longitude:</span>
+                        <input type="number" step="0.0001" value={this.state.newLng} onChange={(e) => { if (!NaN) { this.setState({ newLng: parseFloat(e.target.value) }) } }}></input>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <span >Radius:</span>
+                            <input type="number" value={this.state.radius} onChange={(e) => { this.setState({ radius: parseFloat(e.target.value) }) }}>
+                            </input><span style={{ marginLeft: '-30px', color: 'grey' }}>m</span>
+                        </Col>
+                        <Col>
+                            <input type="submit" value="Submit" style={{ marginLeft: 25 }}></input>
+                        </Col>
+                    </Row>
+                    {/* <button style={{ marginLeft: 25 }} onClick={this.undo} >Undo</button> */}
                 </form>
 
             </div>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
+import Footer from './Footer'
+
 import LoginPage from "./LoginPage"
 import NavbarClass from './NavbarClass'
 import LandingPage from './LandingPage'
@@ -35,6 +37,8 @@ export default class RouterClass extends Component {
                 <Route path="/search/result" render={() => <SearchPersonResult resetRedirect={this.props.resetRedirect} searchData={this.props.searchData} />} />
                 <Route path="/search/vehicle" render={() => <RegistrationResultPage resetRedirect={this.props.resetRedirect} searchData={this.props.searchData} />} />
                 <Route path="/teamkrypton" component={TeamKryptonPage} />
+
+                <Footer helpText={this.props.helpText}/>
             </Router>
         );
     }

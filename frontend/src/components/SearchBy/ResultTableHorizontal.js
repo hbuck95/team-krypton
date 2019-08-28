@@ -16,8 +16,9 @@ export default class ResultTableHorizontal extends Component {
 
     render() {
         console.log("horizontal render: ", this.state.data, this.props.data)
-        if (this.state.data) {
-
+        console.log("no data:", this.props.noData)
+        if (this.props.data !== undefined && !this.props.data.noData) {
+            console.log("error handle" , this.props.data)
             return (
                 <Table hover bordered style={this.state.passedStyle}>
                     <thead>
@@ -28,19 +29,21 @@ export default class ResultTableHorizontal extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {(!this.props.data.noData) ? this.props.data.map((data, i) =>
-                        <tr key={`data-${i}`}>
-                            {Object.values(data).map((value) =>
-                                <td key={`data-${value}`}>{value}</td>
-                            )}
-                        </tr>
-                        ) : <td>No transactions on record...</td>}
+                        {this.props.data.map((data, i) => {
+                            return <tr key={`data-${i}`}>
+                                {Object.values(data).map((value) =>
+                                    <td key={`data-${value}`}>{value}</td>
+                                )}
+                            </tr>
+                        })
+                        }
                     </tbody>
                 </Table>
+
             )
         }
         return (
-            <Table>
+            <Table style={this.state.passedStyle}>
                 <thead>
                     <tr>
                         {this.props.headers.map((header) =>
@@ -49,8 +52,10 @@ export default class ResultTableHorizontal extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    Error, no data
-                    </tbody>
+                    <tr>
+                        {this.props.data.noData ? this.props.data.noData : "no data found"}
+                    </tr>
+                </tbody>
             </Table>
         )
     }

@@ -27,9 +27,7 @@ export default class NavbarClass extends Component {
 
         this.logout = (e) => {
             e.preventDefault();
-            console.log("logout clicked")
             if (!this.props.loggedOut) {
-                console.log("user is logged in trying to log out")
                 sessionStorage.removeItem('authKey')
                 
                 this.props.toggleLoggedOut();

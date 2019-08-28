@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { TabContent, Nav, NavItem, NavLink, Spinner } from 'reactstrap'
+import { TabContent, Nav, NavItem, NavLink } from 'reactstrap'
 import axios from 'axios';
 
 
@@ -25,6 +25,7 @@ export default class SearchPersonResult extends Component {
             dataLoaded: false,
             transactionDataLoaded: false,
             associateDataLoaded: false,
+            knownLocationsDataLoaded: false,
             data: {},
             transactionData: {
                 eposTransactions: [],
@@ -107,7 +108,12 @@ export default class SearchPersonResult extends Component {
                 }).catch(res => {
                     console.log("transaction post failed!");
                     if (res) {
-                        console.log("error!")
+                        console.log("error!", res);
+                    }
+                    if (this._isMounted) {
+                        this.setState({
+                            transactionDataLoaded: false
+                        });
                     }
                 })
 
@@ -143,9 +149,11 @@ export default class SearchPersonResult extends Component {
                 },
                 { headers: HEADERS })
                 .then(res => {
-                    console.log(res);
+                    console.log("anpr", res);
                 })
-                .catch()
+                .catch(res => {
+                    console.log("anpr", res);
+                })
 
 
         }

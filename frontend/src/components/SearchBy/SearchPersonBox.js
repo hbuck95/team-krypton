@@ -19,7 +19,6 @@ export default class SearchPersonBox extends Component {
             }
 
             localStorage.setItem('searchData', JSON.stringify(searchData));
-            console.log(searchData);
 
 
             props.passedFunction('result');
