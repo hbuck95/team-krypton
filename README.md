@@ -19,18 +19,10 @@ Suspect has been detained; may need need to know : Biographical information, Ass
 
 An incident has occured: Need to work out who was in the area at a particular point in time.
 
-Suspect flees the scene: 
-
-
-Technologies
-- Java etc
+Suspect flees the scene: Who was the suspect? Where have they been?
 
 ---
-## How To Use
 
-#### Installation
-
----
 
 ## Architecture
 ![Architecture](/Docs/Architecture.png)
@@ -54,7 +46,11 @@ Epos: SpringBoot, Port: 9008
 ATM: SpringBoot, Port: 9009
 
 
+## How To Use
 
+#### Installation
+
+---
 
 
 ## Authors
