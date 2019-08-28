@@ -66,11 +66,16 @@ ATM: SpringBoot, Port: 9009
 
 ## Risk Graph
 
+To forecast issues likely to occur during the 2.5 week project and allocate time for potential issues we used a Risk Graph.
+Tolerate - "Ignore" i.e. Situations were out of our control.
+Treat - "Come up with a solution" i.e. situations that can be improved and made less of a threat to our progress.
+Terminate - "Situations that need immediate attention" - need to be dealt with early on to prevent issues down the line.
+
 
 ## How To Use
 ### Set up
-*GCP/Azure account
-*Log in and open new cloud shell
+* GCP/Azure account
+* Log in and open new cloud shell
 
 #### Installation
 
