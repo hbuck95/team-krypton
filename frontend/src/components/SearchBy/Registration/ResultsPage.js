@@ -48,8 +48,16 @@ export default class RegistrationResultPage extends Component {
                         { headers: HEADERS })
                         .then(res => {
                             console.log("anpr", res);
+                            let locationsArr = res.data.anprCamera.map((x, i) => {
+                                let temp = res.data.anprObservations.find(e => e.anprpointId === x.anprId)
+                                if (temp.timeStamp) {
+                                    x.timeStamp = temp.timeStamp
+                                }
+                                return x;
+                            })
+                            console.log(locationsArr)
                             this.setState({
-                                locationsData: res.data.payload
+                                locationsData: locationsArr
                             })
                         })
                         .catch(res => {
