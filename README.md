@@ -90,6 +90,7 @@ Examples of some of the issues we identified are:
 
 ## Sequence Diagrams
 ![Architecture](/Docs/LoginSequence.png)
+
 Sequence Diagrams were drawn up for all three of the given scenarios. Each depict the objects and classes involved, and the sequence of messages exchanged between the classes. They show the order of the interaction visually by using the vertical axis of the diagram to represent what messages are sent and when.
 
 
@@ -97,9 +98,11 @@ Sequence Diagrams were drawn up for all three of the given scenarios. Each depic
 ## Front-End Design 
 ### Wireframes
 ![LFwireframe](/Docs/LFwireframe.PNG)
+
 Low fidelity wireframes designed during Sprint one.
-front-end in React.
+
 ![hf](/Docs/hfWireframe.PNG)
+
 High-Fidelity wireframes: Used for guidence and planning when developing the Front-End in React.
 ### Final Appearance
 
@@ -111,7 +114,7 @@ To cover our source code, Junit and Mockito tests were written and run. Jacoco a
 [Link to Surefire Report Example](/Docs/ANPR - Surefire Report.pdf)
 
 Test coverage for the back-end code is at 91.67%.
-Currently no Selenium tests, however this will an improvement for furture development.
+Currently no Selenium tests, however this will be an improvement for furture development.
 
 ## How To Use
 ### Set up
