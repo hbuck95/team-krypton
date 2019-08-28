@@ -91,6 +91,16 @@ Examples of some of the issues we identified are:
 ## Sequence Diagrams
 ![Architecture](/Docs/LoginSequence.png)
 
+---
+### Front-End Design 
+##Wireframes
+![LFwireframe](/Docs/LFwireframe.PNG)
+Low fidelity wireframes designed during Sprint one.
+front-end in React.
+![hf](/Docs/hfWireframe.PNG)
+High-Fidelity wireframes: Used for guidence and planning when developing the 
+
+
 ## Testing
 ![JunitANPR](/Docs/JunitANPR.PNG)
 To cover our source code, Junit and Mockito tests were written and run. Jacoco and SonarQube reporting gave test coverage scores, code smells and highlighted bugs for our work.
