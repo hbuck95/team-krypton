@@ -4,7 +4,7 @@ import { withScriptjs, withGoogleMap, Marker, Circle } from 'react-google-maps';
 //import { DrawingManager } from 'react-google-maps/lib/components/drawing/DrawingManager';
 import API_KEY from '../gmapsApiKey'
 const { GoogleMap } = require("react-google-maps");
-const defaultLatLng = { lat: 52.3555, lng: -1.1743 };
+const defaultLatLng = { lat: 52.3555, lng: -1.1743, radius: 5000 };
 
 
 class Map extends Component {
@@ -14,7 +14,7 @@ class Map extends Component {
         this.state = {
             lat: (localStorage.getItem('latSearch') ? parseFloat(localStorage.getItem('latSearch')) : defaultLatLng.lat),
             lng: (localStorage.getItem('lngSearch') ? parseFloat(localStorage.getItem('lngSearch')) : defaultLatLng.lng),
-            radius: 5000,
+            radius: (localStorage.getItem('radiusSearch') ? parseFloat(localStorage.getItem('radiusSearch')) : defaultLatLng.radius),
             defaultZoom: (localStorage.getItem('latSearch') && localStorage.getItem('lngSearch') ? 12 : 6),
             newLat: (localStorage.getItem('latSearch') ? parseFloat(localStorage.getItem('latSearch')) : defaultLatLng.lat),
             newLng: (localStorage.getItem('lngSearch') ? parseFloat(localStorage.getItem('lngSearch')) : defaultLatLng.lng),
@@ -50,16 +50,11 @@ class Map extends Component {
 
         this.onSubmit = (e) => {
             e.preventDefault();
-            // if (isNaN(e.target[0].value)  || isNaN(e.target[1].value)) {
-
-            // }
-            // else {
             this.setState({
                 lat: parseFloat(e.target[0].value),
                 lng: parseFloat(e.target[1].value),
                 radius: parseFloat(e.target[2].value)
             })
-            // }
         }
 
         this.undo = () => {
