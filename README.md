@@ -30,23 +30,15 @@ Suspect flees the scene: Who was the suspect? Where have they been?
 ## Architecture
 ![Architecture](/Docs/Architecture.png)
 
-Front-End: React
-
-APP: Node, Port:9000
-
-Audit: SpringBoot, Port:9002
-
-Citizen: SpringBoot, Port: 9003
-
-Call Records: SpringBoot, Port: 9004
-
-ANPR: SpringBoot, Port 9005
-
-Transactions: SpringBoot, Port 9006
-
-Epos: SpringBoot, Port: 9008
-
-ATM: SpringBoot, Port: 9009
+**Front-End:** React
+**APP:** Node
+**Audit:** SpringBoot
+**Citizen:** SpringBoot
+**Call Records:** SpringBoot
+**ANPR:** SpringBoot
+**Transactions:** SpringBoot
+**Epos:** SpringBoot
+**ATM:** SpringBoot
 
 ---
 
@@ -169,25 +161,12 @@ docker-compose build
 
 ## Authors
 
-- Harry
-- James
-- Krystal
-- Jack
-- Tania 
+- [Harry](https://github.com/hbuck95)
+- [James](https://github.com/jm4clark)
+- [Krystal](https://github.com/kryan1622)
+- [Jack](https://github.com/JackFlanagan93)
+- [Tania](https://github.com/tdrydendiaz)
 
 ## Acknowledgements
-* QA consulting and our amazing instructors.
+* QA Consulting and our amazing instructors (especially Matt and Chester).
 * The Product Owners for their advice.
-
-
-
-
-
-
-
-
-
-
-
-
-
