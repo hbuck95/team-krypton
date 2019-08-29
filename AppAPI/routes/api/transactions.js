@@ -138,8 +138,6 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
       for(let i in payload.atm.transactionLocations){
         payload.atm.transactionLocations[i].atmId = payload.atm.transactions[i].timeStamp
       }
-
-      console.log("Updated payload: ", payload);
       
     }).then(() => {
 

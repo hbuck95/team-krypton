@@ -38,7 +38,7 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
         anpr: null
     };
 
-    const anprObservations = null;
+    let anprObservations = null;
 
     makeRequest.createAudit("/getAnprCameras", req.body, req.header("Authorization"));
 
@@ -54,13 +54,10 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
             let data = response.data;
 
             for(let i in anprObservations){
-                data[i].timestamp = anprObservations[i].timeStamp;
+                data[i] = {timestamp: anprObservations[i].timeStamp, ...data[i]};
             }
 
             payload.anpr = data;
-        })
-        .then(() => {
-            
         })
         .then(() => {
             return res.status(200).json(payload).end();

@@ -8,6 +8,7 @@ import ResultTableVertical from '../ResultTableVertical';
 import MapContainer from '../../MapContainer'
 
 import IP from '../../../ipaddress'
+import LocationsTab from './LocationsTabs';
 
 export default class RegistrationResultPage extends Component {
     constructor(props) {
@@ -16,9 +17,10 @@ export default class RegistrationResultPage extends Component {
         this.state = {
             activeTab: '1',
             data: {},
-            locationsData: {},
+            locationsData: [],
             searchData: JSON.parse(localStorage.getItem('searchData')),
-            dataLoaded: false
+            dataLoaded: false,
+            locationsDataLoaded: false
         }
 
         this.componentDidMount = () => {
@@ -48,16 +50,18 @@ export default class RegistrationResultPage extends Component {
                         { headers: HEADERS })
                         .then(res => {
                             console.log("anpr", res);
-                            let locationsArr = res.data.anprCamera.map((x, i) => {
-                                let temp = res.data.anprObservations.find(e => e.anprpointId === x.anprId)
-                                if (temp.timeStamp) {
-                                    x.timeStamp = temp.timeStamp
-                                }
-                                return x;
-                            })
-                            console.log(locationsArr)
+                            // let locationsArr = res.data.anpr.map((x, i) => {
+                            //     let temp = res.data.anprObservations.find(e => e.anprpointId === x.anprId)
+                            //     if (temp.timeStamp) {
+                            //         x.timeStamp = temp.timeStamp
+                            //     }
+                            //     return x;
+                            // })
+                            // console.log(locationsArr)
+                            sessionStorage.setItem('mapStyle', JSON.stringify( {zIndex: 0, position: 'absolute', left: 0, top: 400}))
                             this.setState({
-                                locationsData: locationsArr
+                                locationsData: res.data.anpr,
+                                locationsDataLoaded: true
                             })
                         })
                         .catch(res => {
@@ -100,8 +104,9 @@ export default class RegistrationResultPage extends Component {
                         </NavItem>
 
                     </Nav>
-                    <TabContent activeTab={this.state.activeTab}>
+                    <TabContent activeTab={this.state.activeTab} style={{margin:50}}>
                         <TabPane tabId='1'>
+                            <h2>Vehicle Details</h2>
                             <ResultTableHorizontal passedStyle={{ width: "80%", marginLeft: 50, marginTop: 50 }}
                                 data={[
                                     {
@@ -115,6 +120,7 @@ export default class RegistrationResultPage extends Component {
                                 ]}
                                 headers={['ID', 'Registration Date', 'Registration Number', 'Make', 'Model', 'Colour']}
                             />
+                            <h2>Owner Details</h2>
                             <ResultTableVertical passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
                                 data={{
                                     'Forenames': this.state.data.forenames,
@@ -126,21 +132,17 @@ export default class RegistrationResultPage extends Component {
                                 topHeaders={['Fields', 'Data']}
                             />
                         </TabPane>
-                        <TabPane tabId='2'>
+                        {/* <TabPane tabId='2'>
                             <h2>ANPR Cameras</h2>
                             <ResultTableHorizontal passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
-                                data={this.state.locationsData !== {} ?{
-                                    timeStamp: this.state.locationsData.timeStamp,
-                                    streetName: this.state.locationsData.streetName,
-                                    latitude: this.state.locationsData.latitude,
-                                    longitude: this.state.locationsData.longitude,
-                                    anprId: this.state.locationsData.anprId
-                                } :{noData: 'No ANPR Camera locations' }}
-                                headers={['Time Stamp', 'Street Name', 'Longitude', 'Latitude', 'ANPR ID']} />
+                                data={this.state.locationsData ?
+                                    this.state.locationsData : { noData: 'No ANPR Camera locations' }}
+                                headers={['Time Stamp', 'ANPR', 'Street Name', 'Longitude', 'Latitude']} />
                             <Col md="auto">
                                 <MapContainer height="400px" width="500px" style={{ marginTop: 50, marginRight: 50 }} data={[{ lat: 50.809310, lng: -1.070670 }]} />
                             </Col>
-                        </TabPane>
+                        </TabPane> */}
+                        <LocationsTab locationsData={this.state.locationsData} dataLoaded={this.state.locationsDataLoaded} />
                     </TabContent>
 
 
@@ -148,7 +150,7 @@ export default class RegistrationResultPage extends Component {
             )
         }
         return (
-            <div>
+            <div>                
                 <Spinner style={{ width: '5rem', height: '5rem', position: 'fixed', top: '47.5%', left: '47.5%' }} />
             </div>
         )

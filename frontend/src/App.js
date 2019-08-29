@@ -23,7 +23,7 @@ export default class App extends Component {
       loggingOut: false
     }
     localStorage.setItem('test', 'test');
-    sessionStorage.setItem('authKey', 'default');
+    // sessionStorage.setItem('authKey', 'default');
   }
   searchData = (link) => {
     // console.log(data)
