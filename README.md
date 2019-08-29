@@ -30,15 +30,15 @@ Suspect flees the scene: Who was the suspect? Where have they been?
 ## Architecture
 ![Architecture](/Docs/Architecture.png)
 
-**Front-End:** React
-**APP:** Node
-**Audit:** SpringBoot
-**Citizen:** SpringBoot
-**Call Records:** SpringBoot
-**ANPR:** SpringBoot
-**Transactions:** SpringBoot
-**Epos:** SpringBoot
-**ATM:** SpringBoot
+**Front-End:** React\
+**APP:** Node\
+**Audit:** SpringBoot\
+**Citizen:** SpringBoot\
+**Call Records:** SpringBoot\
+**ANPR:** SpringBoot\
+**Transactions:** SpringBoot\
+**Epos:** SpringBoot\
+**ATM:** SpringBoot\
 
 ---
 
