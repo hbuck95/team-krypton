@@ -42,9 +42,18 @@ export default class SearchPersonResult extends Component {
 
         this.changeSearchData = (data) => {
             console.log("change search data", data)
-            this.setState({ searchData: data },
-                ()=>{console.log("set state search data")
-            this.makeRequests()})
+            this.setState({
+                searchData: data,
+                dataLoaded: false,
+                transactionDataLoaded: false,
+                associateDataLoaded: false,
+                knownLocationsDataLoaded: false,
+                celltowerDataLoaded: false,
+            },
+                () => {
+                    console.log("set state search data")
+                    this.makeRequests()
+                })
 
         }
 
@@ -76,7 +85,7 @@ export default class SearchPersonResult extends Component {
 
             sessionStorage.setItem('scenario', '1');
 
-            
+
             this.makeRequests();
 
         }
@@ -92,7 +101,7 @@ export default class SearchPersonResult extends Component {
                 street: splitaddress[0].replace(' ', '+'),
                 area: splitaddress[1].replace(' ', '+')
             }
-            
+
             axios.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${address.street},${address.area}&key=${GEO_API_KEY}`)
                 .then(res => {
                     console.log("geocoder res: ", res)
