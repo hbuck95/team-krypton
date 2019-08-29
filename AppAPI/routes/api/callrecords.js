@@ -70,15 +70,19 @@ router.post("/getCellTowers", auth.required, (req, res) => {
         .then(response => {
             //Assign the phone number retrieved to the suspectcallrecordsbody object for the next axios request.
             suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
+            console.log("/getPhoneNumber data: ", response.data);
             return makeRequest.axiosPost(API + GET_CALL_RECORDS_OF_SUSPECT, suspectCallRecordsBody)
         }).then(response => {
+            console.log("/getCallRecords data: ", response.data);
             payload.callRecords = response.data;
             return makeRequest.axiosPost(API + GET_CELL_TOWER, response.data)
         })
         .then(response => {
+            console.log("/getCellTowers data: ", response.data);
             payload.cellTowers = response.data;
         })
         .then(() => {
+            console.log("/getCellTowers payload: ", payload);
             res.status(200).json(payload).end();
         })
         .catch(err => {
