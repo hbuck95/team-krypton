@@ -44,11 +44,9 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
 
     return makeRequest.axiosPost(API + GET_VEHICLE_REGISTRATIONS, req.body)
         .then(response => {
-            const hello = "Hello World! I love Javascript.";
             return makeRequest.axiosPost(API + GET_ANPR_OBSERVATIONS, response.data)
         })
-        .then(response, hello => {
-            console.log(hello);
+        .then(response => {
             anprObservations = response.data;
             return makeRequest.axiosPost(API + GET_ANPR_CAMERA, response.data)
         })
