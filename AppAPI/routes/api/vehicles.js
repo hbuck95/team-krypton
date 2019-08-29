@@ -21,7 +21,7 @@ router.post("/getVehicle", auth.required, (req, res) => {
 
     return makeRequest.axiosPost(API + GET_VEHICLE, req.body)
         .then(response => {
-            payload.vehicle = response.data.reverse();
+            payload.vehicle = response.data;
         })
         .then(() => {
             res.status(200).json(payload).end();
