@@ -7,7 +7,9 @@ import MapContainer from '../../MapContainer'
 
 export default class MainDetailTab extends Component {
 
-
+    componentDidMount = () => {
+        sessionStorage.setItem('mapStyle', JSON.stringify( {zIndex: 0, position: 'absolute', left: 75, top: 410}))
+    }
     render() {
         if (this.props.dataLoaded) {
             return (
@@ -27,7 +29,7 @@ export default class MainDetailTab extends Component {
                             />
                         </Col>
                         <Col md="auto">
-                            <MapContainer height="400px" width="500px" style={{ marginTop: 50, marginRight: 50 }} data={[{ lat: 50.809310, lng: -1.070670 }]} />
+                            <MapContainer height="400px" width="500px" data={[{ lat: 50.809310, lng: -1.070670 }]} />
                         </Col>
                     </Row>
                 </TabPane>
