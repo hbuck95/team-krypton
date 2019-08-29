@@ -16,7 +16,7 @@ export default class SearchRegistrationBox extends Component {
             }
 
             localStorage.setItem('searchData', JSON.stringify(searchData));
-            console.log(searchData);
+            // console.log(searchData);
 
             props.passedFunction('vehicle');
 
@@ -39,8 +39,8 @@ export default class SearchRegistrationBox extends Component {
                         </Col>
                     </Row>
                     <FormGroup check row style={{ marginTop: "25px" }}>
-                        <Col sm={{ size: 10, offset: 4 }}>
-                            <Button>Search</Button>
+                        <Col style={{alignContent: "center"}}>
+                            <Button style={{alignContent: "center"}}>Search</Button>
                         </Col>
                     </FormGroup>
                 </Form>

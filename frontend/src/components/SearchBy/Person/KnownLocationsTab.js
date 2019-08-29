@@ -17,12 +17,12 @@ export default class KnownLocationsTab extends Component {
 
     }
 
-    componentDidMount = () => {
-
-    }
+    // componentDidMount = () => {
+    //     sessionStorage.setItem('mapStyle', JSON.stringify( {zIndex: 0, position: 'absolute', left:500, top: 50}))
+    // }
 
     render() {
-
+        
         if (this.props.dataLoaded) {
             return (
 
@@ -42,10 +42,15 @@ export default class KnownLocationsTab extends Component {
                         headers={['Time Stamp', 'Vendor', 'Street Name', 'Post Code', 'Longitude', 'Latitude']} />
 
 
-                    <h2>ANPR Cameras</h2>
+                    <h3>ANPR Cameras</h3>
                     <ResultTableHorizontal passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
-                        data={this.props.anprLocationsData ? this.props.anprLocationsData : { noData: 'No ANPR Camera locations' }}
+                        data={this.props.anprLocationsData ? this.props.anprLocationsData : { noData: <Spinner style={{ width: '2rem', height: '2rem' }} /> }}
                         headers={['Time Stamp', 'ANPR ID', 'Street Name', 'Longitude', 'Latitude']} />
+
+                    <h3>Cell Towers</h3>
+                    <ResultTableHorizontal passedStyle={{ width: "95%", marginLeft: 50, marginTop: 50 }}
+                    data={this.props.celltowerdata ? this.props.celltowerdata : { noData: <Spinner style={{ width: '2rem', height: '2rem' }} />}} 
+                    headers={['Time Stamp', 'Cell Tower ID', 'Operator',  'Type', 'Longitude', 'Latitude']}/>
                     <Col md="auto">
                         <MapContainer height="400px" width="500px" style={{ marginTop: 50, marginRight: 50 }} data={[{ lat: 50.809310, lng: -1.070670 }]} />
                     </Col>
