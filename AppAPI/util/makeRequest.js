@@ -27,7 +27,7 @@ module.exports = {
         axios.post(AUDIT_API + AUDIT_CREATE, audit, { headers: HEADERS })
             .then(response => {
                 if (response.status === 200) {
-                    console.log("[%s] Audit created for %s@%s", Date.now() ,username, searchUrl);
+                    console.log("[%s] Audit created for %s@%s", Date.now() ,audit.username, audit.searchUrl);
                     return response.data;
                 } else {
                     console.log("Expected response status of 200 (OK). Received ", response.status);
