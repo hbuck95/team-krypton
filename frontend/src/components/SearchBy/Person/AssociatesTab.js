@@ -19,7 +19,7 @@ export default class AssociatesTab extends Component {
         this.moreDetail = (data) => {
             props.toggle('1');
             // console.log("toggle 1", data)
-            localStorage.setItem('searchData', JSON.stringify(data));
+            // localStorage.setItem('searchData', JSON.stringify(data));
             props.changeSearchData(data);
 
         }

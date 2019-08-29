@@ -58,7 +58,7 @@ export default class NavbarClass extends Component {
                                 {!this.props.loggedOut && <NavLink style={{ fontSize: 25 }} tag={Link} to='/audits' >Audits</NavLink>}
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={(e) => { this.logout(e) }} key={this.props.loggedOut} style={{ fontSize: 25 }}>{this.props.loggedOut ? 'log in' : 'log out'}</NavLink>
+                                <NavLink onClick={(e) => { this.logout(e) }} key={this.props.loggedOut} style={{ fontSize: 25 }}>{this.props.loggedOut ? 'Log in' : 'Log out'}</NavLink>
                             </NavItem>
                         </Nav>
                     </Navbar>

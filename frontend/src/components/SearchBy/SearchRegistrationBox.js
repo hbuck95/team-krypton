@@ -39,9 +39,9 @@ export default class SearchRegistrationBox extends Component {
                         </Col>
                     </Row>
                     <FormGroup check row style={{ marginTop: "25px" }}>
-                        <Col style={{alignContent: "center"}}>
-                            <Button style={{alignContent: "center"}}>Search</Button>
-                        </Col>
+                        <Row>
+                            <Button style={{marginLeft: "auto",  marginRight: "auto"}} >Search</Button>
+                        </Row>
                     </FormGroup>
                 </Form>
             </div>
