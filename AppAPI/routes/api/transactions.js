@@ -113,23 +113,23 @@ router.post('/getTransactionsForCitizen', auth.required, (req, res) => {
     }).then(response => {
 
       //Assign the EPOS transaction record(s) to the payload object
-      payload.epos.transactions = response.data;
+      payload.epos.transactions = response.data.reverse();
 
       return makeRequest.axiosPost(API + GET_ATM_TRANSACTIONS, transactionBody)
     }).then(response => {
 
       //Assign the retrieved bank card information to the payload object
-      payload.atm.transactions = response.data;
+      payload.atm.transactions = response.data.reverse();
 
       return makeRequest.axiosPost(API + GET_ATM_LOCATION, payload.atm.transactions)
     }).then(response => {
 
-      payload.atm.transactionLocations = response.data
+      payload.atm.transactionLocations = response.data.reverse();
 
       return makeRequest.axiosPost(API + GET_EPOS_LOCATION, payload.epos.transactions)
     }).then(response => {
 
-      payload.epos.transactionLocations = response.data
+      payload.epos.transactionLocations = response.data.reverse();
     }).then(() => {
       for(let i in payload.epos.transactionLocations){
         payload.epos.transactionLocations[i].id = payload.epos.transactions[i].timestamp

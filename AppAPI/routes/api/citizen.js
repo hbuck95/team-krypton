@@ -15,7 +15,7 @@ router.post('/getCitizen', auth.required, (req, res) => {
 
     return makeRequest.axiosPost(API + GET_CITIZEN, req.body)
         .then(response => {
-            return res.status(200).json({ payload: response.data }).end();
+            return res.status(200).json({ payload: response.data.reverse() }).end();
         })
         .catch(err => {
             console.log(err);
