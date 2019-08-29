@@ -7,7 +7,7 @@ const API = "http://audit-consumer:9010/audits";
 
 const GET_ALL = "/getAll";
 
-router.post("/getAudits", auth.required, (req, res) => {
+router.get("/getAudits", auth.required, (req, res) => {
 
     makeRequest.createAudit("/getAudits", req.body, req.header("Authorization"));
 
