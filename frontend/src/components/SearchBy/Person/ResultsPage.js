@@ -27,6 +27,7 @@ export default class SearchPersonResult extends Component {
             transactionDataLoaded: false,
             associateDataLoaded: false,
             knownLocationsDataLoaded: false,
+            celltowerDataLoaded: false,
             data: {},
             transactionData: {
                 eposTransactions: [],
@@ -36,9 +37,20 @@ export default class SearchPersonResult extends Component {
             knownLocationsData: []
         };
 
+        sessionStorage.setItem('mapStyle', JSON.stringify({ zIndex: 0, position: 'absolute', left: 65, top: 410 }))
+
+
 
         this.toggle = (tab) => {
             if (this.state.activeTab !== tab) {
+                if (tab === '1') {
+                    sessionStorage.setItem('mapStyle', JSON.stringify({ zIndex: 0, position: 'absolute', left: 65, top: 410 }))
+                }
+                if (tab === '4') {
+                    console.log("tab4");
+                    sessionStorage.setItem('mapStyle', JSON.stringify({visible: "invisible"}));// zIndex: 0, position: 'absolute', left: 525, top: 25 }));
+                    console.log(sessionStorage.getItem('mapStyle'));
+                }
                 this.setState({
                     activeTab: tab
                 });
@@ -48,6 +60,8 @@ export default class SearchPersonResult extends Component {
         this.componentDidMount = () => {
             this._isMounted = true;
             props.resetRedirect();
+
+            sessionStorage.setItem('scenario', '1');
 
             let HEADERS = { "Content-Type": "application/json", "Authorization": `Token ${sessionStorage.getItem('authKey')}` }
 
@@ -119,6 +133,38 @@ export default class SearchPersonResult extends Component {
                     }
                 })
 
+            axios.post(`${IP}/api/vehicle/getANPRCameras`,
+                {
+                    "forenames": this.state.searchData.forenames,
+                    "surname": this.state.searchData.surname,
+                    "address": this.state.searchData.homeAddress
+                },
+                { headers: HEADERS })
+                .then(res => {
+                    console.log("anpr", res);
+                    this.setState({
+                        anprLocationsData: res.data.anpr,
+                        locationsDataLoaded: true
+                    })
+                    axios.post(`${IP}/api/callrecords/getCellTowers`,
+                        {
+                            "forenames": this.state.searchData.forenames,
+                            "surname": this.state.searchData.surname,
+                            "address": this.state.searchData.homeAddress
+                        },
+                        { headers: HEADERS })
+                        .then(res => {
+                            console.log("celltower", res)
+                            this.setState({
+                                celltowerData: res.data.cellTowers,
+                                celltowerDataLoaded: true
+                            })
+                        })
+                        .catch()
+                })
+                .catch(res => {
+                    console.log("anpr", res);
+                })
             axios.post(`${IP}/api/callrecords/getAssociates`, {
                 "forenames": this.state.searchData.forenames,
                 "surname": this.state.searchData.surname,
@@ -137,31 +183,7 @@ export default class SearchPersonResult extends Component {
                     console.log("associates post failed!")
                 )
 
-            axios.post(`${IP}/api/callrecords/getCellTowers`,
-                {},
-                { headers: HEADERS })
-                .then(res=> {
-                    console.log("celltower", res)
-                })
-                .catch()
 
-            axios.post(`${IP}/api/vehicle/getANPRCameras`,
-                {
-                    "forenames": this.state.searchData.forenames,
-                    "surname": this.state.searchData.surname,
-                    "address": this.state.searchData.homeAddress
-                },
-                { headers: HEADERS })
-                .then(res => {
-                    console.log("anpr", res);
-                    this.setState({
-                        anprLocationsData: res.data.anpr,
-                        locationsDataLoaded: true
-                    })
-                })
-                .catch(res => {
-                    console.log("anpr", res);
-                })
 
 
         }
@@ -178,38 +200,38 @@ export default class SearchPersonResult extends Component {
 
     render() {
         console.log("render: ", this.state.data, this.state.transactionData)
-            return (
-                <div>
-                    <Nav tabs style={{ width: "100%" }}>
-                        <NavItem>
-                            <NavLink onClick={() => { this.toggle('1') }}>
-                                Main Details
+        return (
+            <div>
+                <Nav tabs style={{ width: "100%" }}>
+                    <NavItem>
+                        <NavLink onClick={() => { this.toggle('1') }}>
+                            Main Details
                             </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink onClick={() => { this.toggle('2') }}>
-                                Transactions
+                    </NavItem>
+                    <NavItem>
+                        <NavLink onClick={() => { this.toggle('2') }}>
+                            Transactions
                             </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink onClick={() => { this.toggle('3') }}>
-                                Associates
+                    </NavItem>
+                    <NavItem>
+                        <NavLink onClick={() => { this.toggle('3') }}>
+                            Associates
                             </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink onClick={() => { this.toggle('4') }}>
-                                Known locations
+                    </NavItem>
+                    <NavItem>
+                        <NavLink onClick={() => { this.toggle('4') }}>
+                            Known locations
                             </NavLink>
-                        </NavItem>
-                    </Nav>
-                    <TabContent activeTab={this.state.activeTab} style={{margin:50}}>
-                        <MainDetailTab style={{ marginTop: "100px" }} dataLoaded={this.state.dataLoaded} data={this.state.data} />
-                        <TransactionsTab style={{ marginTop: "100px" }} dataLoaded={this.state.transactionDataLoaded} transactionData={this.state.transactionData} />
-                        <AssociatesTab style={{ marginTop: "100px" }} dataLoaded={this.state.associateDataLoaded} associatesData={this.state.associatesData} />
-                        <KnownLocationsTab style={{ marginTop: "100px" }} dataLoaded={this.state.transactionDataLoaded} transactiondata={this.state.transactionData} anprLocationsData={this.state.anprLocationsData}/>
-                    </TabContent>
-                </div>
-            )
+                    </NavItem>
+                </Nav>
+                <TabContent activeTab={this.state.activeTab} style={{ margin: 50 }}>
+                    <MainDetailTab style={{ marginTop: "100px" }} dataLoaded={this.state.dataLoaded} data={this.state.data} />
+                    <TransactionsTab style={{ marginTop: "100px" }} dataLoaded={this.state.transactionDataLoaded} transactionData={this.state.transactionData} />
+                    <AssociatesTab style={{ marginTop: "100px" }} dataLoaded={this.state.associateDataLoaded} associatesData={this.state.associatesData} />
+                    <KnownLocationsTab style={{ marginTop: "100px" }} dataLoaded={this.state.transactionDataLoaded} transactiondata={this.state.transactionData} anprLocationsData={this.state.anprLocationsData} celltowerdata={this.state.celltowerData} />
+                </TabContent>
+            </div>
+        )
 
     }
 }

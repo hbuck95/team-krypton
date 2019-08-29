@@ -7,11 +7,13 @@ import MapContainer from '../../MapContainer'
 
 export default class MainDetailTab extends Component {
 
-    componentDidMount = () => {
-        sessionStorage.setItem('mapStyle', JSON.stringify( {zIndex: 0, position: 'absolute', left: 75, top: 410}))
-    }
+    // componentDidMount = () => {
+    //     sessionStorage.setItem('mapStyle', JSON.stringify( {zIndex: 0, position: 'absolute', left: 65, top: 410}))
+    // }
     render() {
+
         if (this.props.dataLoaded) {
+            sessionStorage.setItem('mapStyle', JSON.stringify( {zIndex: 0, position: 'absolute', left: 65, top: 410}))
             return (
                 <TabPane tabId="1">
                     <Row style={{ marginLeft: 0, marginRight: 0 }}>

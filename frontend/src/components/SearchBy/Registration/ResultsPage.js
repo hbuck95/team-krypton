@@ -26,6 +26,9 @@ export default class RegistrationResultPage extends Component {
         this.componentDidMount = () => {
 
             props.resetRedirect();
+
+            sessionStorage.setItem('scenario', '3');
+
             console.log("search data", this.state.searchData.vehicleRegistrationNo)
             let HEADERS = { "Content-Type": "application/json", "Authorization": `Token ${sessionStorage.getItem('authKey')}` }
 
@@ -41,6 +44,12 @@ export default class RegistrationResultPage extends Component {
                         data: res.data.vehicle
                     })
 
+                    localStorage.setItem('mapSearchData', JSON.stringify({
+                        "forenames": res.data.vehicle.forenames,
+                        "surname": res.data.vehicle.surname,
+                        "address": res.data.vehicle.address
+                    }))
+
                     axios.post(`${IP}/api/vehicle/getANPRCameras`,
                         {
                             "forenames": res.data.vehicle.forenames,
@@ -48,7 +57,9 @@ export default class RegistrationResultPage extends Component {
                             "address": res.data.vehicle.address
                         },
                         { headers: HEADERS })
+
                         .then(res => {
+                            
                             console.log("anpr", res);
                             // let locationsArr = res.data.anpr.map((x, i) => {
                             //     let temp = res.data.anprObservations.find(e => e.anprpointId === x.anprId)
@@ -58,7 +69,8 @@ export default class RegistrationResultPage extends Component {
                             //     return x;
                             // })
                             // console.log(locationsArr)
-                            sessionStorage.setItem('mapStyle', JSON.stringify( {zIndex: 0, position: 'absolute', left: 0, top: 400}))
+                            sessionStorage.setItem('mapStyle', JSON.stringify({ zIndex: 0, position: 'absolute', left: 0, top: 400 }))
+
                             this.setState({
                                 locationsData: res.data.anpr,
                                 locationsDataLoaded: true
@@ -104,7 +116,7 @@ export default class RegistrationResultPage extends Component {
                         </NavItem>
 
                     </Nav>
-                    <TabContent activeTab={this.state.activeTab} style={{margin:50}}>
+                    <TabContent activeTab={this.state.activeTab} style={{ margin: 50 }}>
                         <TabPane tabId='1'>
                             <h2>Vehicle Details</h2>
                             <ResultTableHorizontal passedStyle={{ width: "80%", marginLeft: 50, marginTop: 50 }}
@@ -150,7 +162,7 @@ export default class RegistrationResultPage extends Component {
             )
         }
         return (
-            <div>                
+            <div>
                 <Spinner style={{ width: '5rem', height: '5rem', position: 'fixed', top: '47.5%', left: '47.5%' }} />
             </div>
         )
