@@ -51,10 +51,10 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
             return makeRequest.axiosPost(API + GET_ANPR_CAMERA, response.data)
         })
         .then(response => {
+            let data = response.data;
 
-            //Add the corresponding timestamp from anprObservations to the front of the anpr camera record
             for(let i in anprObservations){
-                response.data[i] = {timestamp: anprObservations[i].timeStamp, ...response.data[i]};
+                data[i] = {timestamp: anprObservations[i].timeStamp, ...data[i]};
             }
 
             payload.anpr = data;
