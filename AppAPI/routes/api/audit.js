@@ -7,17 +7,17 @@ const API = "http://audit-consumer:9010/audits";
 
 const GET_ALL = "/getAll";
 
-router.post("/getAudits", auth.required, (req, res) => {
-
-    makeRequest.createAudit("/getAudits", req.body, req.header("Authorization"));
+router.get("/getAudits", auth.required, (req, res) => {
 
     const payload = {
         audits: null
     };
 
+    makeRequest.createAudit("/getAudits", req.body, req.header("Authorization"));
+
     return makeRequest.axiosGet(API + GET_ALL)
         .then(response => {
-            payload.audits = response.data;
+            payload.audits = response.data.reverse();
             return res.status(200).json(payload).end();
         })
         .catch(err => {

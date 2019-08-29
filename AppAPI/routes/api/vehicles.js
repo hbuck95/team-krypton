@@ -57,7 +57,7 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
                 data[i] = {timestamp: anprObservations[i].timeStamp, ...data[i]};
             }
 
-            payload.anpr = data;
+            payload.anpr = data.reverse();
         })
         .then(() => {
             return res.status(200).json(payload).end();

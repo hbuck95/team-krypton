@@ -45,7 +45,7 @@ router.post('/getAssociates', auth.required, (req, res) => {
         }).then(response => {
             return makeRequest.axiosPost(API + GET_ASSOCIATES, response.data)
         }).then(response => {
-            payload.associates = _.uniqWith(response.data, _.isEqual);
+            payload.associates = _.uniqWith(response.data, _.isEqual).reverse();
             return res.status(200).json(payload).end();
         }).catch(err => {
             console.log(err);
@@ -84,7 +84,7 @@ router.post("/getCellTowers", auth.required, (req, res) => {
                 data[i] = {timestamp: callRecords[i].timestamp, ...data[i]};
             }
 
-            payload.cellTowers = data;
+            payload.cellTowers = data.reverse();
 
         })
         .then(() => {
