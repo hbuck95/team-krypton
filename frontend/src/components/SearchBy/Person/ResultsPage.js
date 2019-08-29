@@ -62,6 +62,7 @@ export default class SearchPersonResult extends Component {
                     if (this._isMounted) {
                         localStorage.setItem('latSearch', res.data.results[0].geometry.location.lat);
                         localStorage.setItem('lngSearch', res.data.results[0].geometry.location.lng);
+                        localStorage.setItem('mapStyle', JSON.stringify({}))
                     }
                 })
                 .catch(res => {
@@ -139,7 +140,9 @@ export default class SearchPersonResult extends Component {
             axios.post(`${IP}/api/callrecords/getCellTowers`,
                 {},
                 { headers: HEADERS })
-                .then()
+                .then(res=> {
+                    console.log("celltower", res)
+                })
                 .catch()
 
             axios.post(`${IP}/api/vehicle/getANPRCameras`,
@@ -151,6 +154,10 @@ export default class SearchPersonResult extends Component {
                 { headers: HEADERS })
                 .then(res => {
                     console.log("anpr", res);
+                    this.setState({
+                        anprLocationsData: res.data.anpr,
+                        locationsDataLoaded: true
+                    })
                 })
                 .catch(res => {
                     console.log("anpr", res);
@@ -195,11 +202,11 @@ export default class SearchPersonResult extends Component {
                             </NavLink>
                         </NavItem>
                     </Nav>
-                    <TabContent activeTab={this.state.activeTab}>
+                    <TabContent activeTab={this.state.activeTab} style={{margin:50}}>
                         <MainDetailTab style={{ marginTop: "100px" }} dataLoaded={this.state.dataLoaded} data={this.state.data} />
                         <TransactionsTab style={{ marginTop: "100px" }} dataLoaded={this.state.transactionDataLoaded} transactionData={this.state.transactionData} />
                         <AssociatesTab style={{ marginTop: "100px" }} dataLoaded={this.state.associateDataLoaded} associatesData={this.state.associatesData} />
-                        <KnownLocationsTab style={{ marginTop: "100px" }} dataLoaded={this.state.transactionDataLoaded} data={this.state.transactionData} />
+                        <KnownLocationsTab style={{ marginTop: "100px" }} dataLoaded={this.state.transactionDataLoaded} transactiondata={this.state.transactionData} anprLocationsData={this.state.anprLocationsData}/>
                     </TabContent>
                 </div>
             )

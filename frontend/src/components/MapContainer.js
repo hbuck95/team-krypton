@@ -166,7 +166,7 @@ class Map extends Component {
                         </GoogleMap>
                     </Col>
                 </Row>
-                    <div className="searchBox" style={{zIndex: 10, position: 'absolute', left: 1225, top: 95}}>
+                    <div className="searchBox" style={sessionStorage.getItem('mapStyle') ? JSON.parse(sessionStorage.getItem('mapStyle')): {zIndex: 10, position: 'absolute', left: 1225, top: 95} }>
                         <h5 style={{ textAlign: 'center'}}>Search Parameters</h5>
                         <br/>
                         <form onSubmit={(e) => { this.onSubmit(e) }}>
