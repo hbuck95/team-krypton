@@ -9,18 +9,17 @@ const GET_ALL = "/getAll";
 
 router.get("/getAudits", auth.required, (req, res) => {
 
-    makeRequest.createAudit("/getAudits", req.body, req.header("Authorization"));
-
     const payload = {
         audits: null
     };
 
-    return makeRequest.axiosGet(API + GET_ALL)
-        .then(response => {
+    return makeRequest.createAudit("/getAudits", req.body, req.header("Authorization"))
+        .then(() => {
+            return makeRequest.axiosGet(API + GET_ALL)
+        }).then(response => {
             payload.audits = response.data;
             return res.status(200).json(payload).end();
-        })
-        .catch(err => {
+        }).catch(err => {
             console.log(err);
             return res.status(500).json({ message: "An error ocurred whilst processing your request.", error: err });
         });
