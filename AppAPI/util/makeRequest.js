@@ -9,28 +9,7 @@ const AUDIT_API = "http://audit-producer:9002/"
 const AUDIT_CREATE = "/create"
 
 module.exports = {
-    axiosPost: function (endpoint, body, authHeader, src) {
-        console.log("Auth: ", authHeader);
-
-        // if (authHeader) {
-        //     console.log("Creating audit...");
-
-        //     const audit = {
-        //         username: jwtDecode.decodeToken(authHeader).username,
-        //         searchUrl: src,
-        //         searchCriteria: `${JSON.stringify(body)}`
-        //     };
-
-        //     console.log("Audit: ", audit);
-
-        //     axios.post(AUDIT_API + AUDIT_CREATE, audit, { headers: HEADERS })
-        //         .then(response => {
-        //             console.log(response);
-        //         }).catch(err => {
-        //             console.log(err);
-        //         })
-        // }
-
+    axiosPost: function (endpoint, body) {
         return axios.post(endpoint, body, { headers: HEADERS });
     },
 
@@ -48,7 +27,7 @@ module.exports = {
         axios.post(AUDIT_API + AUDIT_CREATE, audit, { headers: HEADERS })
             .then(response => {
                 if (response.status === 200) {
-                    console.log("Audit created.");
+                    console.log("[%s] Audit created for %s@%s", Date.now() ,username, searchUrl);
                     return response.data;
                 } else {
                     console.log("Expected response status of 200 (OK). Received ", response.status);
