@@ -40,15 +40,28 @@ export default class SearchPersonResult extends Component {
         sessionStorage.setItem('mapStyle', JSON.stringify({ zIndex: 0, position: 'absolute', left: 65, top: 410 }))
 
 
+        this.changeSearchData = (data) => {
+            console.log("change search data", data)
+            this.setState({ searchData: data },
+                ()=>{console.log("set state search data")
+            this.makeRequests()})
+
+        }
 
         this.toggle = (tab) => {
+            if (this.state.searchData !== JSON.parse(localStorage.getItem('searchData'))) {
+                this.setState({
+                    searchData: JSON.parse(localStorage.getItem('searchData'))
+                })
+            }
             if (this.state.activeTab !== tab) {
                 if (tab === '1') {
+
                     sessionStorage.setItem('mapStyle', JSON.stringify({ zIndex: 0, position: 'absolute', left: 65, top: 410 }))
                 }
                 if (tab === '4') {
                     console.log("tab4");
-                    sessionStorage.setItem('mapStyle', JSON.stringify({visible: "invisible"}));// zIndex: 0, position: 'absolute', left: 525, top: 25 }));
+                    sessionStorage.setItem('mapStyle', JSON.stringify({ visible: "invisible" }));// zIndex: 0, position: 'absolute', left: 525, top: 25 }));
                     console.log(sessionStorage.getItem('mapStyle'));
                 }
                 this.setState({
@@ -63,6 +76,15 @@ export default class SearchPersonResult extends Component {
 
             sessionStorage.setItem('scenario', '1');
 
+            
+            this.makeRequests();
+
+        }
+
+        this.makeRequests = () => {
+
+            console.log("make requests")
+
             let HEADERS = { "Content-Type": "application/json", "Authorization": `Token ${sessionStorage.getItem('authKey')}` }
 
             let splitaddress = this.state.searchData.homeAddress.split(', ')
@@ -70,6 +92,7 @@ export default class SearchPersonResult extends Component {
                 street: splitaddress[0].replace(' ', '+'),
                 area: splitaddress[1].replace(' ', '+')
             }
+            
             axios.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${address.street},${address.area}&key=${GEO_API_KEY}`)
                 .then(res => {
                     console.log("geocoder res: ", res)
@@ -182,10 +205,6 @@ export default class SearchPersonResult extends Component {
                 }).catch(() =>
                     console.log("associates post failed!")
                 )
-
-
-
-
         }
 
         this.componentWillUnmount = () => {
@@ -227,7 +246,7 @@ export default class SearchPersonResult extends Component {
                 <TabContent activeTab={this.state.activeTab} style={{ margin: 50 }}>
                     <MainDetailTab style={{ marginTop: "100px" }} dataLoaded={this.state.dataLoaded} data={this.state.data} />
                     <TransactionsTab style={{ marginTop: "100px" }} dataLoaded={this.state.transactionDataLoaded} transactionData={this.state.transactionData} />
-                    <AssociatesTab style={{ marginTop: "100px" }} dataLoaded={this.state.associateDataLoaded} associatesData={this.state.associatesData} />
+                    <AssociatesTab style={{ marginTop: "100px" }} changeSearchData={this.changeSearchData} toggle={this.toggle} dataLoaded={this.state.associateDataLoaded} associatesData={this.state.associatesData} />
                     <KnownLocationsTab style={{ marginTop: "100px" }} dataLoaded={this.state.transactionDataLoaded} transactiondata={this.state.transactionData} anprLocationsData={this.state.anprLocationsData} celltowerdata={this.state.celltowerData} />
                 </TabContent>
             </div>

@@ -63,9 +63,8 @@ class Map extends Component {
         }
 
         this.undo = () => {
-            console.log("begin undo")
             if ((this.state.lat !== this.state.prevLat.length - (this.state.undos + 1)) && (this.state.lng !== this.state.prevLng.length - (this.state.undos + 1))) {
-                console.log(this.state.prevLat, this.state.lat, this.state.undos)
+                // console.log(this.state.prevLat, this.state.lat, this.state.undos)
                 this.setState({
                     lat: this.state.prevLat[this.state.prevLat.length - (this.state.undos + 1)],
                     lng: this.state.prevLng[this.state.prevLng.length - (this.state.undos + 1)],
@@ -78,7 +77,7 @@ class Map extends Component {
 
             let HEADERS = { "Content-Type": "application/json", "Authorization": `Token ${sessionStorage.getItem('authKey')}` }
 
-            if (sessionStorage.getItem('scenario') === '3' && !this.state.dataReceived) {
+            if (sessionStorage.getItem('scenario') === '3' && sessionStorage.getItem('mapDataLoaded') !== 'true') {
                 let splitaddress = this.state.searchData.address.split(', ')
                 let address = {
                     street: splitaddress[0].replace(' ', '+'),
@@ -86,7 +85,7 @@ class Map extends Component {
                 }
                 axios.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${address.street},${address.area}&key=${API_KEY}`)
                     .then(res => {
-                        console.log("geocoder res: ", res)
+                        // console.log("geocoder res: ", res)
                         
                             this.setState({
                                 lat: res.data.results[0].geometry.location.lat,
@@ -100,17 +99,16 @@ class Map extends Component {
                 axios.post(`${IP}/api/vehicle/getANPRCameras`,
                     this.state.searchData, { headers: HEADERS })
                     .then(res => {
-                        console.log("map data get success", res)
+                        // console.log("map data get success", res)
                         let tempArr = res.data.anpr.map(x => {
                             return {
                                 latitude: x.latitude,
                                 longitude: x.longitude,
                                 viewLat: x.latitude,
-                                viewLng: x.longitude,
-                                dataReceived: true
+                                viewLng: x.longitude
                             }
-                        })
-                        console.log(tempArr)
+                        }, () => {sessionStorage.setItem('mapDataLoaded', 'true')})
+                        // console.log(tempArr)
 
 
                         this.setState({
@@ -134,7 +132,7 @@ class Map extends Component {
                             defaultZoom={this.state.defaultZoom}
                             defaultCenter={{ lat: this.state.viewLat, lng: this.state.viewLng }}
                             onClick={() => { this.setState({ editcircle: false }) }}
-                            onDblClick={(e) => { console.log(e) }}
+                            // onDblClick={(e) => { console.log(e) }}
                         // onCenterChanged={ (e)=> this.getCenter(e)}
                         >
                             {(this.state.data !== []) && this.state.data.map(place => {
@@ -154,7 +152,7 @@ class Map extends Component {
                                 position={{ lat: this.state.lat, lng: this.state.lng }}
                                 draggable={true}
                                 onDragStart={(e) => {
-                                    console.log(this.state.prevLat, this.state.prevLng)
+                                    // console.log(this.state.prevLat, this.state.prevLng)
                                     this.setState(state => {
                                         const prevLat = [...state.prevLat, parseFloat(e.latLng.lat())];
                                         const prevLng = [...state.prevLng, parseFloat(e.latLng.lng())];
@@ -186,7 +184,7 @@ class Map extends Component {
                                 visible={true}
                                 editable={this.state.editcircle}
                                 onDblClick={() => { this.setState({ editcircle: true }) }}
-                                onRadiusChanged={(e) => console.log("radius change", e)}
+                                // onRadiusChanged={(e) => console.log("radius change", e)}
 
                             />
                         </GoogleMap>

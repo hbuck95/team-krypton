@@ -16,7 +16,7 @@ export default class SearchRegistrationBox extends Component {
             }
 
             localStorage.setItem('searchData', JSON.stringify(searchData));
-            console.log(searchData);
+            // console.log(searchData);
 
             props.passedFunction('vehicle');
 
