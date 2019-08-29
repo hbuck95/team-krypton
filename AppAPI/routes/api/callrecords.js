@@ -45,7 +45,7 @@ router.post('/getAssociates', auth.required, (req, res) => {
         }).then(response => {
             return makeRequest.axiosPost(API + GET_ASSOCIATES, response.data)
         }).then(response => {
-            payload.associates = _.uniqWith(response.data, _.isEqual);
+            payload.associates = _.uniqWith(response.data, _.isEqual).reverse();
             return res.status(200).json(payload).end();
         }).catch(err => {
             console.log(err);
@@ -56,13 +56,14 @@ router.post('/getAssociates', auth.required, (req, res) => {
 router.post("/getCellTowers", auth.required, (req, res) => {
 
     const payload = {
-        callRecords: null,
         cellTowers: null
     };
 
     const suspectCallRecordsBody = {
         callerMSISDN: null
     };
+
+    let callRecords = null;
 
     makeRequest.createAudit("/getCellTowers", req.body, req.header("Authorization"));
 
@@ -72,11 +73,19 @@ router.post("/getCellTowers", auth.required, (req, res) => {
             suspectCallRecordsBody.callerMSISDN = response.data.phoneNumber;
             return makeRequest.axiosPost(API + GET_CALL_RECORDS_OF_SUSPECT, suspectCallRecordsBody)
         }).then(response => {
-            payload.callRecords = response.data;
+            callRecords = response.data;
             return makeRequest.axiosPost(API + GET_CELL_TOWER, response.data)
         })
         .then(response => {
-            payload.cellTowers = response.data;
+
+            let data = response.data;
+
+            for(let i in callRecords){
+                data[i] = {timestamp: callRecords[i].timestamp, ...data[i]};
+            }
+
+            payload.cellTowers = data.reverse();
+
         })
         .then(() => {
             res.status(200).json(payload).end();

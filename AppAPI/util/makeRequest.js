@@ -13,6 +13,10 @@ module.exports = {
         return axios.post(endpoint, body, { headers: HEADERS });
     },
 
+    axiosGet: function (endpoint) {
+        return axios.get(endpoint);
+    },
+
     createAudit: function (src, body, authHeader) {
 
         if (!authHeader)
