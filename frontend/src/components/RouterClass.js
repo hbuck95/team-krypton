@@ -35,7 +35,7 @@ export default class RouterClass extends Component {
                 </ErrorBoundary>
                 <Route path="/search/map" render={() => <SearchLocationPage resetRedirect={this.props.resetRedirect} searchData={this.props.searchData} />} />
                 <Route path="/home" render={() => <LandingPage setHelpText={this.props.setHelpText} passedFunction={this.props.passedFunction} />} />
-                <Route path="/search/result" render={() => <SearchPersonResult resetRedirect={this.props.resetRedirect} searchData={this.props.searchData} />} />
+                <Route path="/search/result" render={() => <SearchPersonResult searchData={JSON.parse(localStorage.getItem('searchData'))}resetRedirect={this.props.resetRedirect} searchData={this.props.searchData} />} />
                 <Route path="/search/vehicle" render={() => <RegistrationResultPage resetRedirect={this.props.resetRedirect} searchData={this.props.searchData} />} />
                 <Route path="/teamkrypton" component={TeamKryptonPage} />
                 <Route path="/audits" component={AuditsPage} />

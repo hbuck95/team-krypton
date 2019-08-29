@@ -20,7 +20,7 @@ export default class AuditsPage extends Component {
 
         Axios.get(`${IP}/api/audit/getAudits`, { headers: HEADERS })
             .then(res => {
-                console.log("audit", res);
+                // console.log("audit", res);
                 let temp = res.data.audits.map(x => {
                     if (x.searchCriteria === "{}") {
                         x.searchCriteria = 'none';
@@ -40,7 +40,7 @@ export default class AuditsPage extends Component {
                     return x;
                 })
 
-                console.log("temp", temp)
+                // console.log("temp", temp)
                 this.setState({
                     data: temp
                 })

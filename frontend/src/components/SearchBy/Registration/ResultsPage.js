@@ -29,16 +29,15 @@ export default class RegistrationResultPage extends Component {
 
             sessionStorage.setItem('scenario', '3');
 
-            console.log("search data", this.state.searchData.vehicleRegistrationNo)
             let HEADERS = { "Content-Type": "application/json", "Authorization": `Token ${sessionStorage.getItem('authKey')}` }
 
             axios.post(`${IP}/api/vehicle/getVehicle`, {
                 "vehicleRegistrationNo": this.state.searchData.vehicleRegistrationNo
             }, { headers: HEADERS })
                 .then(res => {
-                    console.log("vehicle post success!")
-                    console.log("res", res)
-                    console.log("payload", res.data.vehicle);
+                    // console.log("vehicle post success!")
+                    // console.log("res", res)
+                    // console.log("payload", res.data.vehicle);
                     this.setState({
                         dataLoaded: true,
                         data: res.data.vehicle
@@ -60,7 +59,7 @@ export default class RegistrationResultPage extends Component {
 
                         .then(res => {
                             
-                            console.log("anpr", res);
+                            // console.log("anpr", res);
                             // let locationsArr = res.data.anpr.map((x, i) => {
                             //     let temp = res.data.anprObservations.find(e => e.anprpointId === x.anprId)
                             //     if (temp.timeStamp) {
@@ -100,7 +99,7 @@ export default class RegistrationResultPage extends Component {
 
     render() {
         if (this.state.dataLoaded) {
-            console.log(this.state.data)
+            // console.log(this.state.data)
             return (
                 <div>
                     <Nav tabs style={{ width: "100%" }}>

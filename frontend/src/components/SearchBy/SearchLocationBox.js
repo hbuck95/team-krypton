@@ -12,11 +12,10 @@ export default class SearchLocationBox extends Component {
 
         this.handleSubmit = (e) => {
             e.preventDefault();
-            console.log("location search clicked!")
 
             if (e.target[0].value && e.target[1].value) {
                 localStorage.setItem('latSearch', e.target[0].value);
-                localStorage.setItem('lngSearch', e.target[1].value);
+                localStorage.setItem('lngSearch', e.target[1].value);                
                 localStorage.setItem('radiusSearch', e.target[2].value);
             } else {
                 localStorage.setItem('latSearch', 53.4741);
