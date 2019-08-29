@@ -17,7 +17,7 @@ router.get("/getAudits", auth.required, (req, res) => {
 
     return makeRequest.axiosGet(API + GET_ALL)
         .then(response => {
-            payload.audits = response.data;
+            payload.audits = response.data.reverse();
             return res.status(200).json(payload).end();
         })
         .catch(err => {

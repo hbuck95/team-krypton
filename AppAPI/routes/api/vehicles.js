@@ -21,7 +21,7 @@ router.post("/getVehicle", auth.required, (req, res) => {
 
     return makeRequest.axiosPost(API + GET_VEHICLE, req.body)
         .then(response => {
-            payload.vehicle = response.data;
+            payload.vehicle = response.data.reverse();
         })
         .then(() => {
             res.status(200).json(payload).end();
@@ -57,7 +57,7 @@ router.post("/getAnprCameras", auth.required, (req, res) => {
                 data[i] = {timestamp: anprObservations[i].timeStamp, ...data[i]};
             }
 
-            payload.anpr = data;
+            payload.anpr = data.reverse();
         })
         .then(() => {
             return res.status(200).json(payload).end();
