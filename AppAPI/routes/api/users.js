@@ -5,7 +5,7 @@ const auth = require('../auth');
 const Users = mongoose.model('Users');
 
 //POST new user route (optional, everyone has access)
-router.post('/', auth.optional, (req, res, next) => {
+router.post('/register', auth.required, (req, res) => {
   const { body: { user } } = req;
 
   if (!user.username) {
@@ -65,20 +65,6 @@ router.post('/login', auth.optional, (req, res, next) => {
 
     return res.status(400).json({ info });
   })(req, res, next);
-});
-
-//GET current route (required, only authenticated users have access)
-router.get('/current', auth.required, (req, res, next) => {
-  const { payload: { id } } = req;
-
-  return Users.findById(id)
-    .then((user) => {
-      if (!user) {
-        return res.sendStatus(400);
-      }
-
-      return res.json({ user: user.toAuthJSON() });
-    });
 });
 
 module.exports = router;
