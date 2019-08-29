@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import '../../css/SearchBoxes.css'
+import '../../../css/SearchBoxes.css'
 
 
-import MapContainer from '../MapContainer'
+import MapContainer from '../../MapContainer'
 
 export default class SearchLocationPage extends Component {
     constructor(props) {
@@ -12,6 +12,9 @@ export default class SearchLocationPage extends Component {
         this.componentDidMount = () => {
 
             props.resetRedirect();
+
+            sessionStorage.removeItem('mapStyle');
+            
         }
     }
     render() {

@@ -15,9 +15,9 @@ export default class ResultTableHorizontal extends Component {
     }
 
     render() {
-        
+
         if (this.props.data !== undefined && !this.props.data.noData) {
-            console.log("error handle" , this.props.data)
+            console.log("error handle", this.props.data)
             return (
                 <Table hover bordered style={this.state.passedStyle}>
                     <thead>
@@ -31,7 +31,7 @@ export default class ResultTableHorizontal extends Component {
                         {this.props.data.map((data, i) => {
                             return <tr key={`data-${i}`}>
                                 {Object.values(data).map((value) =>
-                                    <td key={`data-${value}`}>{value}</td>
+                                    <td key={`data-${value}`}>{(value ? value : 'null')}</td>
                                 )}
                             </tr>
                         })
@@ -52,7 +52,9 @@ export default class ResultTableHorizontal extends Component {
                 </thead>
                 <tbody>
                     <tr>
-                        {this.props.data.noData ? this.props.data.noData : "no data found"}
+                        <td>
+                            {this.props.data.noData ? this.props.data.noData : "no data found"}
+                        </td>
                     </tr>
                 </tbody>
             </Table>
